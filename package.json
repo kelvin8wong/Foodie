@@ -4,17 +4,21 @@
   "private": true,
   "main": "server.js",
   "dependencies": {
-    "react": "^16.1.1",
-    "react-dom": "^16.1.1",
-    "react-scripts": "1.0.17",
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "babel-core": "^6.7.7",
+    "babel-loader": "^6.2.4",
     "knex": "^0.11.7",
     "knex-logger": "^0.1.0",
     "node-sass": "4.5.0",
-    "pg": "^6.0.2"
+    "pg": "^6.0.2",
+    "google-maps-react": "^1.0.13",
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-router": "^2.4.0",
+    "webpack": "^1.13.0"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -30,10 +34,14 @@
   },
   "devDependencies": {
     "nodemon": "^1.9.2",
-    "sqlite3": "^3.1.4",
     "eslint": "4.10.0",
     "eslint-plugin-react": "7.4.0"
   },
+<<<<<<< HEAD
   "proxy":"http://localhost:3001"
 }
 
+=======
+  "proxy": "http://localhost:3001"
+}
+>>>>>>> 00ade8f04e95c5dd6b40996a742512056530c3f0
