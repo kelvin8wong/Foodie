@@ -1,33 +1,42 @@
-import React from 'react';
-import {
-  withScriptjs,
-  withGoogleMap,
-  GoogleMap,
-  Marker
-} from "react-google-maps";
-import _ from "lodash";
-import { compose, withProps } from "recompose";
+import React, { Component } from 'react';
+import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
 
-const MyMapComponent = compose(
-  withProps({
-    googleMapURL:
-      "https://maps.googleapis.com/maps/api/js?key=AIzaSyC4R6AN7SmujjPUIGKdyao2Kqitzr1kiRg&v=3.exp&libraries=geometry,drawing,places",
-    loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `400px` }} />,
-    mapElement: <div style={{ height: `100%` }} />
-  }),
-  withScriptjs,
-  withGoogleMap
-)(props => (
-  <GoogleMap defaultZoom={8} defaultCenter={{ lat: -34.397, lng: 150.644 }}>
-    <Marker position={{ lat: -34.397, lng: 150.644 }} />
-  </GoogleMap>
-));
+class Map extends Component {
 
-const enhance = _.identity;
+  constructor ( ){
+    super()
+    this.state = {
+      map: null
+    }
+  }
 
-const ReactGoogleMaps = () => [
-  <MyMapComponent key="map" />
-];
+  mapMoved(){
+    console.log('mapmoved', JSON.stringify(this.state.map.getCenter()))
+  }
+  zoomChanged(){
+    console.log('zoommoved', this.state.map.getZoom())
+  }
+  mapLoaded(map){
+    if (this.state.map !== null)
+      return;
+    this.setState({
+      map: map
+    })
+  }
 
-export default enhance(ReactGoogleMaps);
+
+  render() {
+    return (
+          <GoogleMap
+            defaultZoom={this.props.zoom}
+            defaultCenter={this.props.center}
+            ref={this.mapLoaded.bind(this)}
+            onZoomChanged={this.zoomChanged.bind(this)}
+            onDragEnd={this.mapMoved.bind(this)}>
+            <Marker position={{ lat: -34.397, lng: 150.644 }} />
+          </GoogleMap>
+    );
+  }
+}
+
+export default withGoogleMap(Map);
