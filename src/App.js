@@ -4,11 +4,11 @@ import Map from './Map.js';
 
 class App extends Component {
   render() {
-     
+
     return (
       <div className="App">
-        <div className="map-column">
-          <Map 
+        <div className="map-wrapper">
+          <Map
             isMarkerShown
             center={{ lat: 49.2827, lng: -123.1207 }}
             zoom={14}
