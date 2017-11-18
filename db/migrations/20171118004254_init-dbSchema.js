@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
       t.primary('restID');
       t.varchar('url');
       t.varchar('imageUrl');
-      t.int('rating');
+      t.integer('rating');
       t.string('phone', 12);
       t.float('coordLong', 19, 15);
       t.float('coordLat', 19, 15);
@@ -32,7 +32,7 @@ exports.up = function(knex, Promise) {
       t.varchar('addr1');
       t.string('zipCode', 16)
     }),
-knex.schema.createTable('membSels', (t) =>  {
+    knex.schema.createTable('membSels', (t) =>  {
       t.string('memberID', 16);
       t.foreign('memberID').references('members.member');
       t.varchar('memberRest');
@@ -40,12 +40,13 @@ knex.schema.createTable('membSels', (t) =>  {
       t.primary(['memberID', 'memberRest']);
       t.varchar('comments')
     })
+  ])
 };
 
 exports.down = function(knex, Promise) {
   return Promise.all([
     knex.schema.dropTableIfExists('membSels'),
     knex.schema.dropTableIfExists('restaurants'),
-    knex.schema.dropTableIfExists('members'),
+    knex.schema.dropTableIfExists('members')
   ])
 };
