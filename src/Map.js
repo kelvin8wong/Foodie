@@ -27,7 +27,7 @@ class Map extends Component {
 
   render() {
     return (
-          <GoogleMap
+          <GoogleMap 
             defaultZoom={this.props.zoom}
             defaultCenter={this.props.center}
             ref={this.mapLoaded.bind(this)}
