@@ -1,5 +1,8 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
+# Sass-cache
+.sass-cache
+
 # dependencies
 /node_modules
 

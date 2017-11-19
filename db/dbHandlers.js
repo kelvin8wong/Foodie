@@ -52,6 +52,7 @@ module.exports = function makeDBhandlers (knex) {
             reservReq:    member.rr
           })
     },
+    
   
   } 
 }

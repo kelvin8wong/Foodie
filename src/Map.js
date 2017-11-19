@@ -9,7 +9,7 @@ class Map extends Component {
       map: null
     }
   }
-
+  
   mapMoved(){
     console.log('mapmoved', JSON.stringify(this.state.map.getCenter()))
   }
@@ -26,6 +26,16 @@ class Map extends Component {
 
 
   render() {
+    const markers = this.props.markers.map((venue, i) => {
+      const marker = {
+        position: {
+          lat: venue.location.lat,
+          lng: venue.location.lng
+        }
+      }
+      return <Marker key={i} {...marker}/>
+    })
+  
     return (
           <GoogleMap 
             defaultZoom={this.props.zoom}
@@ -33,7 +43,7 @@ class Map extends Component {
             ref={this.mapLoaded.bind(this)}
             onZoomChanged={this.zoomChanged.bind(this)}
             onDragEnd={this.mapMoved.bind(this)}>
-            <Marker position={{ lat: -34.397, lng: 150.644 }} />
+            {markers}
           </GoogleMap>
     );
   }
