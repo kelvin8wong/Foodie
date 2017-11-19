@@ -34,11 +34,5 @@
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0"
   },
-<<<<<<< HEAD
   "proxy":"http://localhost:3001"
 }
-
-=======
-  "proxy": "http://localhost:3001"
-}
->>>>>>> 00ade8f04e95c5dd6b40996a742512056530c3f0
