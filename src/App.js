@@ -1,10 +1,38 @@
 import React, { Component } from 'react';
 import './App.css';
 import Map from './Map.js';
+import superagent from 'superagent';
+import RestaurantList from './RestaurantList.js';
 
 class App extends Component {
-  render() {
+  constructor(){
+		super()
+		this.state = {
+			venues: []
+		}
+	}
 
+  componentDidMount(){
+    console.log('componentDidMount')
+    
+		const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=40.7575285,-73.9884469&client_id=FERSEHDMQU451JXRY1QN5OULADS41SKGR4NWOTNFTIT4HOFS&client_secret=AMJOPX04B0YKCJ34CZ1EN2R5CEFCXIRKPTPXWHU4QE51RSIS'
+    
+    superagent
+    .get(url)
+    .query(null)
+    .set('Accept', 'text/json')
+    .end((error, response) => {
+
+      const venues = response.body.response.venues
+      console.log(JSON.stringify(venues))
+
+      this.setState({
+        venues: venues
+      })
+    })
+
+  }
+  render() {
     const markers = [
       {
         location:{
@@ -30,6 +58,9 @@ class App extends Component {
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
           />
+        </div>
+        <div className="search-column">
+          <RestaurantList venues={this.state.venues} />
         </div>
       </div>
     );
