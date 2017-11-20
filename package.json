@@ -11,7 +11,9 @@
     "react-dom": "^16.1.1",
     "react-google-maps": "^9.2.2",
     "react-scripts": "1.0.17",
-    "recompose": "^0.26.0"
+    "recompose": "^0.26.0",
+    "superagent": "^3.8.1",
+    "yelp-fusion": "^1.0.4"
   },
   "scripts": {
     "build": "react-scripts build",
@@ -34,5 +36,5 @@
     "body-parser": "^1.15.2",
     "dotenv": "^2.0.0"
   },
-  "proxy":"http://localhost:3001"
+  "proxy": "http://localhost:3001"
 }

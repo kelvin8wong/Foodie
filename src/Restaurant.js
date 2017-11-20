@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-const Yelp = require('node-yelp-api-v3');
-const yelp = new Yelp({
-  consumer_key: '',
-  consumer_secret: ''
-});
+// const Yelp = require('node-yelp-api-v3');
+// const yelp = new Yelp({
+//   consumer_key: '',
+//   consumer_secret: ''
+// });
 
 
 class Restaurant extends Component {
