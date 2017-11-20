@@ -31,8 +31,11 @@ class App extends Component {
       })
     })
 
+<<<<<<< HEAD
   }
   render() {
+=======
+>>>>>>> d9aa1fd25826669daaa25ec899cd3e2976723afb
     const markers = [
       {
         location:{
