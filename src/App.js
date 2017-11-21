@@ -14,9 +14,9 @@ class App extends Component {
 
   componentDidMount(){
     console.log('componentDidMount')
-    
+
 		const url = 'https://api.foursquare.com/v2/venues/search?v=20140806&ll=40.7575285,-73.9884469&client_id=FERSEHDMQU451JXRY1QN5OULADS41SKGR4NWOTNFTIT4HOFS&client_secret=AMJOPX04B0YKCJ34CZ1EN2R5CEFCXIRKPTPXWHU4QE51RSIS'
-    
+
     superagent
     .get(url)
     .query(null)
@@ -31,11 +31,9 @@ class App extends Component {
       })
     })
 
-<<<<<<< HEAD
   }
   render() {
-=======
->>>>>>> d9aa1fd25826669daaa25ec899cd3e2976723afb
+
     const markers = [
       {
         location:{
@@ -48,11 +46,11 @@ class App extends Component {
         }
       }
     ]
-     
+
     return (
       <div className="App">
         <div className="map-column">
-          <Map 
+          <Map
             markers={markers}
             center={{ lat: 49.2827, lng: -123.1207 }}
             zoom={14}
