@@ -30,7 +30,7 @@ module.exports = function makeDBhandlers (knex) {
             hasParking:   member.hp,
             serveAlcohol: member.sa,
             reservReq:    member.rr
-          }) 
+          })  //fin insert
     }, //fin addmember
     
     //update member profile
@@ -39,6 +39,7 @@ module.exports = function makeDBhandlers (knex) {
         knex('members')
           .where('member', member)
           .update({
+            member:       member.id,
             nameFirst:    member.fName,
             nameLast:     member.lName,
             email:        member.email,
