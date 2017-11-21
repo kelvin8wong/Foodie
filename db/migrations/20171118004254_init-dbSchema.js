@@ -20,7 +20,7 @@ exports.up = function(knex, Promise) {
       t.primary('restid');
       t.varchar('url');
       t.varchar('imageUrl');
-      t.int('rating');
+      t.integer('rating');
       t.string('phone', 12);
       t.float('coordLong', 19, 15);
       t.float('coordLat', 19, 15);
