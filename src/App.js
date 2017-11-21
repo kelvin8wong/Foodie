@@ -9,7 +9,7 @@ class App extends Component {
 		super()
 		this.state = {
       venues: [],
-		}
+    }
 	}
 
   componentDidMount(){
@@ -74,9 +74,6 @@ class App extends Component {
       <div className="App">
         <div className="map-column">
           {output}
-        </div>
-        <div className="search-column">
-          <RestaurantList venues={this.state.venues} />
         </div>
         <div className="search-column">
           <RestaurantList venues={this.state.venues} />
