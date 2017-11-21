@@ -1,53 +1,30 @@
 import React, { Component } from 'react';
-
-// const Yelp = require('node-yelp-api-v3');
-// const yelp = new Yelp({
-//   consumer_key: '',
-//   consumer_secret: ''
-// });
-
-
 class Restaurant extends Component {
 
-  // constructor ( ){
-  //   super()
-  //   this.state = {
-  //     yelp: null
-  //   }
-  // }
-
-  // let params = {
-  //       query: 'food',
-  //       location: '51.5007,0.1246',
-  //       price: '2',
-  //       limit: 10
-  //   }
-
-  //   yelp.search(params)
-  //    .then(data => data)
-  //    .catch(err => err)
-
-
   render() {
+    const restaurant = this.props.restaurant
+    console.log(restaurant)
+
     return (
-      <main className="Yelp">
+      <main className="restaurant-list">
         <div className="Box01">
           <span className="picture">Picture</span>
-          <span className="name">Name Name Name Name</span>
-          <span className="rating">rating rating</span>
-          <span className="price">price</span>
+          <p><span className="name">{restaurant.name}</span></p>
         </div>
 
         <div className="Box02">
-          <span className="city">city city</span>
-          <span className="address">address address address address address address address address </span>
-          <span className="code">code code</span>
-          <span className="phone">phone phone</span>
+          <p><span className="address">{restaurant.location.formattedAddress[0]}</span></p>
+          <p><span className="city">{restaurant.location.formattedAddress[1]}</span></p>
+          <p><span className="country">{restaurant.location.formattedAddress[2]}</span></p>
+          <p><span className="phone">{restaurant.contact.formattedPhone}</span></p>
+          <p><span className="site">{restaurant.url}</span></p>
         </div>
 
         <div className="Box03">
-          <span className="name_member">member name</span>
-          <span className="opinion">opinion opinion opinion opinion opinion opinion opinion opinion opinion opinion opinion</span>
+          <p><span className="name_member">member name</span></p>
+          <p><span className="opinion">opinion</span></p>
+          <p><span className="rating">rating</span></p>
+          <p><span className="price">price</span></p>
         </div>
       </main>
     );

@@ -51,8 +51,43 @@ module.exports = function makeDBhandlers (knex) {
             serveAlcohol: member.sa,
             reservReq:    member.rr
           })
-    },
+    }, //fin updMember
     
-  
+  //check for the existence of a store
+  checkRestExists: (rest) => {
+      return knex('restaurants').select('restID').where('restID', rest)
+        .then(restID  => {
+          console.log(restID);
+          return (restID = null) ? false  : true       
+        })
+    },   
+  //add a new restaurant to the restaurants table
+    addRestaurant: (rest) => {
+      return knex('restaurants')
+        .insert({
+          restID:     rest.id,
+          url:        rest.url,
+          imageUrl:   rest.image,
+          rating:     rest.rating,
+          phone:      rest.phone,
+          coordLong:  rest.clong,
+          coordLat:   rest.clat,
+          city:       rest.city,
+          country:    rest.country,
+          addr2:      rest.addr2,
+          addr3:      rest.addr3,
+          state:      rest.state,
+          addr1:      rest.addr1,
+          zipCode:    rest.zcode
+        }) 
+    }, //fin addRestaurant
+    addMemberSel: (sel) => {
+      return knex('membSels')
+        .insert({
+          memberID:   sel.member,
+          memberRest: sel.rest,
+          comments:   sel.comments
+        })
+    }
   } 
 }

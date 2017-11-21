@@ -16,7 +16,6 @@ class App extends Component {
     console.log('componentDidMount')
         
     const geoFindMe = () => {
-      var output = document.getElementById("out");
     
       if (!navigator.geolocation){
         return;
@@ -74,8 +73,11 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="map-column" id="out">
+        <div className="map-column">
           {output}
+        </div>
+        <div className="search-column">
+          <RestaurantList venues={this.state.venues} />
         </div>
         <div className="search-column">
           <RestaurantList venues={this.state.venues} />
