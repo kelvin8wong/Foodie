@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 class Restaurant extends Component {
 
   render() {
-    const restaurant = this.props.restaurant
+    const restaurant = this.props.restaurant 
     console.log(restaurant)
 
     return (
       <main className="restaurant-list">
         <div className="Box01">
           <span className="picture">Picture</span>
-          <p><span className="name">{restaurant.name}</span></p>
+          <span className="name">{restaurant.name}</span>
+          <span className="rating">rating rating</span>
+          <span className="price">price</span>
         </div>
 
         <div className="Box02">
