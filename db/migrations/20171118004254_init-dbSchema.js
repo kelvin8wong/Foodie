@@ -48,5 +48,5 @@ exports.down = function(knex, Promise) {
     knex.schema.dropTableIfExists('membsels'),
     knex.schema.dropTableIfExists('restaurants'),
     knex.schema.dropTableIfExists('members')
-  ])
+  ]);
 }
