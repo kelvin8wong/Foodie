@@ -3,7 +3,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif; }
-  body #map {
-    height: 100%; }
+  body .map-column {
+    padding-top: 140px;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0; }
+  body .search-column {
+    padding-top: 140px;
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0; }
 
 /*# sourceMappingURL=index.css.map */
