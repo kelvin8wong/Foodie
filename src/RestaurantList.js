@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Restaurant from './Restaurant.js';
 
 
 class RestaurantList extends Component {
@@ -6,15 +7,15 @@ class RestaurantList extends Component {
   render() {
   	const list = this.props.venues.map((venue, i) => {
 			return (
-				<li key={i}>{venue.name}</li>
+				<Restaurant key={i} restaurant={venue} />
 			)
 		})
   return (
     <div>
       Venues
-      <ol>
+      <li>
         {list}
-      </ol>
+      </li>
      </div>
     );
   } 
