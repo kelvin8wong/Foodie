@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
+import { withGoogleMap, GoogleMap} from 'react-google-maps'
 const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
-
+import ReactDOM from 'react-dom'
 class Map extends Component {
 
   constructor (){
     super()
     this.state = {
       map: null,
-      isOpen: false
+      isOpen: false,
     }
   }
   
@@ -27,7 +27,7 @@ class Map extends Component {
   }
 
   onToggleOpen() {
-    if (this.state.isOpen)
+    if (this.state.isOpen) 
       this.setState({
         isOpen: false
       })
@@ -38,24 +38,14 @@ class Map extends Component {
   }
   render() {
     const markers = this.props.markers.map((venue, i) => {
-      const marker = {
-        position: {
-          lat: venue.location.lat,
-          lng: venue.location.lng
-        }
-      }
-      return <Marker key={i} {...marker}   onClick={this.onToggleOpen.bind(this)}>
-      {this.state.isOpen && <InfoBox
-      onCloseClick={this.onToggleOpen.bind(this)}
-      options={{ closeBoxURL: ``, enableEventPropagation: true }}
-    >
-      <div style={{ backgroundColor: `yellow`, opacity: 0.75, padding: `12px` }}>
-        <div style={{ fontSize: `16px`, fontColor: `#08233B` }}>
-          
-        </div>
-      </div>
+      console.log(venue)
+    
+      return <MapMarker key={i}  position={{ lat: venue.location.lat, lng: venue.location.lng }}  onClick={this.onToggleOpen.bind(this)}>
+      {this.state.isOpen && <InfoBox key={i}
+      onCloseClick={this.onToggleOpen.bind(this)}> Hello
+     
     </InfoBox>}
-              </Marker>
+              </MapMarker>
     })
   
     return (
