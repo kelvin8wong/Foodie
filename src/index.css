@@ -4,14 +4,14 @@ body {
   padding: 0;
   font-family: sans-serif; }
   body .map-column {
-    padding-top: 140px;
+    padding-top: 56px;
     width: 50%;
     height: 100%;
     position: fixed;
     right: 0;
     top: 0; }
   body .search-column {
-    padding-top: 140px;
+    padding-top: 112px;
     width: 50%;
     height: 100%;
     position: absolute;

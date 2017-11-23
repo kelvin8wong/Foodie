@@ -14,12 +14,12 @@ class App extends Component {
 
   componentDidMount(){
     console.log('componentDidMount')
-        
+
     const geoFindMe = () => {
       if (!navigator.geolocation){
         return;
       }
-    
+
       const success = (position) => {
         var latitude  = position.coords.latitude;
         var longitude = position.coords.longitude;
@@ -29,17 +29,17 @@ class App extends Component {
         .query(null)
         .set('Accept', 'text/json')
         .end((error, response) => {
-    
+
           const venues = response.body.response.venues
           console.log(this)
-          
+
           this.setState({
             venues: venues,
             locating:undefined
           })
         })
       }
-    
+
       const error = () => {
         this.setState({
           locating: undefined,
@@ -60,7 +60,7 @@ class App extends Component {
   render() {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
       this.state.error ? <p>{this.state.error}</p> :
-      this.state.locating ? <p>Locating...</p> : <Map 
+      this.state.locating ? <p>Locating...</p> : <Map
       markers={this.state.venues}
       center={{ lat: 49.2827, lng: -123.1207 }}
       zoom={14}
@@ -74,9 +74,6 @@ class App extends Component {
       <div className="App">
         <div className="map-column">
           {output}
-        </div>
-        <div className="search-column">
-          <RestaurantList venues={this.state.venues} />
         </div>
         <div className="search-column">
           <RestaurantList venues={this.state.venues} />
