@@ -1,18 +1,30 @@
 /* Foodie project db handlers:
-    Module containing all the foodie db handlers, that is inserting/deleting/updating data for the tables in
-    the foodie db. These tables consist of members, restaurants and restaurant selections by each member if
-    any.
+    Module containing all the foodie db handlers, that is inserting/deleting/updating data for the tables in the foodie db. These tables consist of members, restaurants and restaurant selections by each member if any.
 */
 module.exports = function makeDBhandlers (knex) {
   return  {
     
-    //check for the existence of a member
-    checkMembExists: (member) => {
-      return knex('members').select('member').where('member', member)
+    //check for the existence of a member or existence and correct password
+    //chkTyp: 'E' - exxistence check, 'A' - authorization check
+    checkMembExistsAuth : (chkTyp, member, pass) => {
+      return knex('members').select('member', 'password').where('member', member)
         .then(memberID  => {
           console.log(memberID);
-          return (memberID = null) ? false  : true       
+          return (memberID === null) ? {exists: false, pass: password}  : {exists: true, pass: password}
         })
+        .then(rtn => {
+          // check "A" check for existence/authenticity
+          return (chkTyp == "A" && rtn.exists && pass != rtn.pass) ? false : rtn.exists
+        })
+    },
+    
+    //get member's data
+    getMemberData: (member) => {
+      return knex('members').where('member', member)
+        .select(
+                'member', 'nameFirst', 'nameLast', 'email', 'goodForKids', 'takeOut', 'hotNew',
+                'hasParking', 'serveAlcohol', 'reservReq'
+               )
     },
     
     //add a new member to the members table
@@ -88,6 +100,11 @@ module.exports = function makeDBhandlers (knex) {
           memberRest: sel.rest,
           comments:   sel.comments
         })
+    }, 
+    
+    delMembSel: (member, rest)  =>  {
+      return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
     }
-  } 
+  
+} // fin return module function export
 }
