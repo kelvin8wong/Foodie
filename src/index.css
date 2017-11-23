@@ -17,5 +17,17 @@ body {
     position: absolute;
     left: 0;
     top: 0; }
+  body .Box01 {
+    float: left;
+    text-align: left;
+    margin: 2px 10px;
+    display: inline; }
+  body .Box02 {
+    float: right;
+    text-align: left;
+    margin: 2px 10px;
+    display: inline; }
+  body .Box03 {
+    margin: 0 auto; }
 
 /*# sourceMappingURL=index.css.map */

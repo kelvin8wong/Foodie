@@ -7,8 +7,8 @@ class Restaurant extends Component {
 
     return (
       <main className="restaurant-list">
+        <hr></hr>
         <div className="Box01">
-          <hr></hr>
           <div><span className="picture">Picture</span></div>
           <div><span className="name">{restaurant.name}</span></div>
           <div><span className="rating">rating rating</span></div>
@@ -16,7 +16,6 @@ class Restaurant extends Component {
         </div>
 
         <div className="Box02">
-          <hr></hr>
           <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
           <div><span className="city">{restaurant.location.formattedAddress[1]}</span></div>
           <div><span className="country">{restaurant.location.formattedAddress[2]}</span></div>
@@ -25,7 +24,6 @@ class Restaurant extends Component {
         </div>
 
         <div className="Box03">
-          <hr></hr>
           <div><span className="name_member">member name</span></div>
           <div><span className="opinion">opinion</span></div>
           <div><span className="rating">rating</span></div>
