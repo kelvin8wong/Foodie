@@ -1,4 +1,4 @@
-body {  
+body {
   background-color: #FFFFFF;
   margin: 0;
   padding: 0;
@@ -11,7 +11,7 @@ body {
     right: 0;
     top: 0; }
   body .search-column {
-    padding-top: 100px;
+    padding-top: 70px;
     width: 50%;
     height: 100%;
     position: absolute;
@@ -30,7 +30,6 @@ body {
   body .Box03 {
     margin: 0 auto; }
   body .fixed-top {
-    background-color: #4DBD33;
-  }
+    background-color: #4DBD33; }
 
 /*# sourceMappingURL=index.css.map */

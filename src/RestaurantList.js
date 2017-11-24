@@ -13,9 +13,9 @@ class RestaurantList extends Component {
   return (
     <div>
       <h2>Top Vegetarian Restaurnats in Town</h2>
-      <ul className="restaurant-list">
+      <ol className="restaurant-list">
         {list}
-      </ul>
+      </ol>
      </div>
     );
   }
