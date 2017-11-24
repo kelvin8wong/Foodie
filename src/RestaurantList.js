@@ -12,12 +12,10 @@ class RestaurantList extends Component {
 		})
   return (
     <div>
-      <h1>
-        Nearby vegetarian restaurants
-      </h1>
-      <li>
+      <h2>Top Vegetarian Restaurnats in Town</h2>
+      <ul className="restaurant-list">
         {list}
-      </li>
+      </ul>
      </div>
     );
   }

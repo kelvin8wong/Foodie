@@ -1,4 +1,4 @@
-body {
+body {  
   background-color: #FFFFFF;
   margin: 0;
   padding: 0;
@@ -29,5 +29,8 @@ body {
     display: inline; }
   body .Box03 {
     margin: 0 auto; }
+  body .fixed-top {
+    background-color: #4DBD33;
+  }
 
 /*# sourceMappingURL=index.css.map */
