@@ -12,7 +12,9 @@ class RestaurantList extends Component {
 		})
   return (
     <div>
-      Venues
+      <h1>
+        Venues
+      </h1>
       <li>
         {list}
       </li>
