@@ -13,7 +13,7 @@ class RestaurantList extends Component {
   return (
     <div>
       <h1>
-        Venues
+        Nearby vegetarian restaurants
       </h1>
       <li>
         {list}
