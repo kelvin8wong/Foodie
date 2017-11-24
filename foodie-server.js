@@ -23,7 +23,7 @@ app.use(morgan('dev'));
 
 // Log knex SQL queries to STDOUT as well
 app.use(knexLogger(knex));
-app.use(bodyParser.jsson());
+app.use(bodyParser.json());
 
 app.use(express.static("public"));
 

@@ -10,25 +10,27 @@ module.exports = (dbHandler) => {
 
 // request check if member exists - check members file for existence
   router.get('/exist', (req, res) => {
-    dbHandler.checkMembExistsAuth("E", req.body.member)
+    console.log("exists req: ", req.query.member);
+    dbHandler.checkMembExistsAuth("E", req.query.member)
     .then(exists => {
       const status = exists ? "1" : "0";
-      console.log(member, " exists? ", status);
+      res.send(status);
     })
   });
   
   // request check if member and password are valid
   router.get('/auth', (req, res) => {
-    dbHandler.checkMembExistsAuth("A", req.body.member, req.body.pass)
+    dbHandler.checkMembExistsAuth("A", req.query.member, req.query.password)
     .then(valid =>  {
       const status = valid ? "1" : "0";
-      console.log("member & pass: ", member, " ", pass, " status: ", status);
+      res.send(status);
     })
   });
   
   // request retrieval of member data
   router.get('/mbrRtv', (req, res)  =>  {
-    dbHandler.getMemberData(req.body.member)
+    console.log("query member: ", req.query.member)
+    dbHandler.getMemberData(req.query.member)
     .then(data  =>  {
       console.log("retrieved member data: ", data);
     })
@@ -36,7 +38,7 @@ module.exports = (dbHandler) => {
   
   // request retrieval of member selected restaurants
   router.get('/getMbrSels', (req, res)  =>  {
-    dbHandler.getMemberSels(req.body.member)
+    dbHandler.getMemberSels(req.query.member)
     .then(data  =>  {
       console.log("retrieved member selections: ", data);
     })

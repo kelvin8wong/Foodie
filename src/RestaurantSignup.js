@@ -60,28 +60,28 @@ class RestaurantSignup extends React.Component {
 
   render() {
       return (
-        <div className="container">
-        <form onSubmit={this.ModSubmit} className="field is-grouped is-grouped-centered">
-          <div className="control">
-          <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
-          </div>
-          <div className="control">
-          <input className="input is-primary" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
-          </div>
-          <div className="control">
-          <input className="input is-primary" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
-          </div>
-          <div className="control">
-          <input className="input is-primary" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
-          </div>
-          <div className="control">
-          <input  className="input is-primary" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
-          </div>
-          <div className="control">
-          <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
-          </div>
-        </form>
-        <br/>
+        <div className="signup-container">
+          <form onSubmit={this.ModSubmit} className="field is-grouped is-grouped-centered">
+            <div className="control">
+            <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+            </div>
+            <div className="control">
+            <input className="input is-primary" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
+            </div>
+            <div className="control">
+            <input className="input is-primary" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
+            </div>
+            <div className="control">
+            <input className="input is-primary" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
+            </div>
+            <div className="control">
+            <input  className="input is-primary" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
+            </div>
+            <div className="control">
+            <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
+            </div>
+          </form>
+          <br/>
         </div>
       )
   }
