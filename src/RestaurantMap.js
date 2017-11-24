@@ -44,7 +44,9 @@ export default class RestaurantMap extends Component {
   }
   
   renderMarkers() {
+    console.log(this.props.venues)
     return this.props.venues.map( (venue) => {
+      
       const { id: key, location: { lat, lng }} = venue;
       return <Marker onClick={this.onMarkerClick} position={{lat, lng}}
         id={key}
