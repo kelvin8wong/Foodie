@@ -55,21 +55,17 @@ class NavBar extends Component {
   render() {
 
     return(
-      <div class="Main NavBar" backgroudcolor = "green">
-        <h4>Foodie</h4>
-        <Router>
-          <div>
-            <ul>
-              <li><Link to="/login">Login</Link></li>
-            </ul>
-            <hr/>
-             <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-             <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
-          </div>
-        </Router>
-      </div>
+      <header>
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+          <a className="navbar-brand" href="#">Foodie</a>
+          <Link to="/login">Login</Link>
+          <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
+          <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+        </nav>
+      </header>
     );
   }
 }
 
 export default NavBar
+
