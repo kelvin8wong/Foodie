@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import { withGoogleMap, GoogleMap, Marker} from 'react-google-maps'
-
+import { withGoogleMap, GoogleMap} from 'react-google-maps'
+const { InfoBox } = require("react-google-maps/lib/components/addons/InfoBox");
+import ReactDOM from 'react-dom'
 class Map extends Component {
 
-  constructor ( ){
+  constructor (){
     super()
     this.state = {
-      map: null
+      map: null,
+      isOpen: false,
     }
   }
   
@@ -24,16 +26,26 @@ class Map extends Component {
     })
   }
 
-
+  onToggleOpen() {
+    if (this.state.isOpen) 
+      this.setState({
+        isOpen: false
+      })
+    else 
+      this.setState({
+        isOpen: true
+      })
+  }
   render() {
     const markers = this.props.markers.map((venue, i) => {
-      const marker = {
-        position: {
-          lat: venue.location.lat,
-          lng: venue.location.lng
-        }
-      }
-      return <Marker key={i} {...marker}/>
+      console.log(venue)
+    
+      return <MapMarker key={i}  position={{ lat: venue.location.lat, lng: venue.location.lng }}  onClick={this.onToggleOpen.bind(this)}>
+      {this.state.isOpen && <InfoBox key={i}
+      onCloseClick={this.onToggleOpen.bind(this)}> Hello
+     
+    </InfoBox>}
+              </MapMarker>
     })
   
     return (
