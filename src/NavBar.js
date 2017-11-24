@@ -11,14 +11,10 @@ class NavBar extends Component {
 
 
   login = (loginParams) => {
-
     let urlDOM = "http://localhost:3001";
     let endPoint = "/req/auth";
     let longURL = (urlDOM + endPoint);
     let url = new URL(longURL), params = loginParams;
-
-    // let url = new URL('/req/auth'), params = loginParams;
-
     Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
     let url1 = url.toString().slice(21);
     return fetch(url1, {
@@ -29,43 +25,57 @@ class NavBar extends Component {
       }
     })
     .then((res) => res.json())
+    .then((res) => {
+      if (res === "1") {
+           this.setState({member: loginParams.member, password: loginParams.password });
+           console.log(this.state.member);
+           console.log(res);
+      } else {
+          console.log(res);
+      }
+    })
     .catch((err) => {
         return console.log("false")
     })
-    // .then((ok) => { return console.log("trueNao") })
   }
 
-  // signup = (signupParams) => {
-  //   const body = JSON.stringify(signupParams)
 
-  //   return
+  signup = (signupParams) => {
+    let endPoint = "/req/memAdd";
+    let params = signupParams;
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: params
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "0") {
+        this.login({member: signupParams.member, password: signupParams.password });
+      } else {
+        console.log("registered before - choose another member name");
+      }
+    })
+  }
 
-  //   fetch("", {
-  //     method: "POST",
-  //     headers: {
-  //       'Accept': 'application/json',
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: body
-  //   })
-  //   .then(res => res.json())
-  //   .then(res => this.login({member: signupParams.member, password: signupParams.password }))
-  // }
 
   render() {
 
     return(
 
-  <header>
-    <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-      <a className="navbar-brand" href="#">Foodie</a>
-      <Link to="/login">Login</Link>
-      <Link to='/signup'>Sign-up</Link>
-      <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-      <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
-    </nav>
-  </header>
-       
+      <header>
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+          <a className="navbar-brand" href="#">Foodie</a>
+          <Link to="/login">Login</Link>
+          <Link to='/signup'>Sign-up</Link>
+          <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
+          <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+        </nav>
+      </header>
+
     );
   }
 }

@@ -3,7 +3,7 @@
 */
 module.exports = function makeDBhandlers (knex) {
   return  {
-    
+
     //check for the existence of a member or existence and correct password
     //chkTyp: 'E' - exxistence check, 'A' - authorization check
     checkMembExistsAuth : (chkTyp, member, pass) => {
@@ -14,7 +14,7 @@ module.exports = function makeDBhandlers (knex) {
           if (rtnObj) {
             console.log("rtn obj values: ", rtnObj.member, rtnObj.password);
           } else {
-            console.log("rtn obj values: undefined");           
+            console.log(".rtn obj values: undefined");
           }
           return rtnObj ?  {exists: true, pass: rtnObj.password} : {exists: false, pass: null}
         })
@@ -23,7 +23,7 @@ module.exports = function makeDBhandlers (knex) {
           return (chkTyp == "A" && rtn.exists && pass != rtn.pass) ? false : rtn.exists
         })
     },
-    
+
     //get member's data
     getMemberData: (member) => {
       return knex('members').where('member', member)
@@ -32,7 +32,7 @@ module.exports = function makeDBhandlers (knex) {
                 'hasParking', 'serveAlcohol', 'reservReq'
                ).then(rtnArr => rtnArr[0])
     },
-    
+
     //add a new member to the members table
     addMember: (member) => {
       return knex('members')
@@ -50,10 +50,10 @@ module.exports = function makeDBhandlers (knex) {
             reservReq:    member.rr
           })  //fin insert
     }, //fin addmember
-    
+
     //update member profile
     updMember: (member) =>  {
-      return 
+      return
         knex('members')
           .where('member', member)
           .update({
@@ -70,15 +70,15 @@ module.exports = function makeDBhandlers (knex) {
             reservReq:    member.rr
           })
     }, //fin updMember
-    
+
   //check for the existence of a store
   checkRestExists: (rest) => {
       return knex('restaurants').select('restid').where('restid', rest)
         .then(restID  => {
           console.log(restID);
-          return restID ? true  : false       
+          return restID ? true  : false
         })
-    },   
+    },
   //add a new restaurant to the restaurants table
     addRest: (rest) => {
       return knex('restaurants')
@@ -99,16 +99,16 @@ module.exports = function makeDBhandlers (knex) {
           zipCode:    rest.zcode
         })
     }, //fin addRestaurant
-    
+
 //add a new restaurant to the restaurants table
     getRest: (rest) => {
       return knex('restaurants').where('restid', rest)
         .select(
-          'restid', 'url', 'imageUrl', 'rating', 'phone', 'coordLong', 'coordLat', 'city', 'country', 
+          'restid', 'url', 'imageUrl', 'rating', 'phone', 'coordLong', 'coordLat', 'city', 'country',
           'addr2', 'addr3', 'state', 'addr1', 'zipCode'
         ).then(rtnArr => rtnArr[0])
     }, //fin addRestaurant
-        
+
     addMemberSel: (sel) => {
       return knex('membsels')
         .insert({
@@ -116,11 +116,11 @@ module.exports = function makeDBhandlers (knex) {
           memberrest: sel.rest,
           comments:   sel.comments
         })
-    }, 
-    
+    },
+
     delMembSel: (member, rest)  =>  {
       return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
     }
-  
+
 } // fin return module function export
 }
