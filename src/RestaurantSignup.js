@@ -60,7 +60,12 @@ class RestaurantSignup extends React.Component {
 
   render() {
       return (
+<<<<<<< HEAD
         <div className="signup-container">
+=======
+        <div className="container">
+        <h1>Signup Here</h1>
+>>>>>>> 5739f6a1f72f431a50b50493ccebab409eb21d2d
         <form onSubmit={this.ModSubmit} className="field is-grouped is-grouped-centered">
           <div className="control">
           <input className="input is-primary" type="text" placeholder="Member name" onChange={this.Modmember} value={this.state.member}/>
