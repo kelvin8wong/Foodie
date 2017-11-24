@@ -43,20 +43,19 @@ class RestaurantLogin extends React.Component {
 
       return (
         <div className="container">
-        <h1>Login Here</h1>
         <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
           <div className="control">
-          <input className="input is-primary" type="text" placeholder="Member name" onChange={this.Modmember} value={this.state.member}/>
+          <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
           </div>
           <div className="control">
-          <input  className="input is-primary" type="password" placeholder="password" onChange={this.Modpassword} value={this.state.password}/>
+          <input  className="input is-primary" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
           </div>
           <div className="control">
           <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
           </div>
         </form>
         <br/>
-          <Link to='/signup'><h4><a id="add-new-spot">Or Sign Up Here</a></h4></Link>
+          <Link to='/signup'><h6><a id="add-new-spot">Or Sign Up Here</a></h6></Link>
         </div>
       )
     }

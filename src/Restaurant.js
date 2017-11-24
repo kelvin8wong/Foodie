@@ -7,6 +7,7 @@ class Restaurant extends Component {
     return (
       <li>
         <div className="restaurant-info">
+          <hr></hr>
           <div><h4><span className="restaurant-name">{restaurant.name}</span></h4></div>
           <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
           <div><span className="city">{restaurant.location.formattedAddress[1]}</span></div>
