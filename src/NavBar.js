@@ -60,6 +60,7 @@ class NavBar extends Component {
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
       <a className="navbar-brand" href="#">Foodie</a>
       <Link to="/login">Login</Link>
+      <Link to='/signup'>Sign-up</Link>
       <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
       <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
     </nav>
