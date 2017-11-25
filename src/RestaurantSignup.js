@@ -60,32 +60,42 @@ class RestaurantSignup extends React.Component {
 
   render() {
       return (
-        <div className="signup-container">
-          <form onSubmit={this.ModSubmit} className="field is-grouped is-grouped-centered">
-            <div className="control">
-            <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+        <div className="dropdown-menu">
+          <div className="px-4 py-3">
+            <div className="col-lg-12">
+              <form id="ajax-register-form" onSubmit={this.ModSubmit} >
+                <div className="form-group">
+                  <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+                </div>
+                <div className="form-group">
+                  <input className="form-control" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
+                </div>
+                <div className="form-group">
+                  <input className="form-control" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
+                </div>
+                <div className="form-group">
+                  <input className="form-control" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
+                </div>
+                <div className="form-group">
+                  <input  className="form-control" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
+                </div>
+                <div className="form-group">
+                  <div className="row">
+                    <div className="col-xs-6 col-xs-offset-3">
+                      <input type="submit" name="register-submit" id="register-submit" tabindex="4" className="form-control btn btn-info" value="Register Now"/>
+                    </div>
+                  </div>
+                </div>
+              </form>
             </div>
-            <div className="control">
-            <input className="input is-primary" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
-            </div>
-            <div className="control">
-            <input className="input is-primary" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
-            </div>
-            <div className="control">
-            <input className="input is-primary" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
-            </div>
-            <div className="control">
-            <input  className="input is-primary" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
-            </div>
-            <div className="control">
-            <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
-            </div>
-          </form>
-          <br/>
-        </div>
+          </div>
+        </div >
+      
       )
   }
 
 }
 
 export default RestaurantSignup
+
+
