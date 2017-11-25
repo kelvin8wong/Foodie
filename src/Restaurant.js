@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import superagent from 'superagent';
-require('dotenv'
-  ).config();
+import { getRestaurantPhoto } from './Services/foursquareApi.js';
+require('dotenv').config();
 class Restaurant extends Component {
   constructor (){
     super();
@@ -10,14 +9,9 @@ class Restaurant extends Component {
     }
   }
   componentDidMount(){
-    const foursquarePhotoURL = `https://api.foursquare.com/v2/venues/${this.props.restaurant.id}/photos?client_id=${process.env.REACT_APP_clientId}&client_secret=${process.env.REACT_APP_clientSecret}&v=20171018`
-    superagent
-    .get(foursquarePhotoURL)
-    .query(null)
-    .set('Accept', 'text/json')
-    .end((error, response) => {
-      console.log(response)
-      const photo = response.body.response.photos.items[0]
+    const restaurantId = this.props.restaurant.id
+    getRestaurantPhoto(restaurantId).then((response) => {
+      const photo = response.response.photos.items[0]
       if (photo) {
         const photoURL = photo.prefix +'64'+ photo.suffix
         this.setState({
@@ -38,13 +32,15 @@ class Restaurant extends Component {
       <li>
         <hr></hr>
         <div className="restaurant-info">
-          <div><img src={this.state.restaurantPhoto}/></div>
-          <div><h5><span className="restaurant-name">{restaurant.name}</span></h5></div>
-          <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
-          <div><span className="city">{restaurant.location.formattedAddress[1]}</span></div>
-          <div><span className="country">{restaurant.location.formattedAddress[2]}</span></div>
-          <div><span className="phone">{restaurant.contact.formattedPhone}</span></div>
-          <div><span className="site">{restaurant.url}</span></div>
+          <div className="restaurant-pic"><img src={this.state.restaurantPhoto}/></div>
+          <div className="restaurant-details">
+            <div><h5><span className="restaurant-name">{restaurant.name}</span></h5></div>
+            <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
+            <div><span className="city">{restaurant.location.formattedAddress[1]}</span></div>
+            <div><span className="country">{restaurant.location.formattedAddress[2]}</span></div>
+            <div><span className="phone">{restaurant.contact.formattedPhone}</span></div>
+            <div><span className="site">{restaurant.url}</span></div>
+          </div>
         </div>
         <div className="review">
         </div>

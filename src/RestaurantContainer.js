@@ -4,9 +4,8 @@ import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
+import { getRestaurantList } from './Services/foursquareApi.js';
 require('dotenv').config();
-
-
 class RestaurantContainer extends Component {
 
   state = {
@@ -25,15 +24,8 @@ class RestaurantContainer extends Component {
       const success = (position) => {
         const latitude  = position.coords.latitude;
         const longitude = position.coords.longitude;
-        const foursquareURL = `https://api.foursquare.com/v2/venues/search?v=20171123&ll=${latitude},${longitude}&radius=100000&client_id=${process.env.REACT_APP_clientId}&client_secret=${process.env.REACT_APP_clientSecret}&categoryId=4bf58dd8d48988d1d3941735`
-        superagent
-        .get(foursquareURL)
-        .query(null)
-        .set('Accept', 'text/json')
-        .end((error, response) => {
-
-          const venues = response.body.response.venues
-
+        getRestaurantList(latitude,longitude).then((response) => {
+          const venues = response.response.venues
           this.setState({
             venues: venues,
             locating:undefined,
@@ -79,5 +71,5 @@ class RestaurantContainer extends Component {
 }
 
 export default GoogleApiWrapper({
-  apiKey: process.env.apiKey,
+  apiKey: process.env.REACT_APP_apiKey,
 })(RestaurantContainer)

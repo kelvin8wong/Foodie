@@ -19,5 +19,10 @@ body {
     top: 0; }
   body .fixed-top {
     background-color: #4DBD33; }
+  body .restaurant-pic {
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin: 0; }
 
 /*# sourceMappingURL=index.css.map */
