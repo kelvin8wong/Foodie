@@ -29,6 +29,7 @@ class NavBar extends Component {
       }
     })
     .then((res) => res.json())
+    .then((res) => console.log(res))
     .catch((err) => {
         return console.log("false")
     })
@@ -59,10 +60,15 @@ class NavBar extends Component {
   <header>
     <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
       <a className="navbar-brand" href="#">Foodie</a>
-      <Link to="/login">Login</Link>
-      <Link to='/signup'>Sign-up</Link>
-      <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-      <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+      <ul className="nav navbar-nav navbar-right">
+        {/* <li className="dropdown">
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>          <RestaurantLogin onLogin={this.login} />
+          </li> */}
+        <li className="dropdown">
+        <a href="#" className="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+          <RestaurantSignup onSignup={this.signup} />
+        </li>
+      </ul>
     </nav>
   </header>
        

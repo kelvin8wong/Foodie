@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import superagent from 'superagent';
+import { getRestaurantPhoto } from './Services/foursquareApi.js';
+require('dotenv').config();
 class Restaurant extends Component {
   constructor (){
     super();
@@ -8,14 +9,9 @@ class Restaurant extends Component {
     }
   }
   componentDidMount(){
-    const foursquarePhotoURL = `https://api.foursquare.com/v2/venues/${this.props.restaurant.id}/photos?client_id=FERSEHDMQU451JXRY1QN5OULADS41SKGR4NWOTNFTIT4HOFS&client_secret=AMJOPX04B0YKCJ34CZ1EN2R5CEFCXIRKPTPXWHU4QE51RSIS&v=20171018`
-    superagent
-    .get(foursquarePhotoURL)
-    .query(null)
-    .set('Accept', 'text/json')
-    .end((error, response) => {
-      console.log(response)
-      const photo = response.body.response.photos.items[0]
+    const restaurantId = this.props.restaurant.id
+    getRestaurantPhoto(restaurantId).then((response) => {
+      const photo = response.response.photos.items[0]
       if (photo) {
         const photoURL = photo.prefix +'64'+ photo.suffix
         this.setState({
