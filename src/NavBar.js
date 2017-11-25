@@ -42,7 +42,7 @@ class NavBar extends Component {
 
   signup = (signupParams) => {
     let endPoint = "/req/memAdd";
-    let params = signupParams;
+    let params = JSON.stringify(signupParams);
     return fetch(endPoint, {
       method: "POST",
       headers: {

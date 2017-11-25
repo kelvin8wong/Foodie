@@ -10,7 +10,7 @@ class App extends Component {
       <Router>
       <div className="App">
         <NavBar/>
-        {/*<RestaurantContainer />*/}
+        <RestaurantContainer />
       </div>
       </Router>
     );
