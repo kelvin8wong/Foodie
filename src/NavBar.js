@@ -65,7 +65,7 @@ class NavBar extends Component {
       <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
     </nav>
   </header>
-       
+
     );
   }
 }

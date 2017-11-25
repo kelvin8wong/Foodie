@@ -40,17 +40,17 @@ export default class RestaurantMap extends Component {
         activeMarker: null,
         zoom: 14
       })
-    } 
+    }
   }
-  
+
   renderMarkers() {
     console.log(this.props.venues)
     return this.props.venues.map( (venue) => {
-      
+
       const { id: key, location: { lat, lng }} = venue;
       return <Marker onClick={this.onMarkerClick} position={{lat, lng}}
         id={key}
-        key={key} 
+        key={key}
         icon={{url: "https://cdn2.iconfinder.com/data/icons/restaurant-1/100/vegan_food_meal_dinner_lunch_restaurant_vegetables-32.png"}}
       />
     });
@@ -59,16 +59,16 @@ export default class RestaurantMap extends Component {
   render() {
 
     const { name,url, contact = {}, location = {} } = this.state.selectedPlace;
-    const { formattedAddress = [] } = location;  
+    const { formattedAddress = [] } = location;
     const address = formattedAddress.join(' ');
     const { formattedPhone } = contact;
 
     return (
-          <Map 
+          <Map
             zoom={this.state.zoom}
             initialCenter={this.props.initialCenter}
             google={this.props.google} onClick={this.onMapClicked}>
-            { this.renderMarkers() } 
+            { this.renderMarkers() }
 
             <InfoWindow
               marker={this.state.activeMarker}
