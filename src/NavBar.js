@@ -9,7 +9,7 @@ import {
 
 class NavBar extends Component {
 
-
+  // LOGIN HERE ***************************
   login = (loginParams) => {
     let urlDOM = "http://localhost:3001";
     let endPoint = "/req/auth";
@@ -28,8 +28,6 @@ class NavBar extends Component {
     .then((res) => {
       if (res === "1") {
            this.setState({member: loginParams.member, password: loginParams.password });
-           console.log(this.state.member);
-           console.log(res);
       } else {
           console.log(res);
       }
@@ -40,8 +38,9 @@ class NavBar extends Component {
   }
 
 
+  // SingUp **********************************
   signup = (signupParams) => {
-    let endPoint = "/req/memAdd";
+    let endPoint = "/req/membAdd";
     let params = JSON.stringify(signupParams);
     return fetch(endPoint, {
       method: "POST",
@@ -54,6 +53,7 @@ class NavBar extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
+        // Going to Login ****************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
         console.log("registered before - choose another member name");

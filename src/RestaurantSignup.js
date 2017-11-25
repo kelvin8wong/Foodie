@@ -16,7 +16,7 @@ class RestaurantSignup extends React.Component {
   ModSubmit = (event) => {
     event.preventDefault()
 
-    const signupParams = { member: this.state.member, password: this.state.password}
+    const signupParams = { member: this.state.member, nameFirst: this.state.nameFirst, nameLast: this.state.nameLast, email: this.state.email, password: this.state.password}
     this.props.onSignup(signupParams)
     this.setState({
       member:    "",
