@@ -15,13 +15,12 @@ class RestaurantLogin extends React.Component {
 
     const loginParams = { member: this.state.member, password: this.state.password}
     this.props.onLogin(loginParams)
+
     this.setState({
       member: "",
       password:""
     })
   }
-
-
 
 
   Modmember = (event) => {
@@ -41,6 +40,7 @@ class RestaurantLogin extends React.Component {
   render() {
 
       return (
+        
         <div className="login-container">
           <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
             <div className="control">
