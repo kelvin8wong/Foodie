@@ -2,6 +2,7 @@
     Module containing all the foodie db handlers, that is inserting/deleting/updating data for the tables in the foodie db. These tables consist of members, restaurants and restaurant selections by each member if any.
 */
 module.exports = function makeDBhandlers (knex) {
+  
   return  {
     
     //check for the existence of a member or existence and correct password
@@ -9,13 +10,7 @@ module.exports = function makeDBhandlers (knex) {
     checkMembExistsAuth : (chkTyp, member, pass) => {
       return knex('members').select('member', 'password').where('member', member)
         .then(rtnArr  => {
-          console.log("rtn from sel: ", rtnArr[0]);
           const  rtnObj = rtnArr[0];
-          if (rtnObj) {
-            console.log("rtn obj values: ", rtnObj.member, rtnObj.password);
-          } else {
-            console.log("rtn obj values: undefined");           
-          }
           return rtnObj ?  {exists: true, pass: rtnObj.password} : {exists: false, pass: null}
         })
         .then(rtn => {
@@ -34,21 +29,23 @@ module.exports = function makeDBhandlers (knex) {
     },
     
     //add a new member to the members table
-    addMember: (member) => {
-      return knex('members')
+    addMember: (newMemb) => {
+      console.log('just before insert: ', newMemb);
+      return knex
         .insert({
-            member:       member.id,
-            nameFirst:    member.fName,
-            nameLast:     member.lName,
-            email:        member.email,
-            password:     member.pass,
-            goodForKids:  member.gfk,
-            takeOut:      member.to,
-            hotNew:       member.hn,
-            hasParking:   member.hp,
-            serveAlcohol: member.sa,
-            reservReq:    member.rr
-          })  //fin insert
+            member:       newMemb.member,
+            nameFirst:    newMemb.nameFirst,
+            nameLast:     newMemb.nameLast,
+            email:        newMemb.email,
+            password:     newMemb.password,
+            goodForKids:  false,
+            takeOut:      false,
+            hotNew:       false,
+            hasParking:   false,
+            serveAlcohol: false,
+            reservReq:    false        
+      }).into('members')
+      .then(result => result)
     }, //fin addmember
     
     //update member profile
