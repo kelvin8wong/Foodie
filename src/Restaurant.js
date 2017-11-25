@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import superagent from 'superagent';
+require('dotenv'
+  ).config();
 class Restaurant extends Component {
   constructor (){
     super();
@@ -8,7 +10,7 @@ class Restaurant extends Component {
     }
   }
   componentDidMount(){
-    const foursquarePhotoURL = `https://api.foursquare.com/v2/venues/${this.props.restaurant.id}/photos?client_id=FERSEHDMQU451JXRY1QN5OULADS41SKGR4NWOTNFTIT4HOFS&client_secret=AMJOPX04B0YKCJ34CZ1EN2R5CEFCXIRKPTPXWHU4QE51RSIS&v=20171018`
+    const foursquarePhotoURL = `https://api.foursquare.com/v2/venues/${this.props.restaurant.id}/photos?client_id=${process.env.REACT_APP_clientId}&client_secret=${process.env.REACT_APP_clientSecret}&v=20171018`
     superagent
     .get(foursquarePhotoURL)
     .query(null)
@@ -33,7 +35,8 @@ class Restaurant extends Component {
     const restaurant = this.props.restaurant
 
     return (
-      <ol>
+      <li>
+        <hr></hr>
         <div className="restaurant-info">
           <div><img src={this.state.restaurantPhoto}/></div>
           <div><h5><span className="restaurant-name">{restaurant.name}</span></h5></div>
@@ -45,7 +48,7 @@ class Restaurant extends Component {
         </div>
         <div className="review">
         </div>
-      </ol>
+      </li>
     );
   }
 }

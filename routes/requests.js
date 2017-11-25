@@ -47,9 +47,20 @@ module.exports = (dbHandler) => {
 
   // add a new member
   router.post('/membAdd', (req, res)  =>  {
-    dbHandler.addNewMember(req.body.membData)
+    //first check he does not exist
+    dbHandler.checkMembExistsAuth("E", req.body.member)
+    .then(exists => {
+      //if not already exists, then add
+      if (!exists)  {
+        dbHandler.addMember(req.body);
+        return "1";
+      } else {
+        return "0";
+      }
+    })
     .then(status => {
-      console.log("add member: ", req.body.membData.member, " status: ", status);
+      console.log("add member: ", req.body.member, " status: ", status);
+      res.send(status)
     })
   });
 
