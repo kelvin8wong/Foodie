@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 
 class RestaurantLogin extends React.Component {
   constructor(props) {
@@ -45,7 +44,7 @@ class RestaurantLogin extends React.Component {
         <div className="login-container">
           <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
             <div className="control">
-            <input className="input is-primary" type="text" placeholder="Member name" onChange={this.Modmember} value={this.state.member}/>
+            <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
             </div>
             <div className="control">
             <input  className="input is-primary" type="password" placeholder="password" onChange={this.Modpassword} value={this.state.password}/>
@@ -53,7 +52,7 @@ class RestaurantLogin extends React.Component {
             <div className="control">
             <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
             </div>
-          </form> 
+          </form>
         </div>
       )
     }
