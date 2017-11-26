@@ -9,8 +9,10 @@ require('dotenv').config();
 class RestaurantContainer extends Component {
 
   state = {
-      venues: []
-    }
+    venues: [],
+    position: null,
+    showFavorites: false
+  }
 
   componentDidMount(){
     console.log('componentDidMount')
@@ -50,6 +52,30 @@ class RestaurantContainer extends Component {
     }
     geoFindMe()
   }
+  saveFavourite(info){
+    let endPoint = "/req/selAdd";
+    let bodydata = JSON.stringify(info);
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "0") {
+        // Going to Login ****************************
+        this.login({username: signupParams.member, password: signupParams.password });
+      } else {
+        console.log("registered before - choose another username");
+      }
+    })
+  }
+
+  }
 
   render() {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
@@ -63,7 +89,7 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} />
+          <RestaurantList onAddFavourite={this.saveFavourite} venues={this.state.venues} />
         </div>
       </div>
     );

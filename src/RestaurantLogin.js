@@ -5,7 +5,7 @@ class RestaurantLogin extends React.Component {
     super(props)
 
     this.state = {
-      member: "",
+      username: "",
       password: ""
     }
   }
@@ -17,20 +17,20 @@ class RestaurantLogin extends React.Component {
     this.props.onLogin(loginParams)
 
     this.setState({
-      member: "",
+      username: "",
       password:""
     })
   }
 
 
-  Modmember = (event) => {
+  onUsername = (event) => {
     this.setState({
-      member: event.target.value
+      username: event.target.value
     })
   }
 
 
-  Modpassword = (event) => {
+  onPassword = (event) => {
     this.setState({
       password: event.target.value
     })
@@ -44,10 +44,10 @@ class RestaurantLogin extends React.Component {
         <div className="login-container">
           <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
             <div className="control">
-            <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+            <input className="input is-primary" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.username}/>
             </div>
             <div className="control">
-            <input  className="input is-primary" type="password" placeholder="password" onChange={this.Modpassword} value={this.state.password}/>
+            <input  className="input is-primary" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
             </div>
             <div className="control">
             <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>

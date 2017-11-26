@@ -27,7 +27,7 @@ class NavBar extends Component {
     .then((res) => res.json())
     .then((res) => {
       if (res === "1") {
-           this.setState({member: loginParams.member, password: loginParams.password });
+           this.setState({username: loginParams.member, password: loginParams.password });
       } else {
           console.log(res);
       }
@@ -54,9 +54,9 @@ class NavBar extends Component {
     .then((res) => {
       if (res === "0") {
         // Going to Login ****************************
-        this.login({member: signupParams.member, password: signupParams.password });
+        this.login({username: signupParams.member, password: signupParams.password });
       } else {
-        console.log("registered before - choose another member name");
+        console.log("registered before - choose another username");
       }
     })
   }
