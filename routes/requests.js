@@ -23,8 +23,12 @@ module.exports = (dbHandler) => {
     console.log("sign-in req: ", req);
     dbHandler.checkMembExistsAuth("A", req.query.member, req.query.password)
     .then(valid =>  {
-      const status = valid ? "1" : "0";
-      res.send(status);
+      if(valid) {
+        req.session.member = req.query.member;
+        res.send("1");
+      } else {
+        res.send("0");
+      }
     })
   });
 
@@ -42,6 +46,16 @@ module.exports = (dbHandler) => {
     dbHandler.getMemberSels(req.query.member)
     .then(data  =>  {
       console.log("retrieved member selections: ", data);
+      res.json(data);
+    })
+  });
+
+  // request from the favorites **
+  router.get('/getMyFavourites', (req, res)  =>  {
+    dbHandler.getMemberSels(req.session.member)
+    .then(data  =>  {
+      console.log("retrieved member selections: ", data);
+      res.json(data.rows);
     })
   });
 

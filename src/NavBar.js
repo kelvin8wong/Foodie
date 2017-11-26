@@ -22,7 +22,8 @@ class NavBar extends Component {
       headers: {
         "Accept":"application/json",
         "Content-Type":"application/json"
-      }
+      },
+      credentials: 'include'
     })
     .then((res) => res.json())
     .then((res) => {
@@ -36,7 +37,6 @@ class NavBar extends Component {
         return console.log("false")
     })
   }
-
 
   // SingUp **********************************
   signup = (signupParams) => {

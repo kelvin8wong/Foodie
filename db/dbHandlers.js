@@ -124,7 +124,14 @@ module.exports = function makeDBhandlers (knex) {
 
     delMembSel: (member, rest)  =>  {
       return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
+    },
+
+    getMemberSels: (member) => {
+      return knex.raw(`select * from membsels join restaurants on membsels.memberrest = restaurants.restid where membsels.memberid = '${member}'`);
     }
+
+
+
 
 } // fin return module function export
 }
