@@ -98,7 +98,7 @@ module.exports = (dbHandler) => {
       .then(found =>  {
         if (found) {
             console.log("memberSel found: ", member, restid);
-            res.send("0");
+            res.send("member selection already exists!!!");
         } else  {
           //add restaurant if not already exists
           console.log("before check rest exists");
@@ -106,13 +106,18 @@ module.exports = (dbHandler) => {
             .then(exists => {
               if (!exists)  {
                 //add restaurant to restaurants table
-                console.log("before adding rest");
-                dbHandler.addRest(rest);
+                console.log("before adding rest: ", restid);
+                dbHandler.addRest(rest)
+                  .then(result => {
+                    console.log("before add member sel after add rest:", member, restid);
+                    dbHandler.addMemberSel({member: member, restid: restid, comments: "just           testing!"}).then(result => res.send("1"));
+                  });
+              } else {
+                //add member selection to table
+                console.log("before add member selection, no rest add: ", member, restid);
+                dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"})
+                .then(result => res.send("1"));
               }
-            //add member selection to table
-            console.log("before add member selection:", member, restid);
-            dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"});
-            res.send("1");
           })
         }
       })
@@ -120,9 +125,10 @@ module.exports = (dbHandler) => {
 
   // delete a member selection
   router.post('/selDel', (req, res) =>  {
-    dbHandler.delMembSel(req.body.member, req.body.rest)
+    dbHandler.delMembSel(req.body.memberid, req.body.memberrest)
     .then(status  =>  {
       console.log("delete memb sel: ", req.body.member, req.body.rest, " status: ", status);
+      res.send("1");
     })
   });
 
