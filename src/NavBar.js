@@ -56,7 +56,7 @@ class NavBar extends Component {
         // Going to Login ****************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
-        console.log("registered before - choose another member name");
+        console.log("This username has already been registered. Please choose another.");
       }
     })
   }

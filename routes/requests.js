@@ -102,16 +102,16 @@ module.exports = (dbHandler) => {
         } else  {
           //add restaurant if not already exists
           console.log("before check rest exists");
-          checkRestExists(rest)
+          dbHandler.checkRestExists(restid)
             .then(exists => {
               if (!exists)  {
                 //add restaurant to restaurants table
                 console.log("before adding rest");
-                addRest(rest);
+                dbHandler.addRest(rest);
               }
             //add member selection to table
-            console.log("before add member selection");
-            addMemberSel({member: member, restid: restid, comments: comments});
+            console.log("before add member selection:", member, restid);
+            dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"});
             res.send("1");
           })
         }

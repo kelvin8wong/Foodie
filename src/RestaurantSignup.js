@@ -60,7 +60,7 @@ class RestaurantSignup extends React.Component {
 
   render() {
       return (
-        <div className="dropdown-menu">
+        <div className="dropdown-menu" style={{ display: "block"}}>
           <div className="px-4 py-3">
             <div className="col-lg-12">
               <form id="ajax-register-form" onSubmit={this.ModSubmit} >
@@ -90,7 +90,7 @@ class RestaurantSignup extends React.Component {
             </div>
           </div>
         </div >
-      
+
       )
   }
 

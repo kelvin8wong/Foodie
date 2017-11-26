@@ -6,7 +6,7 @@ class Restaurant extends Component {
     super();
     this.state = {
       restid: '',
-      name: '',
+      restname: '',
       imageUrl: '',
       phone: '',
       url: '',
@@ -38,7 +38,7 @@ class Restaurant extends Component {
       }
       this.setState({
         restid: restaurantId,
-        name: name,
+        restname: name,
         imageUrl: photoURL,
         phone: phone,
         url: url,
@@ -65,10 +65,10 @@ class Restaurant extends Component {
 
     return (
       <li>
-        <hr></hr>
+      <hr></hr>
         <div className="restaurant-info">
           <div><img src={this.state.imageUrl}/></div>
-          <div><h5><span className="restaurant-name">{this.state.name}</span></h5></div>
+          <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
           <div><span className="address">{this.state.addr1}</span></div>
           <div><span className="city">{this.state.city}</span></div>
           <div><span className="country">{this.state.country}</span></div>

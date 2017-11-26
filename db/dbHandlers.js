@@ -80,7 +80,7 @@ module.exports = function makeDBhandlers (knex) {
       return knex('restaurants').select('restid').where('restid', rest)
         .then(restID  => {
           console.log(restID);
-          return restID ? true  : false
+          return restID[0] ? true  : false
         })
     },
   //add a new restaurant to the restaurants table
@@ -101,8 +101,8 @@ module.exports = function makeDBhandlers (knex) {
           state:      rest.state,
           addr1:      rest.addr1,
           zipCode:    rest.zipCode,
-          name:       rest.name,
-          pricetier:   rest.pricetier
+          restname:   rest.name,
+          pricetier:  rest.pricetier
         })
         .then(result => result)
     }, //fin addRestaurant
@@ -121,8 +121,12 @@ module.exports = function makeDBhandlers (knex) {
       return knex('membsels').select('memberid', 'memberrest')
         .where('memberid', member)
         .andWhere('memberrest', rest)
-        .then(found  => {
+        .then(rtnArr => {
+          const found = rtnArr[0];
           console.log(found);
+          if (found)  {
+            console.log("found something: ", found);
+          }
           return found ? true  : false
         })
     },
@@ -144,8 +148,6 @@ module.exports = function makeDBhandlers (knex) {
       return knex.raw(`select * from membsels join restaurants on membsels.memberrest = restaurants.restid where membsels.memberid = '${member}'`);
     }
 
+  } // fin return module function export
 
-
-
-} // fin return module function export
 }

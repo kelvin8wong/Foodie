@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
@@ -117,9 +117,9 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
-      console.log('Already exist')
+      console.log("SHOW ME:",res);
       } else {
-        console.log("Added to restaurant");
+      console.log("SHOW MEEEE:",res);
       }
     })
   }
