@@ -9,8 +9,66 @@ require('dotenv').config();
 class RestaurantContainer extends Component {
 
   state = {
-      venues: []
+      venues: [],
+      position: null,
+      showFavourites: false
     }
+
+  toggleFavourites() {
+    if(this.state.showFavourites) {
+      this.showAll();
+    } else {
+      this.showFavourites();
+    }
+
+    this.setState({
+      showFavourites: !this.state.showFavourites
+    })
+  }
+
+  showFavourites() {
+    let endPoint = "/req/getMyFavourites";
+    fetch(endPoint, {
+      method: 'GET',
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      credentials: 'include'
+    })
+    .then((res) => res.json())
+    .then((res) => {
+      const restaurants = res.map(item => {
+        item.location = {
+          lat: item.coordLat,
+          long: item.coordLong,
+          formattedAddress: ['address', 'city', 'state']
+        }
+        item.contact = {
+          phoneNumber: '12345678'
+        }
+        item.id = item.restid;
+        return item;
+      })
+      this.setState({
+        venues: restaurants
+      })
+    });
+  }
+
+  showAll() {
+    const latitude  = this.state.position.coords.latitude;
+    const longitude = this.state.position.coords.longitude;
+
+    getRestaurantList(latitude,longitude).then((response) => {
+      const venues = response.response.venues
+      this.setState({
+        venues: venues,
+        locating:undefined,
+        initialCenter:{lat: latitude, lng: longitude}
+      })
+    })
+  }
 
   componentDidMount(){
     console.log('componentDidMount')
@@ -22,16 +80,9 @@ class RestaurantContainer extends Component {
       }
 
       const success = (position) => {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        getRestaurantList(latitude,longitude).then((response) => {
-          const venues = response.response.venues
-          this.setState({
-            venues: venues,
-            locating:undefined,
-            initialCenter:{lat: latitude, lng: longitude}
-          })
-        })
+        this.setState({
+          position
+        }, this.showAll);
       }
 
       const error = () => {
@@ -64,6 +115,8 @@ class RestaurantContainer extends Component {
         </div>
         <div className="search-column">
           <RestaurantList venues={this.state.venues} />
+
+        <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
         </div>
       </div>
     );

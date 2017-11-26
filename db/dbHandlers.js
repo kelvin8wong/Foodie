@@ -102,7 +102,7 @@ module.exports = function makeDBhandlers (knex) {
           addr1:      rest.addr1,
           zipCode:    rest.zipCode,
           name:       rest.name,
-          pricetier   rest.pricetier
+          pricetier:   rest.pricetier
         })
         .then(result => result)
     }, //fin addRestaurant
@@ -138,7 +138,14 @@ module.exports = function makeDBhandlers (knex) {
 
     delMembSel: (member, rest)  =>  {
       return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
+    },
+
+    getMemberSels: (member) => {
+      return knex.raw(`select * from membsels join restaurants on membsels.memberrest = restaurants.restid where membsels.memberid = '${member}'`);
     }
+
+
+
 
 } // fin return module function export
 }

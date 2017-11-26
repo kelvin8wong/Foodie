@@ -15,6 +15,7 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 
 const dbHandlers  = require('./db/dbHandlers')(knex);
+const cookieSession = require('cookie-session');
 
 // Seperated Routes for each Resource
 const reqRoutes   = require('./routes/requests')(dbHandlers);
@@ -27,8 +28,15 @@ app.use(bodyParser.json());
 
 app.use(express.static("public"));
 
+app.use(cookieSession({
+  name: 'session',
+  keys: ["lighthouselab"],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
 app.use('/req', reqRoutes);
 
 app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT);
 })
+
