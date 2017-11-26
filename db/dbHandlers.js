@@ -102,7 +102,7 @@ module.exports = function makeDBhandlers (knex) {
           addr1:      rest.addr1,
           zipCode:    rest.zipCode,
           name:       rest.name,
-          pricetier   rest.pricetier
+          pricetier:   rest.pricetier
         })
         .then(result => result)
     }, //fin addRestaurant
