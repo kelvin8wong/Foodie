@@ -13,6 +13,7 @@ class RestaurantList extends Component {
   return (
     <div>
       <h2>Top Vegetarian Restaurnats in Town</h2>
+      <hr></hr>
       <ol className="restaurant-list">
         {list}
       </ol>

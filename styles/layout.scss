@@ -22,13 +22,25 @@ body {
   .fixed-top{
     background-color: #4DBD33;
   }
-  .restaurant-pic{
-    float: left;
-    height: 100px;
-    width: 100px;
-    margin: 0;
-  }
-  .restaurant-details {
-
+  .restaurant-info {
+    .restaurant-pic {
+      float: left;
+      height: 100px;
+      width: 100px;
+      margin: 0;
+    }
+    .restaurant-details {
+      text-align: left;
+    }
+    .restaurant-contact {
+      text-align: right;
+    }
+    ol {
+      list-style-type: decimal;
+      margin-left: 25px;
+    }
+    img {
+      border-radius: 3px;
+    }
   }
 }
