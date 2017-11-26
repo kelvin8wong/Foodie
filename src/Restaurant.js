@@ -1,51 +1,83 @@
 import React, { Component } from 'react';
-import { getRestaurantPhoto } from './Services/foursquareApi.js';
+import { getRestaurantDetail } from './Services/foursquareApi.js';
 require('dotenv').config();
 class Restaurant extends Component {
   constructor (){
     super();
     this.state = {
-     restaurantPhoto: ''
+      restid: '',
+      restname: '',
+      imageUrl: '',
+      phone: '',
+      url: '',
+      addr1: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: '',
+      coordLat: '',
+      coordLong: '',
+      rating: '',
+      pricetier: ''
     }
   }
   componentDidMount(){
     const restaurantId = this.props.restaurant.id
-    getRestaurantPhoto(restaurantId).then((response) => {
-      const photo = response.response.photos.items[0]
+    getRestaurantDetail(restaurantId).then((response) => {
+      const name = response.response.venue.name
+      const photo = response.response.venue.bestPhoto
+      const location = response.response.venue.location
+      const url = response.response.venue.url
+      const rating = response.response.venue.rating
+      const price = response.response.venue.price.tier
+      const phone = response.response.venue.contact.formattedPhone
       if (photo) {
-        const photoURL = photo.prefix +'64'+ photo.suffix
-        this.setState({
-          restaurantPhoto: photoURL
-        })
+        var photoURL = photo.prefix +'64'+ photo.suffix
       } else {
-        const randomPhotoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
-        this.setState({
-          restaurantPhoto: randomPhotoURL
-        })
+         photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
       }
+      this.setState({
+        restid: restaurantId,
+        restname: name,
+        imageUrl: photoURL,
+        phone: phone,
+        url: url,
+        addr1: location.address,
+        city: location.city,
+        state: location.state,
+        zipCode: location.postalCode,
+        country: location.country,
+        coordLat: location.lat,
+        coordLong: location.lng,
+        rating: rating,
+        pricetier: price
+      })
     })
   }
+
+  addFavourite = (event)=>{
+    event.preventDefault()
+    const favouriteInfo = {restdata: this.state }
+    this.props.onAddFavourite(favouriteInfo)
+  }
+
   render() {
-    const restaurant = this.props.restaurant
 
     return (
       <li>
       <hr></hr>
         <div className="restaurant-info">
-          <div className="restaurant-pic">
-            <img src={this.state.restaurantPhoto}/>
-          </div>
-          <div className="restaurant-details">
-            <div><h5><span className="restaurant-name">{restaurant.name}</span></h5></div>
-            <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
-            <div><span className="city">{restaurant.location.formattedAddress[1]}</span></div>
-            <div><span className="country">{restaurant.location.formattedAddress[2]}</span></div>
-          </div>
-          <div className="restaurant-contact">
-            <div><span className="phone">{restaurant.contact.formattedPhone}</span></div>
-            <div><span className="site">{restaurant.url}</span></div>
-          </div>
-        </div>
+          <div><img src={this.state.imageUrl}/></div>
+          <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
+          <div><span className="address">{this.state.addr1}</span></div>
+          <div><span className="city">{this.state.city}</span></div>
+          <div><span className="country">{this.state.country}</span></div>
+          <div><span className="zipCode">{this.state.zipCode}</span></div>
+          <div><span className="phone">{this.state.phone}</span></div>
+          <div><span className="site">{this.state.url}</span></div>
+          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Submit"/>
+{/*          <a className="btn" onClick={this.addFavourite}><i className="fa fa-heart"></i></a>
+*/}        </div>
         <div className="review">
         </div>
       </li>

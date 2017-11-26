@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
@@ -41,7 +41,7 @@ class RestaurantContainer extends Component {
       const restaurants = res.map(item => {
         item.location = {
           lat: item.coordLat,
-          long: item.coordLong,
+          lng: item.coordLong,
           formattedAddress: ['address', 'city', 'state']
         }
         item.contact = {
@@ -101,6 +101,28 @@ class RestaurantContainer extends Component {
     }
     geoFindMe()
   }
+  saveFavourite(info){
+    let endPoint = "/req/selAdd";
+    let bodydata = JSON.stringify(info);
+    console.log(bodydata);
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "0") {
+      console.log("SHOW ME:",res);
+      } else {
+      console.log("SHOW MEEEE:",res);
+      }
+    })
+  }
 
   render() {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
@@ -114,7 +136,7 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} />
+          <RestaurantList venues={this.state.venues} onAddFavourite={this.saveFavourite}/>
 
         <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
         </div>
