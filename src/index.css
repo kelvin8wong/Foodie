@@ -19,5 +19,19 @@ body {
     top: 0; }
   body .fixed-top {
     background-color: #4DBD33; }
+  body .restaurant-info .restaurant-pic {
+    float: left;
+    height: 100px;
+    width: 100px;
+    margin: 0; }
+  body .restaurant-info .restaurant-details {
+    text-align: left; }
+  body .restaurant-info .restaurant-contact {
+    text-align: right; }
+  body .restaurant-info ol {
+    list-style-type: decimal;
+    margin-left: 25px; }
+  body .restaurant-info img {
+    border-radius: 3px; }
 
 /*# sourceMappingURL=index.css.map */

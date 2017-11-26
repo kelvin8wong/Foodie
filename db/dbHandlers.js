@@ -75,33 +75,36 @@ module.exports = function makeDBhandlers (knex) {
           })
     }, //fin updMember
 
-  //check for the existence of a store
+  //check for the existence of a restaurant
   checkRestExists: (rest) => {
       return knex('restaurants').select('restid').where('restid', rest)
         .then(restID  => {
           console.log(restID);
-          return restID ? true  : false
+          return restID[0] ? true  : false
         })
     },
   //add a new restaurant to the restaurants table
     addRest: (rest) => {
       return knex('restaurants')
         .insert({
-          restid:     rest.id,
+          restid:     rest.restid,
           url:        rest.url,
-          imageUrl:   rest.image,
+          imageUrl:   rest.imageUrl,
           rating:     rest.rating,
           phone:      rest.phone,
-          coordLong:  rest.clong,
-          coordLat:   rest.clat,
+          coordLong:  rest.coordLong,
+          coordLat:   rest.coordLat,
           city:       rest.city,
           country:    rest.country,
-          addr2:      rest.addr2,
-          addr3:      rest.addr3,
+        //addr2:      rest.addr2,
+        //addr3:      rest.addr3,
           state:      rest.state,
           addr1:      rest.addr1,
-          zipCode:    rest.zcode
+          zipCode:    rest.zipCode,
+          restname:   rest.name,
+          pricetier:  rest.pricetier
         })
+        .then(result => result)
     }, //fin addRestaurant
 
 //add a new restaurant to the restaurants table
@@ -113,18 +116,38 @@ module.exports = function makeDBhandlers (knex) {
         ).then(rtnArr => rtnArr[0])
     }, //fin addRestaurant
 
+    //check for the existence of a member selection
+    checkMembSelExists: (member, rest) => {
+      return knex('membsels').select('memberid', 'memberrest')
+        .where('memberid', member)
+        .andWhere('memberrest', rest)
+        .then(rtnArr => {
+          const found = rtnArr[0];
+          console.log(found);
+          if (found)  {
+            console.log("found something: ", found);
+          }
+          return found ? true  : false
+        })
+    },
     addMemberSel: (sel) => {
       return knex('membsels')
         .insert({
           memberid:   sel.member,
-          memberrest: sel.rest,
+          memberrest: sel.restid,
           comments:   sel.comments
         })
+        .then(result => result)
     },
 
     delMembSel: (member, rest)  =>  {
       return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
+    },
+
+    getMemberSels: (member) => {
+      return knex.raw(`select * from membsels join restaurants on membsels.memberrest = restaurants.restid where membsels.memberid = '${member}'`);
     }
 
-} // fin return module function export
+  } // fin return module function export
+
 }

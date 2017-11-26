@@ -9,10 +9,12 @@ class RestaurantList extends Component {
 			return (
 				<Restaurant key={i} restaurant={venue} onAddFavourite={this.props.onAddFavourite}/>
 			)
-    })
+		})
+    // we need to change the title depends on the state of the list
   return (
     <div>
-      <h2>Top Vegetarian Restaurnats in Town</h2>  
+      <h2>Top Vegetarian Restaurants in Town</h2>
+      <hr></hr>
       <ol className="restaurant-list">
         {list}
       </ol>

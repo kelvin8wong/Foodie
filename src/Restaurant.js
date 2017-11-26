@@ -5,31 +5,47 @@ class Restaurant extends Component {
   constructor (){
     super();
     this.state = {
+      restid: '',
+      restname: '',
+      imageUrl: '',
+      phone: '',
+      url: '',
+      addr1: '',
+      city: '',
+      state: '',
+      zipCode: '',
+      country: '',
+      coordLat: '',
+      coordLong: '',
+      rating: '',
+      pricetier: ''
     }
   }
   componentDidMount(){
     const restaurantId = this.props.restaurant.id
     getRestaurantDetail(restaurantId).then((response) => {
-      const name = response.response.name
-      const photo = response.response.bestPhoto
-      const location = response.response.location
-      const url = response.response.url
-      const rating = response.response.rating
-      const price = response.response.price.tier
+      const name = response.response.venue.name
+      const photo = response.response.venue.bestPhoto
+      const location = response.response.venue.location
+      const url = response.response.venue.url
+      const rating = response.response.venue.rating
+      const price = response.response.venue.price.tier
+      const phone = response.response.venue.contact.formattedPhone
       if (photo) {
-        const photoURL = photo.prefix +'64'+ photo.suffix
+        var photoURL = photo.prefix +'64'+ photo.suffix
       } else {
-        const photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
+         photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
       }
       this.setState({
         restid: restaurantId,
-        name: name,
+        restname: name,
         imageUrl: photoURL,
-        phone: phone, 
+        phone: phone,
         url: url,
         addr1: location.address,
         city: location.city,
         state: location.state,
+        zipCode: location.postalCode,
         country: location.country,
         coordLat: location.lat,
         coordLong: location.lng,
@@ -48,18 +64,19 @@ class Restaurant extends Component {
 
     return (
       <li>
-        <hr></hr>
+      <hr></hr>
         <div className="restaurant-info">
-          <div><img src={this.state.restaurantPhoto}/></div>
-          <div><h5><span className="restaurant-name">{this.state.restaurantName}</span></h5></div>
-          <div><span className="address">{this.state.restaurantAddress}</span></div>
-          <div><span className="city">{this.state.restaurantCity}</span></div>
-          <div><span className="country">{this.state.restaurantCountry}</span></div>
-          <div><span className="zipCode">{this.state.restaurantZipCode}</span></div>
-          <div><span className="phone">{this.state.restaurantPhone}</span></div>
-          <div><span className="site">{this.state.restaurant.url}</span></div>
-          <button className="favourite inactive" onClick={this.addFavourite}><i class="fa fa-heart"></i></button>
-        </div>
+          <div><img src={this.state.imageUrl}/></div>
+          <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
+          <div><span className="address">{this.state.addr1}</span></div>
+          <div><span className="city">{this.state.city}</span></div>
+          <div><span className="country">{this.state.country}</span></div>
+          <div><span className="zipCode">{this.state.zipCode}</span></div>
+          <div><span className="phone">{this.state.phone}</span></div>
+          <div><span className="site">{this.state.url}</span></div>
+          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Submit"/>
+{/*          <a className="btn" onClick={this.addFavourite}><i className="fa fa-heart"></i></a>
+*/}     </div>
       </li>
     );
   }

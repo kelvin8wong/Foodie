@@ -49,9 +49,13 @@ class RestaurantLogin extends React.Component {
             <div className="control">
             <input  className="input is-primary" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
             </div>
-            <div className="control">
-            <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
+            <div className="form-check">
+              <label className="form-check-label">
+                <input type="checkbox" className="form-check-input"></input>
+                Remember me
+              </label>
             </div>
+            <button type="submit" className="btn btn-primary">Sign in</button>
           </form>
         </div>
       )

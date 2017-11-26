@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+  import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
@@ -9,13 +9,56 @@ require('dotenv').config();
 class RestaurantContainer extends Component {
 
   state = {
-    venues: [],
-    position: null,
-    showFavorites: false
+      venues: [],
+      position: null,
+      showFavourites: false
+    }
+
+  toggleFavourites() {
+    if(this.state.showFavourites) {
+      this.showAll();
+    } else {
+      this.showFavourites();
+    }
+
+    this.setState({
+      showFavourites: !this.state.showFavourites
+    })
+  }
+
+  showFavourites() {
+    let endPoint = "/req/getMyFavourites";
+    fetch(endPoint, {
+      method: 'GET',
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      credentials: 'include'
+    })
+    .then((res) => res.json())
+    .then((favRestaurants) => {
+      this.setState({
+        venues: favRestaurants
+      })
+    });
+  }
+
+  showAll() {
+    const latitude  = this.state.position.coords.latitude;
+    const longitude = this.state.position.coords.longitude;
+
+    getRestaurantList(latitude,longitude).then((response) => {
+      const venues = response.response.venues
+      this.setState({
+        venues: venues,
+        locating:undefined,
+        initialCenter:{lat: latitude, lng: longitude}
+      })
+    })
   }
 
   componentDidMount(){
-    console.log('componentDidMount')
 
     const geoFindMe = () => {
 
@@ -24,16 +67,9 @@ class RestaurantContainer extends Component {
       }
 
       const success = (position) => {
-        const latitude  = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        getRestaurantList(latitude,longitude).then((response) => {
-          const venues = response.response.venues
-          this.setState({
-            venues: venues,
-            locating:undefined,
-            initialCenter:{lat: latitude, lng: longitude}
-          })
-        })
+        this.setState({
+          position
+        }, this.showAll);
       }
 
       const error = () => {
@@ -55,6 +91,7 @@ class RestaurantContainer extends Component {
   saveFavourite(info){
     let endPoint = "/req/selAdd";
     let bodydata = JSON.stringify(info);
+    console.log(bodydata);
     return fetch(endPoint, {
       method: "POST",
       headers: {
@@ -67,14 +104,11 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
-        // Going to Login ****************************
-        this.login({username: signupParams.member, password: signupParams.password });
+      console.log("SHOW ME:",res);
       } else {
-        console.log("registered before - choose another username");
+      console.log("SHOW MEEEE:",res);
       }
     })
-  }
-
   }
 
   render() {
@@ -89,7 +123,9 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList onAddFavourite={this.saveFavourite} venues={this.state.venues} />
+          <RestaurantList venues={this.state.venues} onAddFavourite={this.saveFavourite}/>
+
+        <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
         </div>
       </div>
     );

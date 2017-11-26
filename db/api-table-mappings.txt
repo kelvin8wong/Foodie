@@ -1,0 +1,20 @@
+FourSquare api to  restaurants table mappings:
+
+in object response.venues array:
+
+API NAMES                     TABLE column
+
+id                            restid
+url                           url
+bestPhoto.(prefix + suffix)   imageUrl
+rating                        rating
+contact.phone                 phone
+location.lng                  coordLong
+location.lat                  coordLat
+location.city                 city
+location.country              country
+location.state                state
+location.address              addr1
+location.postalCode           zipcode
+name                          restname
+price.tier                    pricetier
