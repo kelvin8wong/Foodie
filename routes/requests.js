@@ -89,7 +89,7 @@ module.exports = (dbHandler) => {
   // add a member selection (restaurant)
   router.post('/selAdd', (req, res) =>  {
     //extract component data from body
-    const member    = req.body.member;
+    const member    = req.session.member;
     const comments  = req.body.comments;
     const rest    =   req.body.restdata;
     const restid  =   rest.restid;
