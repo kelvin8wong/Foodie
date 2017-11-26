@@ -40,19 +40,28 @@ class RestaurantLogin extends React.Component {
   render() {
 
       return (
-        
-        <div className="login-container">
-          <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
-            <div className="control">
-            <input className="input is-primary" type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+
+        <div className="dropdown-menu" style={{ display: "block"}}>
+          <form className="px-4 py-3">
+            <div className="form-group">
+              <label for="exampleDropdownFormUsername1">Username</label>
+              <input type="text" className="form-control" id="exampleDropdownFormUsername1" placeholder="Username"></input>
             </div>
-            <div className="control">
-            <input  className="input is-primary" type="password" placeholder="password" onChange={this.Modpassword} value={this.state.password}/>
+            <div className="form-group">
+              <label for="exampleDropdownFormPassword1">Password</label>
+              <input type="password" className="form-control" id="exampleDropdownFormPassword1" placeholder="Password"></input>
             </div>
-            <div className="control">
-            <input className="button is-primary is-inverted is-outlined" type="submit" value="Submit"/>
+            <div className="form-check">
+              <label className="form-check-label">
+                <input type="checkbox" className="form-check-input"></input>
+                Remember me
+              </label>
             </div>
+            <button type="submit" className="btn btn-primary">Sign in</button>
           </form>
+          <div className="dropdown-divider"></div>
+          <a className="dropdown-item" href="#">New around here? Sign up</a>
+          <a className="dropdown-item" href="#">Forgot password?</a>
         </div>
       )
     }
