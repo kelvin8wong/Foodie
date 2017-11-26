@@ -88,10 +88,34 @@ module.exports = (dbHandler) => {
 
   // add a member selection (restaurant)
   router.post('/selAdd', (req, res) =>  {
-    dbHandler.addMembSel(req.body.data)
-    .then(status  =>  {
-      console.log("add member selection: ", req.body.data, " status: ", status);
-    })
+    //extract component data from body
+    const member    = req.body.member;
+    const comments  = req.body.comments;
+    const rest    =   req.body.restdata;
+    const restid  =   rest.restid;
+    //first check that member selection does not already exist -error otherwise
+    dbHandler.checkMembSelExists(member, restid)
+      .then(found =>  {
+        if (found) {
+            console.log("memberSel found: ", member, restid);
+            res.send("0");
+        } else  {
+          //add restaurant if not already exists
+          console.log("before check rest exists");
+          checkRestExists(rest)
+            .then(exists => {
+              if (!exists)  {
+                //add restaurant to restaurants table
+                console.log("before adding rest");
+                addRest(rest);
+              }
+            //add member selection to table
+            console.log("before add member selection");
+            addMemberSel({member: member, restid: restid, comments: comments});
+            res.send("1");
+          })
+        }
+      })
   });
 
   // delete a member selection
