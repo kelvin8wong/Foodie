@@ -101,8 +101,8 @@ module.exports = function makeDBhandlers (knex) {
           state:      rest.state,
           addr1:      rest.addr1,
           zipCode:    rest.zipCode,
-          name:       rest.name,
-          pricetier:   rest.pricetier
+          restname:   rest.restname,
+          pricetier:  rest.pricetier
         })
         .then(result => result)
     }, //fin addRestaurant

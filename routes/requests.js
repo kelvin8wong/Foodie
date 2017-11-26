@@ -108,7 +108,7 @@ module.exports = (dbHandler) => {
               if (!exists)  {
                 //add restaurant to restaurants table
                 console.log("before adding rest");
-                addRest(rest);
+                dbHandler.addRest(rest);
               }
             //add member selection to table
             console.log("before add member selection");
