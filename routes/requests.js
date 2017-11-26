@@ -89,8 +89,9 @@ module.exports = (dbHandler) => {
   // add a member selection (restaurant)
   router.post('/selAdd', (req, res) =>  {
     //extract component data from body
-    const member    = req.body.member;
-    const comments  = req.body.comments;
+    //const member    = req.session.member;
+    const member    = "marcos";
+    //const comments  = req.body.comments;
     const rest    =   req.body.restdata;
     const restid  =   rest.restid;
     //first check that member selection does not already exist -error otherwise
@@ -102,7 +103,7 @@ module.exports = (dbHandler) => {
         } else  {
           //add restaurant if not already exists
           console.log("before check rest exists");
-          checkRestExists(rest)
+          dbHandler.checkRestExists(restid)
             .then(exists => {
               if (!exists)  {
                 //add restaurant to restaurants table
@@ -111,7 +112,7 @@ module.exports = (dbHandler) => {
               }
             //add member selection to table
             console.log("before add member selection");
-            addMemberSel({member: member, restid: restid, comments: comments});
+            dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"});
             res.send("1");
           })
         }
