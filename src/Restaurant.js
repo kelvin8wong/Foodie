@@ -30,8 +30,11 @@ class Restaurant extends Component {
 
     return (
       <li>
+      <hr></hr>
         <div className="restaurant-info">
-          <div className="restaurant-pic"><img src={this.state.restaurantPhoto}/></div>
+          <div className="restaurant-pic">
+            <img src={this.state.restaurantPhoto}/>
+          </div>
           <div className="restaurant-details">
             <div><h5><span className="restaurant-name">{restaurant.name}</span></h5></div>
             <div><span className="address">{restaurant.location.formattedAddress[0]}</span></div>
