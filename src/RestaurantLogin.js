@@ -60,7 +60,7 @@ class RestaurantLogin extends React.Component {
             <button type="submit" className="btn btn-primary">Sign in</button>
           </form>
           <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">New around here? Sign up</a>
+          <a className="dropdown-item" href="/signup">New around here? Sign up</a>
           <a className="dropdown-item" href="#">Forgot password?</a>
         </div>
       )
