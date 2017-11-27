@@ -41,18 +41,36 @@ module.exports = (dbHandler) => {
     })
   });
 
-  // request retrieval of member selected restaurants
-  router.get('/getMbrSels', (req, res)  =>  {
-    dbHandler.getMemberSels(req.query.member)
-    .then(data  =>  {
-      console.log("retrieved member selections: ", data);
-      res.json(data);
-    })
-  });
+// request retrieval of member selected restaurants
+//  router.get('/getMbrSels', (req, res)  =>  {
+//    dbHandler.getMemberSels(req.query.member)
+//    .then(data  =>  {
+//      console.log("retrieved member selections: ", data);
+//      res.json(data);
+//    })
+//  });
 
   // request from the favorites **
-  router.get('/getMyFavourites', (req, res)  =>  {
-    dbHandler.getMemberSels(req.session.member)
+  router.post('/getMyFavourites', (req, res)  =>  {
+    
+    console.log("restaurants array: ", req.body.restArr);
+    // stringify the restaurants array representation
+    restArr = req.body.restArr;
+    arrStr  = "";
+    restArr.forEach( (elem) => {
+      if (arrStr.length == 0) {
+        //arrStr = JSON.stringify(elem);
+        arrStr = "'" + elem + "'";
+      } else {
+        //arrStr = arrStr + ", " + JSON.stringify(elem);
+        arrStr = arrStr + ", " + "'" + elem + "'";
+      }
+    });
+   
+    console.log(arrStr);
+    console.log(`this is the string ${arrStr}`);
+    
+    dbHandler.getMemberSels(req.session.member, arrStr)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
         res.json(data);
