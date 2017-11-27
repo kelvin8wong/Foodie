@@ -52,8 +52,7 @@ module.exports = (dbHandler) => {
 
   // request from the favorites **
   router.get('/getMyFavourites', (req, res)  =>  {
-    //dbHandler.getMemberSels(req.session.member)
-    dbHandler.getMemberSels("marcos")
+    dbHandler.getMemberSels(req.session.member)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
         res.json(data.rows)
@@ -126,9 +125,10 @@ module.exports = (dbHandler) => {
 
   // delete a member selection
   router.post('/selDel', (req, res) =>  {
-    dbHandler.delMembSel(req.body.memberid, req.body.memberrest)
+    dbHandler.delMembSel(req.session.member, req.body.memberrest)
+    //dbHandler.delMembSel(req.session.member, req.body.memberrest)
     .then(status  =>  {
-      console.log("delete memb sel: ", req.body.member, req.body.rest, " status: ", status);
+      console.log("delete memb sel: ", "marcos ", req.body.memberrest, " status: ", status);
       res.json("1");
     })
   });

@@ -21,7 +21,7 @@ exports.up = function(knex, Promise) {
       t.varchar('url');
       t.varchar('imageUrl');
       t.integer('rating');
-      t.string('phone', 12);
+      t.string('phone', 12  );
       t.float('coordLong', 19, 15);
       t.float('coordLat', 19, 15);
       t.string('city', 32);

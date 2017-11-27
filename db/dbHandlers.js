@@ -141,7 +141,8 @@ module.exports = function makeDBhandlers (knex) {
     },
 
     delMembSel: (member, rest)  =>  {
-      return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
+      return knex('membsels').del().where('memberid', member).andWhere('memberrest', rest)
+        .then(stat => stat)
     },
 
     getMemberSels: (member) => {
