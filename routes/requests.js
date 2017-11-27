@@ -25,9 +25,9 @@ module.exports = (dbHandler) => {
     .then(valid =>  {
       if(valid) {
         req.session.member = req.query.member;
-        res.send("1");
+        res.json("1");
       } else {
-        res.send("0");
+        res.json("0");
       }
     })
   });
@@ -55,7 +55,7 @@ module.exports = (dbHandler) => {
     dbHandler.getMemberSels(req.session.member)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
-        res.json(data.rows)
+        res.json(data);
     })
   });
 
@@ -131,6 +131,12 @@ module.exports = (dbHandler) => {
       console.log("delete memb sel: ", "marcos ", req.body.memberrest, " status: ", status);
       res.json("1");
     })
+  });
+
+  // logout requested - clear cookie
+  router.post('/logout', (req, res) =>  {
+    req.session = null;
+    res.json("1");
   });
 
   return router

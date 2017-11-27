@@ -82,10 +82,11 @@ class RestaurantSignup extends React.Component {
                 <div className="form-group">
                   <div className="row">
                     <div className="col-xs-6 col-xs-offset-3">
-                      <input type="submit" name="register-submit" id="register-submit" tabindex="4" className="form-control btn btn-info" value="Register Now"/>
+                      <input type="submit" name="register-submit" id="register-submit" tabIndex="4" className="form-control btn btn-info" value="Register Now"/>
                     </div>
                   </div>
                 </div>
+                <a className="dropdown-item" href="/">Back to the main page</a>
               </form>
             </div>
           </div>
