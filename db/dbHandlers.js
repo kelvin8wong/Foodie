@@ -145,12 +145,13 @@ module.exports = function makeDBhandlers (knex) {
         .then(stat => stat)
     },
 
-    getMemberSels: (member) => {
+    getMemberSels: (member, arrStr) => {
       //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
       return knex.select('restaurants.*')
         .from('membsels')
         .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
-        .where('membsels.memberid', member)
+        .whereIn('restaurants.restid', knex.raw(`${arrStr}`))
+        .andWhere('membsels.memberid', member)
         .then(result => {
           console.log(result);
           return result

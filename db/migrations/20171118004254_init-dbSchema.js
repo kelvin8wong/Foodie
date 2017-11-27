@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+  exports.up = function(knex, Promise) {
     return Promise.all([
     knex.schema.createTable('members', (t) =>  {
       t.string('member', 16);
