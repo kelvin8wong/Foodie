@@ -34,6 +34,51 @@ body {
       float: left;
       padding: 0 0 0 20px;
       width: 486px;
+      text-align: left;
+      .restaurant-name {
+
+      }
+      .restaurant-rating {
+        background-color: #00B551;
+        border-radius: 4px;
+        text-shadow: none;
+        float: right;
+        line-height: 20px;
+        margin: 0;
+        top: inherit;
+        color: #fff;
+        cursor: default;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        width: 25px;
+        height: 20px;
+      }
+      .restaurant-price {
+
+      }
+      .restaurant-address {
+
+        .address {
+
+        }
+        .city {
+
+        }
+        .country {
+
+        }
+        .zipCode {
+
+        }
+      }
+      .phone {
+
+      }
+      .site {
+
+      }
     }
     ol {
       list-style-type: decimal;
