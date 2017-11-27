@@ -146,12 +146,14 @@ module.exports = function makeDBhandlers (knex) {
 
     getMemberSels: (member) => {
       //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
-      return 
-        knex.select('restaurants.*')
-            .from('membsels')
-            .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
-            .where('membsels.memberid', member)
-        .then(result => result)
+      return knex.select('restaurants.*')
+        .from('membsels')
+        .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
+        .where('membsels.memberid', member)
+        .then(result => {
+          console.log(result);
+          return result
+        });
     }
 
   } // fin return module function export

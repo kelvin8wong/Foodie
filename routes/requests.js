@@ -52,10 +52,11 @@ module.exports = (dbHandler) => {
 
   // request from the favorites **
   router.get('/getMyFavourites', (req, res)  =>  {
-    dbHandler.getMemberSels(req.session.member)
-    .then(data  =>  {
-      console.log("retrieved member selections: ", data);
-      res.json(data.rows);
+    //dbHandler.getMemberSels(req.session.member)
+    dbHandler.getMemberSels("marcos")
+      .then(data  =>  {
+        console.log("retrieved member selections: ", data);
+        res.json(data.rows)
     })
   });
 
@@ -116,7 +117,7 @@ module.exports = (dbHandler) => {
                 //add member selection to table
                 console.log("before add member selection, no rest add: ", member, restid);
                 dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"})
-                .then(result => res.send("1"));
+                .then(result => res.json("1"));
               }
           })
         }
@@ -128,7 +129,7 @@ module.exports = (dbHandler) => {
     dbHandler.delMembSel(req.body.memberid, req.body.memberrest)
     .then(status  =>  {
       console.log("delete memb sel: ", req.body.member, req.body.rest, " status: ", status);
-      res.send("1");
+      res.json("1");
     })
   });
 
