@@ -5,12 +5,14 @@ import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
 class RestaurantContainer extends Component {
-
-  state = {
+  constructor(props){
+    super(props);
+    this.state = {
       venues: [],
       position: null,
       showFavourites: false
     }
+  }
 
   toggleFavourites() {
     if(this.state.showFavourites) {
@@ -99,6 +101,7 @@ class RestaurantContainer extends Component {
     }
     geoFindMe()
   }
+
   saveFavourite(info){
     let endPoint = "/req/selAdd";
     let bodydata = JSON.stringify(info);
@@ -114,9 +117,32 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
-      console.log("SHOW ME:",res);
+      console.log("Favourites Add",res);
       } else {
-      console.log("SHOW MEEEE:",res);
+      console.log("Favourites not Added:",res);
+      }
+    })
+  }
+
+  unSaveFavourite(info){
+    let endPoint = "/req/selDel";
+    let bodydata = JSON.stringify({memberrest: info})
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "1") {
+        console.log("Favourites deleted:",res);
+        this.showFavourites();
+      } else {
+        console.log("Favourites NOT deleted:",res);
       }
     })
   }
@@ -133,9 +159,8 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} onAddFavourite={this.saveFavourite}/>
-
-        <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
+          <RestaurantList onLoggedIn={this.props.onLoggedIn} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
+          <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
         </div>
       </div>
     );

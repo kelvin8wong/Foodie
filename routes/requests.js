@@ -55,7 +55,7 @@ module.exports = (dbHandler) => {
     dbHandler.getMemberSels(req.session.member)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
-        res.json(data.rows)
+        res.json(data);
     })
   });
 
@@ -125,18 +125,19 @@ module.exports = (dbHandler) => {
 
   // delete a member selection
   router.post('/selDel', (req, res) =>  {
+    console.log(req.session.member, " ", req.body.memberrest);
     dbHandler.delMembSel(req.session.member, req.body.memberrest)
     //dbHandler.delMembSel(req.session.member, req.body.memberrest)
     .then(status  =>  {
-      console.log("delete memb sel: ", "marcos ", req.body.memberrest, " status: ", status);
+      console.log("delete memb sel: ", req.session.member, req.body.memberrest, " status: ", status);
       res.json("1");
     })
   });
-  
+
   // logout requested - clear cookie
   router.post('/logout', (req, res) =>  {
-    req.session.member = "";
-    res.json("1"):
+    req.session = null;
+    res.json("1");
   });
 
   return router

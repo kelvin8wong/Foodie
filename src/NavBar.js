@@ -7,7 +7,7 @@ class NavBar extends Component {
     super(props)
 
     this.state = {
-      member: null
+      member: ''
     }
   }
 
@@ -29,8 +29,9 @@ class NavBar extends Component {
     })
     .then((res) => res.json())
     .then((res) => {
-      if (res === 1) {
+      if (res == "1") {
            this.setState({member: loginParams.member});
+           this.props.onMemberLogin(this.state.member);
            console.log('logged in successful:',res , loginParams.member);
       } else {
           console.log(res);
@@ -53,8 +54,8 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === 1) {
-        this.setState({member: null});
+      if (res == "1") {
+        this.setState({member: ""});
       }
       console.log("logout status: ", res);
     })
@@ -74,7 +75,7 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === 0) {
+      if (res == "1") {
         // Going to Login **********************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
@@ -84,7 +85,7 @@ class NavBar extends Component {
   }
 
   render() {
-    if (this.state.member===null) {
+    if (this.state.member=== '') {
       return (
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
