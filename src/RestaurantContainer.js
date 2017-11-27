@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
@@ -7,12 +7,14 @@ import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
 
 class RestaurantContainer extends Component {
-
-  state = {
+  constructor(props){
+    super(props);
+    this.state = {
       venues: [],
       position: null,
       showFavourites: false
     }
+  }
 
   toggleFavourites() {
     if(this.state.showFavourites) {
@@ -139,10 +141,10 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "1") {
-      console.log("Favourites deleted:",res);
-      this.showFavourites();
+        console.log("Favourites deleted:",res);
+        this.showFavourites();
       } else {
-      console.log("avourites NOT deleted:",res);
+        console.log("Favourites NOT deleted:",res);
       }
     })
   }
@@ -159,8 +161,8 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} onDelFavourite={this.unSaveFavourite} onAddFavourite={this.saveFavourite}/>
-          <button onClick={ this.toggleFavourites.bind(this) }>Favourites</button>
+          <RestaurantList showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
+          <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
         </div>
       </div>
     );

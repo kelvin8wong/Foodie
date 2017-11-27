@@ -5,12 +5,25 @@ import {BrowserRouter as Router } from 'react-router-dom'
 import NavBar from './NavBar.js'
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      status: null
+    }
+  }
+  onMemberStatus (){
+    this.setState({
+      status:true
+    })
+  }
+
   render() {
     return (
       <Router>
       <div className="App">
-        <NavBar/>
-        <RestaurantContainer />
+        <NavBar onMemberLogin={this.onMemberStatus.bind(this)}/>
+        <RestaurantContainer onLoggedIn={this.state.status}/>
       </div>
       </Router>
     );
