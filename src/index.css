@@ -26,6 +26,8 @@ body {
     margin: 0; }
   body .restaurant-info .restaurant-details {
     text-align: left; }
+  body .restaurant-info .restaurant-address {
+    text-align: right; }
   body .restaurant-info .restaurant-contact {
     text-align: right; }
   body .restaurant-info ol {

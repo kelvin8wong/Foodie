@@ -23,14 +23,14 @@ class RestaurantLogin extends React.Component {
   }
 
 
-  Modmember = (event) => {
+  onUsername = (event) => {
     this.setState({
       member: event.target.value
     })
   }
 
 
-  Modpassword = (event) => {
+  onPassword = (event) => {
     this.setState({
       password: event.target.value
     })
@@ -41,27 +41,18 @@ class RestaurantLogin extends React.Component {
 
       return (
 
-        <div className="dropdown-menu" style={{ display: "block"}}>
-          <form className="px-4 py-3">
+        <div className="dropdown-menu" style={{display: "block"}}>
+          <form onSubmit={this.handleSubmit} className="px-4 py-3">
             <div className="form-group">
-              <label for="exampleDropdownFormUsername1">Username</label>
-              <input type="text" className="form-control" id="exampleDropdownFormUsername1" placeholder="Username"></input>
+            <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
             </div>
             <div className="form-group">
-              <label for="exampleDropdownFormPassword1">Password</label>
-              <input type="password" className="form-control" id="exampleDropdownFormPassword1" placeholder="Password"></input>
-            </div>
-            <div className="form-check">
-              <label className="form-check-label">
-                <input type="checkbox" className="form-check-input"></input>
-                Remember me
-              </label>
+            <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
             </div>
             <button type="submit" className="btn btn-primary">Sign in</button>
+            <div><a className href="/signup">New around here? Sign up</a></div>
+            <div><a className href="/">Home Page</a></div>
           </form>
-          <div className="dropdown-divider"></div>
-          <a className="dropdown-item" href="#">New around here? Sign up</a>
-          <a className="dropdown-item" href="#">Forgot password?</a>
         </div>
       )
     }

@@ -55,7 +55,7 @@ module.exports = (dbHandler) => {
     dbHandler.getMemberSels(req.session.member)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
-        res.json(data.rows)
+        res.json(data);
     })
   });
 
@@ -132,11 +132,11 @@ module.exports = (dbHandler) => {
       res.json("1");
     })
   });
-  
+
   // logout requested - clear cookie
   router.post('/logout', (req, res) =>  {
-    req.session.member = "";
-    res.json("1"):
+    req.session = null;
+    res.json("1");
   });
 
   return router
