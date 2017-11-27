@@ -73,7 +73,7 @@ class Restaurant extends Component {
           <div><span className="zipCode">{this.state.zipCode}</span></div>
           <div><span className="phone">{this.state.phone}</span></div>
           <div><span className="site">{this.state.url}</span></div>
-          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Submit"/>
+          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Favourite"/>
 {/*          <a className="btn" onClick={this.addFavourite}><i className="fa fa-heart"></i></a>
 */}     </div>
       </li>

@@ -25,9 +25,9 @@ module.exports = (dbHandler) => {
     .then(valid =>  {
       if(valid) {
         req.session.member = req.query.member;
-        res.send("1");
+        res.json("1");
       } else {
-        res.send("0");
+        res.json("0");
       }
     })
   });
@@ -53,9 +53,9 @@ module.exports = (dbHandler) => {
   // request from the favorites **
   router.get('/getMyFavourites', (req, res)  =>  {
     dbHandler.getMemberSels(req.session.member)
-    .then(data  =>  {
-      console.log("retrieved member selections: ", data);
-      res.json(data.rows);
+      .then(data  =>  {
+        console.log("retrieved member selections: ", data);
+        res.json(data.rows)
     })
   });
 
@@ -98,7 +98,7 @@ module.exports = (dbHandler) => {
       .then(found =>  {
         if (found) {
             console.log("memberSel found: ", member, restid);
-            res.send("0");
+            res.send("member selection already exists!!!");
         } else  {
           //add restaurant if not already exists
           console.log("before check rest exists");
@@ -106,13 +106,18 @@ module.exports = (dbHandler) => {
             .then(exists => {
               if (!exists)  {
                 //add restaurant to restaurants table
-                console.log("before adding rest");
-                dbHandler.addRest(rest);
+                console.log("before adding rest: ", restid);
+                dbHandler.addRest(rest)
+                  .then(result => {
+                    console.log("before add member sel after add rest:", member, restid);
+                    dbHandler.addMemberSel({member: member, restid: restid, comments: "just           testing!"}).then(result => res.send("1"));
+                  });
+              } else {
+                //add member selection to table
+                console.log("before add member selection, no rest add: ", member, restid);
+                dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"})
+                .then(result => res.json("1"));
               }
-            //add member selection to table
-            console.log("before add member selection:", member, restid);
-            dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"});
-            res.send("1");
           })
         }
       })
@@ -120,10 +125,18 @@ module.exports = (dbHandler) => {
 
   // delete a member selection
   router.post('/selDel', (req, res) =>  {
-    dbHandler.delMembSel(req.body.member, req.body.rest)
+    dbHandler.delMembSel(req.session.member, req.body.memberrest)
+    //dbHandler.delMembSel(req.session.member, req.body.memberrest)
     .then(status  =>  {
-      console.log("delete memb sel: ", req.body.member, req.body.rest, " status: ", status);
+      console.log("delete memb sel: ", "marcos ", req.body.memberrest, " status: ", status);
+      res.json("1");
     })
+  });
+  
+  // logout requested - clear cookie
+  router.post('/logout', (req, res) =>  {
+    req.session.member = "";
+    res.json("1"):
   });
 
   return router

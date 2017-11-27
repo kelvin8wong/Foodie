@@ -101,7 +101,7 @@ module.exports = function makeDBhandlers (knex) {
           state:      rest.state,
           addr1:      rest.addr1,
           zipCode:    rest.zipCode,
-          restname:   rest.name,
+          restname:   rest.restname,
           pricetier:  rest.pricetier
         })
         .then(result => result)
@@ -141,11 +141,20 @@ module.exports = function makeDBhandlers (knex) {
     },
 
     delMembSel: (member, rest)  =>  {
-      return knex('membsels').where('memberid', member).andWhere('memberrest', rest)
+      return knex('membsels').del().where('memberid', member).andWhere('memberrest', rest)
+        .then(stat => stat)
     },
 
     getMemberSels: (member) => {
-      return knex.raw(`select * from membsels join restaurants on membsels.memberrest = restaurants.restid where membsels.memberid = '${member}'`);
+      //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
+      return knex.select('restaurants.*')
+        .from('membsels')
+        .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
+        .where('membsels.memberid', member)
+        .then(result => {
+          console.log(result);
+          return result
+        });
     }
 
   } // fin return module function export

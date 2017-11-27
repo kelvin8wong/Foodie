@@ -29,9 +29,9 @@ class NavBar extends Component {
     })
     .then((res) => res.json())
     .then((res) => {
-      if (res === "1") {
+      if (res === 1) {
            this.setState({member: loginParams.member});
-           console.log(res);
+           console.log('logged in successful:',res , loginParams.member);
       } else {
           console.log(res);
       }
@@ -40,12 +40,26 @@ class NavBar extends Component {
         return console.log("false")
     })
   }
-  //signout
+
+  //signout **********************************
   signout () {
-    this.setState({
-      member: null
+    let endPoint = "/req/logout";
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === 1) {
+        this.setState({member: null});
+      }
+      console.log("logout status: ", res);
     })
   }
+
   // SingUp **********************************
   signup = (signupParams) => {
     let endPoint = "/req/membAdd";
@@ -60,8 +74,8 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === "0") {
-        // Going to Login ****************************
+      if (res === 0) {
+        // Going to Login **********************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
         console.log("This username has already been registered. Please choose another.");
@@ -71,22 +85,23 @@ class NavBar extends Component {
 
   render() {
     if (this.state.member===null) {
-      return 
-      <header>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a className="navbar-brand" href="#">Foodie</a>
-        <Link to="/login">Login</Link>
-        <Link to='/signup'>Sign-up</Link>
-        <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-        <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
-        </nav>
-      </header>
-
+      return (
+        <header>
+          <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+              <a className="navbar-brand" href="#">Foodie</a>
+              <Link to="/login">Login</Link>
+              <Link to='/signup'>Sign-up</Link>
+              <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
+              <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+            </nav>
+        </header>
+      );
     } else {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
             <a className="navbar-brand" href="#">Foodie</a>
+            <a className="navbar-brand" href="#">{this.state.member}</a>
             <button onClick={this.signout.bind(this)}> Logout</button>
           </nav>
         </header>
