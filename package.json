@@ -30,7 +30,7 @@
     "seed": "./node_modules/.bin/knex seed:run",
     "latest": "./node_modules/.bin/knex migrate:latest",
     "rollback": "./node_modules/.bin/knex migrate:rollback",
-    "start": "react-scripts start"
+    "start": "react-scripts start dotenv_config_path=development.env"
   },
   "devDependencies": {
     "nodemon": "^1.9.2",

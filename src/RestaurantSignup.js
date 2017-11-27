@@ -86,6 +86,7 @@ class RestaurantSignup extends React.Component {
                     </div>
                   </div>
                 </div>
+                <a className="dropdown-item" href="/">Back to the main page</a>
               </form>
             </div>
           </div>

@@ -5,7 +5,7 @@ import superagent from 'superagent';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
-require('dotenv').config();
+
 class RestaurantContainer extends Component {
 
   state = {

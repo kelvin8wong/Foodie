@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { getRestaurantDetail } from './Services/foursquareApi.js';
-require('dotenv').config();
+
 class Restaurant extends Component {
   constructor (){
     super();
