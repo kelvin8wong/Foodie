@@ -61,11 +61,17 @@ class Restaurant extends Component {
     this.props.onAddFavourite(favouriteInfo)
   }
 
+  delFavourite = (event)=>{
+    event.preventDefault()
+    const favouriteInfo = this.state.restid;
+    this.props.onDelFavourite(favouriteInfo)
+  }
+
+
   render() {
 
     return (
       <li>
-      <hr></hr>
         <div className="restaurant-info">
           <div><img src={this.state.imageUrl}/></div>
           <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
@@ -75,10 +81,8 @@ class Restaurant extends Component {
           <div><span className="zipCode">{this.state.zipCode}</span></div>
           <div><span className="phone">{this.state.phone}</span></div>
           <div><span className="site">{this.state.url}</span></div>
-          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Submit"/>
-{/*          <a className="btn" onClick={this.addFavourite}><i className="fa fa-heart"></i></a>
-*/}        </div>
-        <div className="review">
+          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourite"/>
+          <input className="button is-primary is-inverted is-outlined inactive" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
         </div>
       </li>
     );

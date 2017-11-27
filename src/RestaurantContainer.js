@@ -42,10 +42,10 @@ class RestaurantContainer extends Component {
         item.location = {
           lat: item.coordLat,
           lng: item.coordLong,
-          formattedAddress: ['address', 'city', 'state']
+          formattedAddress: [ item.addr1 , item.city, item.country, item.zipCode ]
         }
         item.contact = {
-          phoneNumber: '12345678'
+          formattedPhone: item.phone
         }
         item.id = item.restid;
         return item;
@@ -101,10 +101,10 @@ class RestaurantContainer extends Component {
     }
     geoFindMe()
   }
+
   saveFavourite(info){
     let endPoint = "/req/selAdd";
     let bodydata = JSON.stringify(info);
-    console.log(bodydata);
     return fetch(endPoint, {
       method: "POST",
       headers: {
@@ -117,9 +117,32 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
-      console.log("SHOW ME:",res);
+      console.log("Favourites Add",res);
       } else {
-      console.log("SHOW MEEEE:",res);
+      console.log("Favourites not Added:",res);
+      }
+    })
+  }
+
+  unSaveFavourite(info){
+    let endPoint = "/req/selDel";
+    let bodydata = JSON.stringify({memberrest: info})
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "1") {
+      console.log("Favourites deleted:",res);
+      this.showFavourites();
+      } else {
+      console.log("avourites NOT deleted:",res);
       }
     })
   }
@@ -136,9 +159,8 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} onAddFavourite={this.saveFavourite}/>
-
-        <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
+          <RestaurantList venues={this.state.venues} onDelFavourite={this.unSaveFavourite} onAddFavourite={this.saveFavourite}/>
+          <button onClick={ this.toggleFavourites.bind(this) }>Favourites</button>
         </div>
       </div>
     );
