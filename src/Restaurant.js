@@ -83,12 +83,12 @@ class Restaurant extends Component {
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
             <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
             <div><span className="restaurant-price">{this.state.pricetier}</span></div>
-<<<<<<< HEAD
             <div className="restaurant-address">
-              <div><span className="address">{this.state.addr1}</span></div>
-              <div><span className="city">{this.state.city}</span></div>
-              <div><span className="country">{this.state.country}</span></div>
-              <div><span className="zipCode">{this.state.zipCode}</span></div>
+              <span className="address">{this.state.addr1}, </span>
+              <span className="city">{this.state.city}, </span>
+              <span className="zipCode">{this.state.zipCode}, </span>
+              <span className="country">{this.state.country}</span>
+
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
               <div><span className="site">{this.state.url}</span></div>
