@@ -1,4 +1,4 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import superagent from 'superagent';
@@ -7,12 +7,14 @@ import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
 
 class RestaurantContainer extends Component {
-
-  state = {
+  constructor(props){
+    super(props);
+    this.state = {
       venues: [],
       position: null,
       showFavourites: false
     }
+  }
 
   toggleFavourites() {
     if(this.state.showFavourites) {
@@ -42,10 +44,10 @@ class RestaurantContainer extends Component {
         item.location = {
           lat: item.coordLat,
           lng: item.coordLong,
-          formattedAddress: ['address', 'city', 'state']
+          formattedAddress: [ item.addr1 , item.city, item.country, item.zipCode ]
         }
         item.contact = {
-          phoneNumber: '12345678'
+          formattedPhone: item.phone
         }
         item.id = item.restid;
         return item;
@@ -101,10 +103,10 @@ class RestaurantContainer extends Component {
     }
     geoFindMe()
   }
+
   saveFavourite(info){
     let endPoint = "/req/selAdd";
     let bodydata = JSON.stringify(info);
-    console.log(bodydata);
     return fetch(endPoint, {
       method: "POST",
       headers: {
@@ -117,9 +119,32 @@ class RestaurantContainer extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res === "0") {
-      console.log("SHOW ME:",res);
+      console.log("Favourites Add",res);
       } else {
-      console.log("SHOW MEEEE:",res);
+      console.log("Favourites not Added:",res);
+      }
+    })
+  }
+
+  unSaveFavourite(info){
+    let endPoint = "/req/selDel";
+    let bodydata = JSON.stringify({memberrest: info})
+    return fetch(endPoint, {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then(res => res.json())
+    .then((res) => {
+      if (res === "1") {
+        console.log("Favourites deleted:",res);
+        this.showFavourites();
+      } else {
+        console.log("Favourites NOT deleted:",res);
       }
     })
   }
@@ -136,9 +161,8 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList venues={this.state.venues} onAddFavourite={this.saveFavourite}/>
-
-        <button onClick={ this.toggleFavourites.bind(this) }>Favourtites</button>
+          <RestaurantList showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
+          <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
         </div>
       </div>
     );

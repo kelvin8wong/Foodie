@@ -22,14 +22,13 @@ body {
   body .restaurant-info .restaurant-pic {
     float: left;
     height: 100px;
+    margin: 0;
     width: 100px;
-    margin: 0; }
+    border-radius: 4px; }
   body .restaurant-info .restaurant-details {
-    text-align: left; }
-  body .restaurant-info .restaurant-address {
-    text-align: right; }
-  body .restaurant-info .restaurant-contact {
-    text-align: right; }
+    float: left;
+    padding: 0 0 0 20px;
+    width: 486px; }
   body .restaurant-info ol {
     list-style-type: decimal;
     margin-left: 25px; }

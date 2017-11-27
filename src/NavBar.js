@@ -31,6 +31,7 @@ class NavBar extends Component {
     .then((res) => {
       if (res == "1") {
            this.setState({member: loginParams.member});
+           this.props.onMemberLogin(this.state.member);
            console.log('logged in successful:',res , loginParams.member);
       } else {
           console.log(res);
