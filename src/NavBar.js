@@ -29,7 +29,7 @@ class NavBar extends Component {
     })
     .then((res) => res.json())
     .then((res) => {
-      if (res === 1) {
+      if (res == "1") {
            this.setState({member: loginParams.member});
            console.log('logged in successful:',res , loginParams.member);
       } else {
@@ -53,7 +53,7 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === 1) {
+      if (res == "1") {
         this.setState({member: ""});
       }
       console.log("logout status: ", res);
@@ -74,7 +74,7 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === 0) {
+      if (res == "1") {
         // Going to Login **********************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
