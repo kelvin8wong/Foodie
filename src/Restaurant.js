@@ -18,9 +18,11 @@ class Restaurant extends Component {
       coordLat: '',
       coordLong: '',
       rating: '',
-      pricetier: ''
+      pricetier: '',
     }
   }
+
+
   componentDidMount(){
     const restaurantId = this.props.restaurant.id
     getRestaurantDetail(restaurantId).then((response) => {
@@ -81,7 +83,7 @@ class Restaurant extends Component {
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
             <div><span className="restaurant-price">{this.state.pricetier}</span></div>
           </div>
-          <div classname="restaurant-address">
+          <div className="restaurant-address">
             <div><span className="address">{this.state.addr1}</span></div>
             <div><span className="city">{this.state.city}</span></div>
             <div><span className="country">{this.state.country}</span></div>
@@ -91,8 +93,8 @@ class Restaurant extends Component {
             <div><span className="phone">{this.state.phone}</span></div>
             <div><span className="site">{this.state.url}</span></div>
           </div>
-          <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
-          <input className="button is-primary is-inverted is-outlined inactive" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'blocl'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}} onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
         </div>
       </li>
     );
