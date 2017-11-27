@@ -9,7 +9,7 @@ export default class RestaurantMap extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      zoom: 14
+      zoom: 13
     }
   }
 
