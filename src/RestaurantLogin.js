@@ -5,7 +5,7 @@ class RestaurantLogin extends React.Component {
     super(props)
 
     this.state = {
-      username: "",
+      member: "",
       password: ""
     }
   }
@@ -17,7 +17,7 @@ class RestaurantLogin extends React.Component {
     this.props.onLogin(loginParams)
 
     this.setState({
-      username: "",
+      member: "",
       password:""
     })
   }
@@ -25,7 +25,7 @@ class RestaurantLogin extends React.Component {
 
   onUsername = (event) => {
     this.setState({
-      username: event.target.value
+      member: event.target.value
     })
   }
 
@@ -41,21 +41,17 @@ class RestaurantLogin extends React.Component {
 
       return (
         
-        <div className="login-container">
-          <form onSubmit={this.handleSubmit} className="field is-grouped is-grouped-centered">
-            <div className="control">
-            <input className="input is-primary" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.username}/>
+        <div className="dropdown-menu" style={{display: "block"}}>
+          <form onSubmit={this.handleSubmit} className="px-4 py-3">
+            <div className="form-group">
+            <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
             </div>
-            <div className="control">
-            <input  className="input is-primary" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
-            </div>
-            <div className="form-check">
-              <label className="form-check-label">
-                <input type="checkbox" className="form-check-input"></input>
-                Remember me
-              </label>
+            <div className="form-group">
+            <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
             </div>
             <button type="submit" className="btn btn-primary">Sign in</button>
+            <div><a className href="/signup">New around here? Sign up</a></div>
+            <div><a className href="/">Home Page</a></div>
           </form>
         </div>
       )

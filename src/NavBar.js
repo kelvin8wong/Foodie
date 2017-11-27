@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
 import RestaurantLogin from './RestaurantLogin';
 import RestaurantSignup from './RestaurantSignup';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom';
-
+import {Route,Link } from 'react-router-dom'; 
 class NavBar extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      member: null
+    }
+  }
 
   // LOGIN HERE ***************************
   login = (loginParams) => {
@@ -28,7 +30,8 @@ class NavBar extends Component {
     .then((res) => res.json())
     .then((res) => {
       if (res === "1") {
-           this.setState({username: loginParams.member, password: loginParams.password });
+           this.setState({member: loginParams.member});
+           console.log(res);
       } else {
           console.log(res);
       }
@@ -37,7 +40,12 @@ class NavBar extends Component {
         return console.log("false")
     })
   }
-
+  //signout
+  signout () {
+    this.setState({
+      member: null
+    })
+  }
   // SingUp **********************************
   signup = (signupParams) => {
     let endPoint = "/req/membAdd";
@@ -54,31 +62,36 @@ class NavBar extends Component {
     .then((res) => {
       if (res === "0") {
         // Going to Login ****************************
-        this.login({username: signupParams.member, password: signupParams.password });
+        this.login({member: signupParams.member, password: signupParams.password });
       } else {
         console.log("This username has already been registered. Please choose another.");
       }
     })
   }
 
-
   render() {
-
-    return(
-
-
+    if (this.state.member===null) {
+      return 
       <header>
-        <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+      <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
           <a className="navbar-brand" href="#">Foodie</a>
-          <Link to="/login">Login</Link>
-          <Link to='/signup'>Sign-up</Link>
-          <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-          <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+        <Link to="/login">Login</Link>
+        <Link to='/signup'>Sign-up</Link>
+        <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
+        <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
         </nav>
       </header>
 
-
-    );
+    } else {
+      return(
+        <header>
+          <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+            <a className="navbar-brand" href="#">Foodie</a>
+            <button onClick={this.signout.bind(this)}> Logout</button>
+          </nav>
+        </header>
+      );
+    }
   }
 }
 

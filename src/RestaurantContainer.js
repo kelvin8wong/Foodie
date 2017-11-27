@@ -1,11 +1,9 @@
-  import React, { Component } from 'react';
+import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
-import superagent from 'superagent';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
-require('dotenv').config();
 class RestaurantContainer extends Component {
 
   state = {
@@ -37,9 +35,21 @@ class RestaurantContainer extends Component {
       credentials: 'include'
     })
     .then((res) => res.json())
-    .then((favRestaurants) => {
+    .then((res) => {
+      const restaurants = res.map(item => {
+        item.location = {
+          lat: item.coordLat,
+          lng: item.coordLong,
+          formattedAddress: [ item.addr1 , item.city, item.country, item.zipCode ]
+        }
+        item.contact = {
+          formattedPhone: item.phone
+        }
+        item.id = item.restid;
+        return item;
+      })
       this.setState({
-        venues: favRestaurants
+        venues: restaurants
       })
     });
   }
@@ -59,6 +69,7 @@ class RestaurantContainer extends Component {
   }
 
   componentDidMount(){
+    console.log('componentDidMount')
 
     const geoFindMe = () => {
 
@@ -91,7 +102,6 @@ class RestaurantContainer extends Component {
   saveFavourite(info){
     let endPoint = "/req/selAdd";
     let bodydata = JSON.stringify(info);
-    console.log(bodydata);
     return fetch(endPoint, {
       method: "POST",
       headers: {

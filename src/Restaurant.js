@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getRestaurantDetail } from './Services/foursquareApi.js';
-require('dotenv').config();
 class Restaurant extends Component {
   constructor (){
     super();
@@ -66,7 +65,7 @@ class Restaurant extends Component {
       <li>
       <hr></hr>
         <div className="restaurant-info">
-          <div><img src={this.state.imageUrl}/></div>
+          <div><img alt="restaurant" src={this.state.imageUrl}/></div>
           <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
           <div><span className="address">{this.state.addr1}</span></div>
           <div><span className="city">{this.state.city}</span></div>
