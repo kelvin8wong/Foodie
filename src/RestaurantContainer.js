@@ -66,6 +66,10 @@ class RestaurantContainer extends Component {
     const latitude  = this.state.position.coords.latitude;
     const longitude = this.state.position.coords.longitude;
 
+    this.setState({
+      venues: []
+    });
+
     getRestaurantList(latitude,longitude).then((response) => {
       const venues = response.response.venues;
       this.state.venuesId = [];
@@ -170,8 +174,9 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
-          <RestaurantList onLoggedIn={this.props.status} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
+
+          { this.props.onLoggedIn && <button onClick={this.toggleFavourites.bind(this)}>Favourites</button> }
+          <RestaurantList onLoggedIn={this.props.onLoggedIn} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
         </div>
       </div>
     );

@@ -57,6 +57,7 @@ class NavBar extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res == "1") {
+        this.props.onMemberLogin();
         this.setState({member: ""});
       }
       console.log("logout status: ", res);
