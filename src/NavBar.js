@@ -1,20 +1,18 @@
 import React, { Component } from 'react';
 import RestaurantLogin from './RestaurantLogin';
 import RestaurantSignup from './RestaurantSignup';
-import {Route,Link } from 'react-router-dom';
-import Modal from 'react-modal';
-
+import { Modal, Button } from 'react-bootstrap';
 class NavBar extends Component {
   constructor(props) {
     super(props)
-
     this.state = {
       member: "",
-      loginOpen: false
+      loginOpen: false,
+      signupOpen: false
+
     }
   }
 
-  // LOGIN HERE ***************************
   login = (loginParams) => {
     const self = this
     let urlDOM = "http://localhost:3001";
@@ -36,19 +34,18 @@ class NavBar extends Component {
       if (res == "1") {
            self.setState({member: loginParams.member});
            self.props.onMemberLogin(this.state.member);
-           console.log('logged in successful:',res , loginParams.member);
+           console.log('Logged in successful:',res , loginParams.member);
            self.setState({loginOpen : false})
       } else {
-          console.log(res);
+          console.log('Failed logging in', res);
       }
     })
     .catch((err) => {
-        return console.log("false")
+        return console.log("Error", err)
     })
   }
 
-  //signout **********************************
-  signout () {
+  logout () {
     let endPoint = "/req/logout";
     return fetch(endPoint, {
       method: "POST",
@@ -66,7 +63,6 @@ class NavBar extends Component {
     })
   }
 
-  // SingUp **********************************
   signup = (signupParams) => {
     let endPoint = "/req/membAdd";
     let params = JSON.stringify(signupParams);
@@ -80,8 +76,8 @@ class NavBar extends Component {
     })
     .then(res => res.json())
     .then((res) => {
+      //if you use ===, it doesn't work
       if (res == "1") {
-        // Going to Login **********************************
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
         console.log("This username has already been registered. Please choose another.");
@@ -92,30 +88,43 @@ class NavBar extends Component {
   openLogin = () => {
     this.setState({loginOpen: true})
   }
+  closeLogin = () =>{
+    this.setState({loginOpen: false})
+  }
+  openSignup = () => {
+    this.setState({signupOpen: true})
+  }
+  closeSignup = () =>{
+    this.setState({signupOpen: false})
+  }
+
 
   render() {
-    if (this.state.member==="") {
+    if (this.state.member == false) {
       return (
       <header>
-      <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a className="navbar-brand" href="#">Foodie</a>
-        <a href="javascript:;" onClick={this.openLogin}>Login</a>
-        <Link to='/signup'>Sign-up</Link>
-        <Modal isOpen={this.state.loginOpen}>
-          <RestaurantLogin onLogin={this.login} />
-          <RestaurantSignup onSignup={this.signup} />
-        </Modal>
+        <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
+          <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>          
+          <Button onClick={this.openLogin}>Login</Button>
+          <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
+          <Modal show={this.state.loginOpen}>
+              <RestaurantLogin onLogin={this.login} />
+              <Button onClick={this.closeLogin}>Close</Button>
+          </Modal>
+          <Modal show={this.state.signupOpen} onHide={this.closeSignup}>  
+            <RestaurantSignup onSignup={this.signup} />
+            <Button onClick={this.closeSignup}>Close</Button>
+          </Modal>
         </nav>
       </header>
       );
-
     } else {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a className="navbar-brand" href="#">Foodie</a>
-            <a className="navbar-brand" href="#">{this.state.member}</a>
-            <button onClick={this.signout.bind(this)}> Logout</button>
+            <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>          
+            <div className="navbar-brand">Welcome, {this.state.member}</div>
+            <Button bsStyle="primary" onClick={this.logout.bind(this)}> Logout</Button>
           </nav>
         </header>
       );

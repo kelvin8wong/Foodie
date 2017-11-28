@@ -9,7 +9,7 @@ export default class RestaurantMap extends Component {
       showingInfoWindow: false,
       activeMarker: {},
       selectedPlace: {},
-      zoom: 13
+      zoom: 14
     }
   }
 
@@ -22,6 +22,15 @@ export default class RestaurantMap extends Component {
       activeMarker: marker,
       showingInfoWindow: true,
       zoom: 18
+    });
+  }
+
+  onMouseover = (props, marker, e) => {
+    const venue = this.props.venues.find(x=>x.id === props.id);
+    this.setState({
+      selectedPlace: venue,
+      activeMarker: marker,
+      showingInfoWindow: true,
     });
   }
 
@@ -48,7 +57,7 @@ export default class RestaurantMap extends Component {
     return this.props.venues.map( (venue) => {
 
       const { id: key, location: { lat, lng }} = venue;
-      return <Marker onClick={this.onMarkerClick} position={{lat, lng}}
+      return <Marker onMouseover={this.onMarkerMouseover} onClick={this.onMarkerClick} position={{lat, lng}}
         id={key}
         key={key}
         icon={{url: "https://cdn2.iconfinder.com/data/icons/restaurant-1/100/vegan_food_meal_dinner_lunch_restaurant_vegetables-32.png"}}

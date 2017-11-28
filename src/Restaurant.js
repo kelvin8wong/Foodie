@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getRestaurantDetail } from './Services/foursquareApi.js';
-
 class Restaurant extends Component {
   constructor (){
     super();
