@@ -8,10 +8,6 @@ body {
     margin-left: 30px; }
   body .favourite-venues {
     float: right; }
-  body .foodie-logo {
-    position: fixed; }
-  body .login-signup {
-    text-align: right; }
   body .map-column {
     padding-top: 70px;
     width: 50%;
@@ -29,6 +25,12 @@ body {
   body .fixed-top {
     background-color: #00B551;
     height: 70px; }
+    body .fixed-top .foodie-logo {
+      position: fixed;
+      left: 0; }
+    body .fixed-top .login-signup {
+      right: 20px;
+      position: fixed; }
   body .restaurant-info .restaurant-pic {
     float: left;
     height: 100px;
