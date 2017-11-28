@@ -88,7 +88,6 @@ class Restaurant extends Component {
               <span className="city">{this.state.city}, </span>
               <span className="zipCode">{this.state.zipCode}, </span>
               <span className="country">{this.state.country}</span>
-
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
               <div><span className="site">{this.state.url}</span></div>

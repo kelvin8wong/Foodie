@@ -4,6 +4,7 @@ import RestaurantMap from './RestaurantMap.js';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
+
 class RestaurantContainer extends Component {
   constructor(props){
     super(props);
@@ -129,7 +130,6 @@ class RestaurantContainer extends Component {
       console.log("Favourites Add",res);
       } else {
       console.log("Favourites not Added:",res);
-      alert("This restaurant has already been saved in your Favourites List.");
       }
     })
   }
@@ -152,7 +152,6 @@ class RestaurantContainer extends Component {
         console.log("Favourites deleted:",res);
         this.showMyFavourites(this.state.venuesId);
       } else {
-        alert("This restaurant is not in your Favourites List.");
         console.log("Favourites NOT deleted:",res);
       }
     })
@@ -163,7 +162,7 @@ class RestaurantContainer extends Component {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
       this.state.error ? <p>{this.state.error}</p> :
       this.state.locating ? <p>Locating...</p> :
-      <Route path="/" render={(props) =><RestaurantMap google={this.props.google} venues={this.state.venues} initialCenter={this.state.initialCenter} {...props}/> }/>
+      <RestaurantMap google={this.props.google} venues={this.state.venues} initialCenter={this.state.initialCenter}/>
 
     return (
       <div className="RestaurantContainer">

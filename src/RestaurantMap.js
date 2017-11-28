@@ -73,23 +73,23 @@ export default class RestaurantMap extends Component {
     const { formattedPhone } = contact;
 
     return (
-          <Map
-            zoom={this.state.zoom}
-            initialCenter={this.props.initialCenter}
-            google={this.props.google} onClick={this.onMapClicked}>
-            { this.renderMarkers() }
+      <Map
+        zoom={this.state.zoom}
+        initialCenter={this.props.initialCenter}
+        google={this.props.google} onClick={this.onMapClicked}>
+        { this.renderMarkers() }
 
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
-                <div>
-                  <h5>{name}</h5>
-                  <div>Address: {address}</div>
-                  <div>Phone: {formattedPhone || 'N/A'}</div>
-                  <a href={url} target="_blank">{url}</a>
-                </div>
-            </InfoWindow>
-          </Map>
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
+            <div>
+              <h5>{name}</h5>
+              <div>Address: {address}</div>
+              <div>Phone: {formattedPhone || 'N/A'}</div>
+              <a href={url} target="_blank">{url}</a>
+            </div>
+        </InfoWindow>
+      </Map>
     );
   }
 }
