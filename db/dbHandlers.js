@@ -153,7 +153,6 @@ module.exports = function makeDBhandlers (knex) {
         .whereIn('restaurants.restid', knex.raw(`${arrStr}`))
         .andWhere('membsels.memberid', member)
         .then(result => {
-          console.log(result);
           return result
         });
     }
