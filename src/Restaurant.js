@@ -34,9 +34,9 @@ class Restaurant extends Component {
       const price = response.response.venue.price.tier
       const phone = response.response.venue.contact.formattedPhone
       if (photo) {
-        var photoURL = photo.prefix +'64'+ photo.suffix
+        var photoURL = photo.prefix +'100'+ photo.suffix
       } else {
-         photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
+         photoURL = `https://media1.fdncms.com/boiseweekly/imager/u/square/3608151/bob_rc_dining_mazzah01_kh.jpg`
       }
       this.setState({
         restid: restaurantId,
