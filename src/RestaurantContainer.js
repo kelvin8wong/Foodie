@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
-import superagent from 'superagent';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
-
 class RestaurantContainer extends Component {
   constructor(props){
     super(props);
     this.state = {
       venues: [],
+      venuesId: [],
       position: null,
       showFavourites: false
     }
@@ -20,7 +19,7 @@ class RestaurantContainer extends Component {
     if(this.state.showFavourites) {
       this.showAll();
     } else {
-      this.showFavourites();
+      this.showMyFavourites(this.state.venuesId);
     }
 
     this.setState({
@@ -28,15 +27,18 @@ class RestaurantContainer extends Component {
     })
   }
 
-  showFavourites() {
+  showMyFavourites(info) {
     let endPoint = "/req/getMyFavourites";
+    let bodydata = JSON.stringify({restArr: info});
+    console.log("bodydata ", bodydata)
     fetch(endPoint, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      credentials: 'include'
+      credentials: 'include',
+      body: bodydata
     })
     .then((res) => res.json())
     .then((res) => {
@@ -52,6 +54,8 @@ class RestaurantContainer extends Component {
         item.id = item.restid;
         return item;
       })
+      console.log('bringing fav', restaurants);
+      this.state.venues = [],
       this.setState({
         venues: restaurants
       })
@@ -63,7 +67,11 @@ class RestaurantContainer extends Component {
     const longitude = this.state.position.coords.longitude;
 
     getRestaurantList(latitude,longitude).then((response) => {
-      const venues = response.response.venues
+      const venues = response.response.venues;
+      this.state.venuesId = [];
+      venues.forEach( (elem) => {
+       this.state.venuesId.push(elem.id);
+      })
       this.setState({
         venues: venues,
         locating:undefined,
@@ -142,12 +150,13 @@ class RestaurantContainer extends Component {
     .then((res) => {
       if (res === "1") {
         console.log("Favourites deleted:",res);
-        this.showFavourites();
+        this.showMyFavourites(this.state.venuesId);
       } else {
         console.log("Favourites NOT deleted:",res);
       }
     })
   }
+
 
   render() {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
@@ -161,8 +170,8 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <RestaurantList showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
           <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
+          <RestaurantList onLoggedIn={this.props.status} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
         </div>
       </div>
     );

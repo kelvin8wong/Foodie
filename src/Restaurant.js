@@ -91,7 +91,7 @@ class Restaurant extends Component {
             <div><span className="phone">{this.state.phone}</span></div>
             <div><span className="site">{this.state.url}</span></div>
           </div>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'blocl'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites || this.props.onLoggedIn ? 'none' : 'block'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
           <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}} onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
         </div>
       </li>
