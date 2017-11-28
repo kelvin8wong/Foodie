@@ -104,14 +104,14 @@ class NavBar extends Component {
       return (
       <header>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>          
+          <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
           <Button onClick={this.openLogin}>Login</Button>
           <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
           <Modal show={this.state.loginOpen}>
               <RestaurantLogin onLogin={this.login} />
               <Button onClick={this.closeLogin}>Close</Button>
           </Modal>
-          <Modal show={this.state.signupOpen} onHide={this.closeSignup}>  
+          <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
             <RestaurantSignup onSignup={this.signup} />
             <Button onClick={this.closeSignup}>Close</Button>
           </Modal>
@@ -122,7 +122,7 @@ class NavBar extends Component {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>          
+            <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
             <div className="navbar-brand">Welcome, {this.state.member}</div>
             <Button bsStyle="primary" onClick={this.logout.bind(this)}> Logout</Button>
           </nav>

@@ -18,7 +18,8 @@ body {
     left: 0;
     top: 0; }
   body .fixed-top {
-    background-color: #00B551; }
+    background-color: #00B551;
+    height: 56px; }
   body .restaurant-info .restaurant-pic {
     float: left;
     height: 100px;
