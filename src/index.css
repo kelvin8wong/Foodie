@@ -50,5 +50,7 @@ body {
     margin-left: 25px; }
   body .restaurant-info img {
     border-radius: 3px; }
+  body .modal-content {
+    margin-top: 150px; }
 
 /*# sourceMappingURL=index.css.map */

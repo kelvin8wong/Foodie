@@ -111,7 +111,7 @@ class NavBar extends Component {
               <RestaurantLogin onLogin={this.login} />
               <Button onClick={this.closeLogin}>Close</Button>
           </Modal>
-          <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
+          <Modal show={this.state.signupOpen} >
             <RestaurantSignup onSignup={this.signup} />
             <Button onClick={this.closeSignup}>Close</Button>
           </Modal>
