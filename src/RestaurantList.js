@@ -13,16 +13,16 @@ class RestaurantList extends Component {
 			)
 		})
 
-    return (
-      <div>
-        <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}}><h2> Favourites Vegetarian Restaurants in Town</h2></span>
-        <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'block'}}><h2> All Top Vegetarian Restaurants in Town</h2></span>
+  return (
+    <div>
+      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'block'}}><h2 className="venue-suggestions"> Suggestions for nearby vegetarian restaurants</h2></span>
+      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}}><h2 className="favourite-venues"> Favourites Vegetarian Restaurants in Town</h2></span>
 
-        <hr></hr>
-        <ol className="restaurant-list">
-          {list}
-        </ol>
-       </div>
+      <hr></hr>
+      <ol className="restaurant-list">
+        {list}
+      </ol>
+     </div>
     );
   }
 }

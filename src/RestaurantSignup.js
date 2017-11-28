@@ -62,38 +62,37 @@ class RestaurantSignup extends React.Component {
   }
 
   render() {
+
     return (
-      <div className="dropdown-menu" style={{ display: "block"}}>
-        <div className="px-4 py-3">
-          <div className="col-lg-12">
-            <form id="ajax-register-form" onSubmit={this.ModSubmit} >
-              <div className="form-group">
-                <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
-              </div>
-              <div className="form-group">
-                <input className="form-control" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
-              </div>
-              <div className="form-group">
-                <input className="form-control" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
-              </div>
-              <div className="form-group">
-                <input className="form-control" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
-              </div>
-              <div className="form-group">
-                <input  className="form-control" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
-              </div>
-              <div className="form-group">
-                <div className="row">
-                  <div className="col-xs-6 col-xs-offset-3">
-                    <input type="submit" name="register-submit" id="register-submit" className="form-control btn btn-info" value="Register Now"/>
-                  </div>
+      <div className="px-4 py-3">
+        <div className="col-lg-12">
+          <div className="signup-title">Signup Here</div>
+          <form id="ajax-register-form" onSubmit={this.ModSubmit} >
+            <div className="form-group">
+              <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+            </div>
+            <div className="form-group">
+              <input className="form-control" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
+            </div>
+            <div className="form-group">
+              <input className="form-control" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
+            </div>
+            <div className="form-group">
+              <input className="form-control" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
+            </div>
+            <div className="form-group">
+              <input  className="form-control" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
+            </div>
+            <div className="form-group">
+              <div className="row">
+                <div className="col-xs-6 col-xs-offset-3">
+                  <input type="submit" name="register-submit" id="register-submit" className="form-control btn btn-info" value="Sign up"/>
                 </div>
               </div>
-              <div><a className href="/">Home Page</a></div>
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
-      </div >
+      </div>
     )
   }
 }
