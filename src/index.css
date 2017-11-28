@@ -11,7 +11,7 @@ body {
   body .foodie-logo {
     position: fixed; }
   body .login-signup {
-    text-align: right; }
+    float: right; }
   body .map-column {
     padding-top: 70px;
     width: 50%;
@@ -59,7 +59,5 @@ body {
     margin-left: 25px; }
   body .restaurant-info img {
     border-radius: 3px; }
-  body .modal-content {
-    margin-top: 150px; }
 
 /*# sourceMappingURL=index.css.map */

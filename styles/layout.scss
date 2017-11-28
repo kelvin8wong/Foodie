@@ -14,7 +14,7 @@ body {
     position: fixed;
   }
   .login-signup {
-    text-align: right;
+    float: right;
   }
   .map-column {
     padding-top: 70px;
@@ -99,9 +99,6 @@ body {
     img {
       border-radius: 3px;
     }
-  }
-  .modal-content {
-    margin-top: 150px;
   }
 
 }
