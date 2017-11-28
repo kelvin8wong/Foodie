@@ -9,6 +9,7 @@ class RestaurantContainer extends Component {
     super(props);
     this.state = {
       venues: [],
+      venuesId: [],
       position: null,
       showFavourites: false
     }
@@ -18,7 +19,7 @@ class RestaurantContainer extends Component {
     if(this.state.showFavourites) {
       this.showAll();
     } else {
-      this.showFavourites();
+      this.showFavourites(this.state.venuesId);
     }
 
     this.setState({
@@ -26,15 +27,18 @@ class RestaurantContainer extends Component {
     })
   }
 
-  showFavourites() {
+  showFavourites(info) {
     let endPoint = "/req/getMyFavourites";
+    let bodydata = JSON.stringify({restArr: info});
+    console.log("bodydata ", bodydata)
     fetch(endPoint, {
-      method: 'GET',
+      method: 'POST',
       headers: {
         "Accept":"application/json",
         "Content-Type":"application/json"
       },
-      credentials: 'include'
+      credentials: 'include',
+      body: bodydata
     })
     .then((res) => res.json())
     .then((res) => {
