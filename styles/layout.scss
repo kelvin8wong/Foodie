@@ -3,6 +3,19 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  .venue-suggestions {
+    text-align: left;
+    margin-left: 30px;
+  }
+  .favourite-venues {
+    float: right;
+  }
+  .foodie-logo {
+    position: fixed;
+  }
+  .login-signup {
+    text-align: right;
+  }
   .map-column {
     padding-top: 70px;
     width: 50%;

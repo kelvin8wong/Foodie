@@ -104,17 +104,19 @@ class NavBar extends Component {
       return (
       <header>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
-          <Button onClick={this.openLogin}>Login</Button>
-          <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
-          <Modal show={this.state.loginOpen}>
-              <RestaurantLogin onLogin={this.login} />
-              <Button onClick={this.closeLogin}>Close</Button>
-          </Modal>
-          <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
-            <RestaurantSignup onSignup={this.signup} />
-            <Button onClick={this.closeSignup}>Close</Button>
-          </Modal>
+          <a className="foodie-logo" href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
+          <div className="login-signup">
+            <Button onClick={this.openLogin}>Login</Button>
+            <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
+            <Modal show={this.state.loginOpen}>
+                <RestaurantLogin onLogin={this.login} />
+                <Button onClick={this.closeLogin}>Close</Button>
+            </Modal>
+            <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
+              <RestaurantSignup onSignup={this.signup} />
+              <Button onClick={this.closeSignup}>Close</Button>
+            </Modal>
+          </div>
         </nav>
       </header>
       );
