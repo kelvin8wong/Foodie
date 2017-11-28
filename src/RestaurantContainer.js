@@ -129,6 +129,7 @@ class RestaurantContainer extends Component {
       console.log("Favourites Add",res);
       } else {
       console.log("Favourites not Added:",res);
+      alert("This restaurant has already been saved in your Favourites List.");
       }
     })
   }
@@ -151,6 +152,7 @@ class RestaurantContainer extends Component {
         console.log("Favourites deleted:",res);
         this.showMyFavourites(this.state.venuesId);
       } else {
+        alert("This restaurant is not in your Favourites List.");
         console.log("Favourites NOT deleted:",res);
       }
     })
