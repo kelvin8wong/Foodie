@@ -5,9 +5,11 @@ import Restaurant from './Restaurant.js';
 class RestaurantList extends Component {
 
   render() {
-  	const list = this.props.venues.map((venue, i) => {
+  	const list = this.props.venues.map((venue) => {
 			return (
-				<Restaurant key={i} restaurant={venue} onLoggedIn={this.props.status} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
+				<Restaurant key={venue.id}
+        restid={venue.id}
+        onLoggedIn={this.props.status} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
 			)
 		})
     // we need to change the title depends on the state of the list

@@ -28,6 +28,7 @@ class RestaurantContainer extends Component {
   }
 
   showMyFavourites(info) {
+    const self = this
     let endPoint = "/req/getMyFavourites";
     let bodydata = JSON.stringify({restArr: info});
     console.log("bodydata ", bodydata)
@@ -48,17 +49,15 @@ class RestaurantContainer extends Component {
           lng: item.coordLong,
           formattedAddress: [ item.addr1 , item.city, item.country, item.zipCode ]
         }
-        item.contact = {
-          formattedPhone: item.phone
-        }
+        item.contact = {formattedPhone: item.phone};
         item.id = item.restid;
+        console.log("chg rest obj: ", item);
         return item;
       })
       console.log('bringing fav', restaurants);
-      this.state.venues = [],
-      this.setState({
-        venues: restaurants
-      })
+      // self.state.venues = [];
+      self.setState({venues: restaurants });
+      console.log('state' , self.state.venues);
     });
   }
 

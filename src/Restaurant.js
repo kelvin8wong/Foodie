@@ -24,7 +24,8 @@ class Restaurant extends Component {
 
 
   componentDidMount(){
-    const restaurantId = this.props.restaurant.id
+    const self = this
+    const restaurantId = this.props.restid
     getRestaurantDetail(restaurantId).then((response) => {
       const name = response.response.venue.name
       const photo = response.response.venue.bestPhoto
@@ -38,7 +39,7 @@ class Restaurant extends Component {
       } else {
          photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
       }
-      this.setState({
+      self.setState({
         restid: restaurantId,
         restname: name,
         imageUrl: photoURL,

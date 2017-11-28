@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import RestaurantLogin from './RestaurantLogin';
 import RestaurantSignup from './RestaurantSignup';
 import {Route,Link } from 'react-router-dom';
+import Modal from 'react-modal';
+
 class NavBar extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      member: ""
+      member: "",
+      loginOpen: false
     }
   }
 
   // LOGIN HERE ***************************
   login = (loginParams) => {
+    const self = this
     let urlDOM = "http://localhost:3001";
     let endPoint = "/req/auth";
     let longURL = (urlDOM + endPoint);
@@ -30,9 +34,10 @@ class NavBar extends Component {
     .then((res) => res.json())
     .then((res) => {
       if (res == "1") {
-           this.setState({member: loginParams.member});
-           this.props.onMemberLogin(this.state.member);
+           self.setState({member: loginParams.member});
+           self.props.onMemberLogin(this.state.member);
            console.log('logged in successful:',res , loginParams.member);
+           self.setState({loginOpen : false})
       } else {
           console.log(res);
       }
@@ -84,16 +89,22 @@ class NavBar extends Component {
     })
   }
 
+  openLogin = () => {
+    this.setState({loginOpen: true})
+  }
+
   render() {
     if (this.state.member==="") {
       return (
       <header>
       <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
           <a className="navbar-brand" href="#">Foodie</a>
-        <Link to="/login">Login</Link>
+        <a href="javascript:;" onClick={this.openLogin}>Login</a>
         <Link to='/signup'>Sign-up</Link>
-        <Route path="/login" render={(props) => <RestaurantLogin onLogin={this.login} {...props}/>}/>
-        <Route path="/signup" render={(props) => <RestaurantSignup onSignup={this.signup} {...props}/>}/>
+        <Modal isOpen={this.state.loginOpen}>
+          <RestaurantLogin onLogin={this.login} />
+          <RestaurantSignup onSignup={this.signup} />
+        </Modal>
         </nav>
       </header>
       );

@@ -41,7 +41,7 @@ class RestaurantLogin extends React.Component {
 
       return (
 
-        <div className="dropdown-menu" style={{display: "block"}}>
+        <div style={{display: "block"}}>
           <form onSubmit={this.handleSubmit} className="px-4 py-3">
             <div className="form-group">
             <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
