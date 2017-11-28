@@ -20,7 +20,6 @@ module.exports = (dbHandler) => {
 
   // request check if member and password are valid
   router.get('/auth', (req, res) => {
-    console.log("sign-in req: ", req);
     dbHandler.checkMembExistsAuth("A", req.query.member, req.query.password)
     .then(valid =>  {
       if(valid) {
@@ -52,7 +51,7 @@ module.exports = (dbHandler) => {
 
   // request from the favorites **
   router.post('/getMyFavourites', (req, res)  =>  {
-    
+
     console.log("restaurants array: ", req.body.restArr);
     // stringify the restaurants array representation
     restArr = req.body.restArr;
@@ -66,14 +65,15 @@ module.exports = (dbHandler) => {
         arrStr = arrStr + ", " + "'" + elem + "'";
       }
     });
-   
+
     console.log(arrStr);
     console.log(`this is the string ${arrStr}`);
-    
+
     dbHandler.getMemberSels(req.session.member, arrStr)
       .then(data  =>  {
         console.log("retrieved member selections: ", data);
         res.json(data);
+        console.log("request giving to us:",data);
     })
   });
 
@@ -116,7 +116,7 @@ module.exports = (dbHandler) => {
       .then(found =>  {
         if (found) {
             console.log("memberSel found: ", member, restid);
-            res.send("member selection already exists!!!");
+            res.send("0");
         } else  {
           //add restaurant if not already exists
           console.log("before check rest exists");
@@ -128,13 +128,14 @@ module.exports = (dbHandler) => {
                 dbHandler.addRest(rest)
                   .then(result => {
                     console.log("before add member sel after add rest:", member, restid);
-                    dbHandler.addMemberSel({member: member, restid: restid, comments: "just           testing!"}).then(result => res.send("1"));
+                    dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing!"})
+                      .then(result => res.send("1"));
                   });
               } else {
                 //add member selection to table
                 console.log("before add member selection, no rest add: ", member, restid);
                 dbHandler.addMemberSel({member: member, restid: restid, comments: "just testing"})
-                .then(result => res.json("1"));
+                .then(result => res.send("1"));
               }
           })
         }

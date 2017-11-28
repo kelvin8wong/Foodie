@@ -23,7 +23,8 @@ class Restaurant extends Component {
 
 
   componentDidMount(){
-    const restaurantId = this.props.restaurant.id
+    const self = this
+    const restaurantId = this.props.restid
     getRestaurantDetail(restaurantId).then((response) => {
       const name = response.response.venue.name
       const photo = response.response.venue.bestPhoto
@@ -33,11 +34,11 @@ class Restaurant extends Component {
       const price = response.response.venue.price.tier
       const phone = response.response.venue.contact.formattedPhone
       if (photo) {
-        var photoURL = photo.prefix +'64'+ photo.suffix
+        var photoURL = photo.prefix +'100'+ photo.suffix
       } else {
-         photoURL = `https://cdn.images.express.co.uk/img/dynamic/galleries/64x64/311989.jpg`
+         photoURL = `https://media1.fdncms.com/boiseweekly/imager/u/square/3608151/bob_rc_dining_mazzah01_kh.jpg`
       }
-      this.setState({
+      self.setState({
         restid: restaurantId,
         restname: name,
         imageUrl: photoURL,
@@ -74,23 +75,25 @@ class Restaurant extends Component {
     return (
       <li>
         <div className="restaurant-info">
+        <hr></hr>
           <div className="restaurant-pic">
             <div><img src={this.state.imageUrl}/></div>
           </div>
           <div className="restaurant-details">
-            <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
+            <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
             <div><span className="restaurant-price">{this.state.pricetier}</span></div>
+            <div className="restaurant-address">
+              <span className="address">{this.state.addr1}, </span>
+              <span className="city">{this.state.city}, </span>
+              <span className="zipCode">{this.state.zipCode}, </span>
+              <span className="country">{this.state.country}</span>
+
+            </div>
+              <div><span className="phone">{this.state.phone}</span></div>
+              <div><span className="site">{this.state.url}</span></div>
           </div>
-          <div className="restaurant-address">
-            <div><span className="address">{this.state.addr1}</span></div>
-            <div><span className="city">{this.state.city}</span></div>
-            <div><span className="country">{this.state.country}</span></div>
-            <div><span className="zipCode">{this.state.zipCode}</span></div>
-            <div><span className="phone">{this.state.phone}</span></div>
-            <div><span className="site">{this.state.url}</span></div>
-          </div>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites || !this.props.onLoggedIn ? 'none' : 'block'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites || this.props.onLoggedIn ? 'none' : 'block'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
           <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}} onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
         </div>
       </li>

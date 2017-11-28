@@ -28,7 +28,24 @@ body {
   body .restaurant-info .restaurant-details {
     float: left;
     padding: 0 0 0 20px;
-    width: 486px; }
+    width: 486px;
+    text-align: left; }
+    body .restaurant-info .restaurant-details .restaurant-rating {
+      background-color: #00B551;
+      border-radius: 4px;
+      text-shadow: none;
+      float: right;
+      line-height: 20px;
+      margin: 0;
+      top: inherit;
+      color: #fff;
+      cursor: default;
+      display: inline-block;
+      font-size: 16px;
+      font-weight: bold;
+      text-align: center;
+      width: 25px;
+      height: 20px; }
   body .restaurant-info ol {
     list-style-type: decimal;
     margin-left: 25px; }
