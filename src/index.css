@@ -18,7 +18,7 @@ body {
     left: 0;
     top: 0; }
   body .fixed-top {
-    background-color: #4DBD33; }
+    background-color: #00B551; }
   body .restaurant-info .restaurant-pic {
     float: left;
     height: 100px;
@@ -31,11 +31,10 @@ body {
     width: 486px;
     text-align: left; }
     body .restaurant-info .restaurant-details .restaurant-rating {
-      background-color: #00B551;
+      background-color: #246CE0;
       border-radius: 4px;
       text-shadow: none;
       float: right;
-      line-height: 20px;
       margin: 0;
       top: inherit;
       color: #fff;
@@ -44,8 +43,7 @@ body {
       font-size: 16px;
       font-weight: bold;
       text-align: center;
-      width: 25px;
-      height: 20px; }
+      width: 25px; }
   body .restaurant-info ol {
     list-style-type: decimal;
     margin-left: 25px; }
