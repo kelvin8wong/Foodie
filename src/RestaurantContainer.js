@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
 import RestaurantMap from './RestaurantMap.js';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
