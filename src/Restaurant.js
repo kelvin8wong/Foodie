@@ -70,11 +70,11 @@ class Restaurant extends Component {
   }
 
   addFavouriteButton = () => {
-    return <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+    return <input className="btn btn-success" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
   }
 
   removeFavouriteButton = () => {
-    return <input className="button is-primary is-inverted is-outlined" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+    return <input className="btn btn-success" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
   }
 
   render() {

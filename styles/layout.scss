@@ -4,6 +4,9 @@ body {
   padding: 0;
   font-family: sans-serif;
   font-size: 14px;
+  button {
+    float: right;
+  }
   .venue-suggestions {
     text-align: left;
     margin-left: 30px;
@@ -11,9 +14,6 @@ body {
   .favourite-venues {
     text-align: left;
     margin-left: 30px;
-  }
-  .login-signup {
-    float: right;
   }
   .map-column {
     padding-top: 70px;
@@ -69,7 +69,7 @@ body {
 
       }
       .restaurant-rating {
-        background-color: #246CE0;
+        background-color: #228B22;
         border-radius: 4px;
         float: right;
         vertical-align: top;
@@ -111,7 +111,7 @@ body {
   .modal-content {
     margin-top: 125px;
     .close {
-      right: 0px; 
+      right: 0px;
     }
   }
 }
