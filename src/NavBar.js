@@ -128,15 +128,13 @@ class NavBar extends Component {
           <div className="login-signup">
             <Button onClick={this.openLogin}>Login</Button>
             <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
-            <Modal show={this.state.loginOpen}>
+            <Modal show={this.state.loginOpen} onHide={this.closeLogin}>
                 {alertLoginMessage}
                 <RestaurantLogin onLogin={this.login} />
-                <Button onClick={this.closeLogin}>Close</Button>
             </Modal>
             <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
               {alertSignupMessage}
               <RestaurantSignup onSignup={this.signup} />
-              <Button onClick={this.closeSignup}>Close</Button>
             </Modal>
           </div>
         </nav>
