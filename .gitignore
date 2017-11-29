@@ -26,3 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 public/styles
+curldata
+curldata.swp
+

@@ -14,7 +14,7 @@ class App extends Component {
     //bind method for getting venuesId array from RestaurantContainer to this
     this.setVenuesIDs = this.setVenuesIDs.bind(this);
     this.setFavsIDs = this.setFavsIDs.bind(this);
-  }
+  
   onMemberStatus(name){
     this.setState({
       status: name ? true : false
