@@ -110,13 +110,13 @@ class NavBar extends Component {
   }
 
   render() {
-    const alertLoginMessage = this.state.alertLogin ? 
-      <Alert bsStyle="danger" onDismiss={this.closeAlertLogin.bind(this)}> 
+    const alertLoginMessage = this.state.alertLogin ?
+      <Alert bsStyle="danger" onDismiss={this.closeAlertLogin.bind(this)}>
         <h4>Invalid Username / Password</h4>
       </Alert> : <div></div>
 
-    const alertSignupMessage = this.state.alertSignup ? 
-    <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}> 
+    const alertSignupMessage = this.state.alertSignup ?
+    <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}>
       <h4> Username has been taken</h4>
     </Alert> : <div></div>
 
@@ -124,7 +124,7 @@ class NavBar extends Component {
       return (
       <header>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a href="/"><img className="foodie-logo" src="https://image.ibb.co/gkO0q6/3db4d841_a8bf_454f_a12b_73ff1527ebac.png" alt="logo"/></a>
+          <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
           <div className="login-signup">
             <Button onClick={this.openLogin}>Login</Button>
             <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
@@ -146,9 +146,11 @@ class NavBar extends Component {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a href="/"><img className="foodie-logo" src="https://image.ibb.co/gkO0q6/3db4d841_a8bf_454f_a12b_73ff1527ebac.png" alt="logo"/></a>
-            <div className="navbar-brand">Welcome, {this.state.member}</div>
-            <Button bsStyle="primary" onClick={this.logout.bind(this)}> Logout</Button>
+            <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
+            <div className="login-signup">
+              <div className="navbar-brand">Welcome, {this.state.member}</div>
+              <Button  onClick={this.logout.bind(this)}> Logout</Button>
+            </div>
           </nav>
         </header>
       );
