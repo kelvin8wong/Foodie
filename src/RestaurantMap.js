@@ -25,7 +25,7 @@ export default class RestaurantMap extends Component {
     });
   }
 
-  onMouseover = (props, marker, e) => {
+  onMarkerMouseover = (props, marker, e) => {
     const venue = this.props.venues.find(x=>x.id === props.id);
     this.setState({
       selectedPlace: venue,
@@ -52,6 +52,14 @@ export default class RestaurantMap extends Component {
     }
   }
 
+  renderCurrentPosition (){
+    console.log(this.props.initialCenter)
+    const  { lat, lng } = this.props.initialCenter
+    return <Marker position={{lat, lng}}
+      icon={{url: "https://cdn2.iconfinder.com/data/icons/restaurant-1/100/vegan_food_meal_dinner_lunch_restaurant_vegetables-32.png"}}
+    />
+  }
+
   renderMarkers() {
     console.log(this.props.venues)
     return this.props.venues.map( (venue) => {
@@ -64,6 +72,11 @@ export default class RestaurantMap extends Component {
       />
     });
   }
+  renderCurrentPosition (){
+    const  { lat, lng } = this.props.initialCenter
+    return 
+    <Marker position={{lat, lng}}/>
+  } 
 
   render() {
 
@@ -74,6 +87,7 @@ export default class RestaurantMap extends Component {
 
     return (
       <Map
+
         zoom={this.state.zoom}
         initialCenter={this.props.initialCenter}
         google={this.props.google} onClick={this.onMapClicked}>

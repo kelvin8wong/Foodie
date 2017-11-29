@@ -31,8 +31,8 @@ body {
     background-color: #00B551;
     height: 70px; }
     body .fixed-top .foodie-logo {
-      position: fixed;
-      left: 0; }
+      left: 0;
+      width: 100px; }
     body .fixed-top .login-signup {
       right: 20px;
       position: fixed; }
@@ -66,5 +66,12 @@ body {
     margin-left: 25px; }
   body .restaurant-info img {
     border-radius: 3px; }
+<<<<<<< HEAD
+=======
+  body .modal-content {
+    margin-top: 150px; }
+    body .modal-content .close {
+      right: 0px; }
+>>>>>>> 88ccfe5cd154cbf6784835484f971b67e8033678
 
 /*# sourceMappingURL=index.css.map */
