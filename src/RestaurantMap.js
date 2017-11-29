@@ -65,11 +65,11 @@ export default class RestaurantMap extends Component {
       />
     });
   }
+
   renderCurrentPosition (){
-    console.log ("inside the function:",this.props.initialCenter);
-    const  { lat, lng } = this.props.initialCenter
-    return
-    <Marker position={{lat, lng}}/>
+    return <Marker position={this.props.initialCenter}
+      icon={{url: "https://cdn2.iconfinder.com/data/icons/pinterest-ui-colored/48/JD-17-48.png"}}
+    />
   }
 
   render() {
@@ -86,6 +86,8 @@ export default class RestaurantMap extends Component {
         initialCenter={this.props.initialCenter}
         google={this.props.google} onClick={this.onMapClicked}>
         { this.renderMarkers() }
+        { this.renderCurrentPosition () }
+
 
         <InfoWindow
           marker={this.state.activeMarker}
@@ -93,7 +95,7 @@ export default class RestaurantMap extends Component {
             <div>
               <h5><a href={url} target="_blank">{name}</a></h5>
               <div>{address}</div>
-              <div>{formattedPhone || 'N/A'}</div>
+              <div>{formattedPhone}</div>
             </div>
         </InfoWindow>
       </Map>
