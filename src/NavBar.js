@@ -104,7 +104,7 @@ class NavBar extends Component {
       return (
       <header>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a className="foodie-logo" href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
+          <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
           <div className="login-signup">
             <Button onClick={this.openLogin}>Login</Button>
             <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
@@ -124,9 +124,11 @@ class NavBar extends Component {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a href="/"><img src="https://image.ibb.co/hRj6DR/rsz_7492029d_b54e_4274_9fbd_694aa19dd161.png" alt="logo"/></a>
-            <div className="navbar-brand">Welcome, {this.state.member}</div>
-            <Button bsStyle="primary" onClick={this.logout.bind(this)}> Logout</Button>
+            <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
+            <div className="login-signup">
+              <div className="navbar-brand">Welcome, {this.state.member}</div>
+              <Button  onClick={this.logout.bind(this)}> Logout</Button>
+            </div>
           </nav>
         </header>
       );

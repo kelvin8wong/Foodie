@@ -62,7 +62,6 @@ class RestaurantSignup extends React.Component {
   }
 
   render() {
-
     return (
       <div className="px-4 py-3">
         <div className="col-lg-12">
@@ -72,13 +71,13 @@ class RestaurantSignup extends React.Component {
               <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="First name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
+              <input className="form-control" type="text" placeholder="First Name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="Last name" onChange={this.ModnameLast} value={this.state.nameLast}/>
+              <input className="form-control" type="text" placeholder="Last Name" onChange={this.ModnameLast} value={this.state.nameLast}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="email" placeholder="email" onChange={this.Modemail} value={this.state.email}/>
+              <input className="form-control" type="email" placeholder="Email" onChange={this.Modemail} value={this.state.email}/>
             </div>
             <div className="form-group">
               <input  className="form-control" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
