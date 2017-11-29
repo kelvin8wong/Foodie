@@ -71,13 +71,9 @@ body {
       .restaurant-rating {
         background-color: #246CE0;
         border-radius: 4px;
-        text-shadow: none;
         float: right;
-        margin: 0;
-        top: inherit;
+        vertical-align: top;
         color: #fff;
-        cursor: default;
-        display: inline-block;
         font-size: 16px;
         font-weight: bold;
         text-align: center;
