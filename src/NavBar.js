@@ -9,8 +9,9 @@ class NavBar extends Component {
       member: "",
       loginOpen: false,
       signupOpen: false
-
+      
     }
+    this.getMyFavIds = this.getMyFavIds.bind(this);
   }
 
   login = (loginParams) => {
@@ -35,7 +36,9 @@ class NavBar extends Component {
            self.setState({member: loginParams.member});
            self.props.onMemberLogin(this.state.member);
            console.log('Logged in successful:',res , loginParams.member);
-           self.setState({loginOpen : false})
+           self.setState({loginOpen : false});
+           // get the favs rest id's for this member
+           getMyFavIds(this.props.venueIDs);
       } else {
           console.log('Failed logging in', res);
       }
@@ -43,6 +46,25 @@ class NavBar extends Component {
     .catch((err) => {
         return console.log("Error", err)
     })
+  }
+  
+  //load the logged-in member's fav restaurant ids
+  getMyFavIds(info)  {
+    const self = this;
+    let endPoint = "/req/getMbrSels";
+    let bodydata = JSON.stringify({restArr: info});
+    console.log("bodydata ", bodydata);
+    fetch(endPoint, {
+      method: 'POST',
+      headers: {
+        "Accept":"application/json",
+        "Content-Type":"application/json"
+      },
+      credentials: 'include',
+      body: bodydata
+    })
+    .then((res) => res.json())
+    .then(favs => this.props.onLogInOK(favs));
   }
 
   logout () {
@@ -58,6 +80,8 @@ class NavBar extends Component {
     .then((res) => {
       if (res == "1") {
         this.setState({member: ""});
+        //clear the favsids
+        this.props.onLogInOK({});
       }
       console.log("logout status: ", res);
     })

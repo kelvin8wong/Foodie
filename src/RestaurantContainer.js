@@ -10,6 +10,7 @@ class RestaurantContainer extends Component {
     this.state = {
       venues: [],
       venuesId: [],
+      favIDs: props.favIDs,
       position: null,
       showFavourites: false
     }
@@ -69,13 +70,15 @@ class RestaurantContainer extends Component {
       const venues = response.response.venues;
       this.state.venuesId = [];
       venues.forEach( (elem) => {
-       this.state.venuesId.push(elem.id);
+        this.state.venuesId.push(elem.id);
       })
       this.setState({
         venues: venues,
         locating:undefined,
         initialCenter:{lat: latitude, lng: longitude}
-      })
+      });
+      //callback to set state in super container with collected venuesId
+      this.props.onRestLoad(this.state.venuesId);
     })
   }
 
@@ -125,8 +128,9 @@ class RestaurantContainer extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === "0") {
+      if (res == "1") {
       console.log("Favourites Add",res);
+       this.setState({favIDs[info.restid]: "1"}); 
       } else {
       console.log("Favourites not Added:",res);
       }
@@ -147,8 +151,9 @@ class RestaurantContainer extends Component {
     })
     .then(res => res.json())
     .then((res) => {
-      if (res === "1") {
+      if (res == "1") {
         console.log("Favourites deleted:",res);
+        delete this.state.favIDs[info];
         this.showMyFavourites(this.state.venuesId);
       } else {
         console.log("Favourites NOT deleted:",res);
