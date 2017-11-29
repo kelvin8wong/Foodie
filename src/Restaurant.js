@@ -97,7 +97,7 @@ class Restaurant extends Component {
     return priceTag;
   }
   render() {
-    
+
     return (
       <li>
         <div className="restaurant-info">

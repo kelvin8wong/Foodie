@@ -55,7 +55,7 @@ body {
       width: 476px;
       text-align: left; }
       body .restaurant-info .restaurant-details .restaurant-rating {
-        background-color: #228B22;
+        background-color: #43C914;
         border-radius: 4px;
         float: right;
         vertical-align: top;
@@ -64,12 +64,13 @@ body {
         font-weight: bold;
         text-align: center;
         width: 25px; }
+      body .restaurant-info .restaurant-details .restaurant-price {
+        color: #41B30C; }
     body .restaurant-info img {
       border-radius: 4px; }
   body .modal-content {
     margin-top: 125px; }
     body .modal-content .close {
       right: 0px; }
-
 
 /*# sourceMappingURL=index.css.map */
