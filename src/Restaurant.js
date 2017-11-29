@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { getRestaurantDetail } from './Services/foursquareApi.js';
+import { Modal } from 'react-bootstrap';
 class Restaurant extends Component {
   constructor (){
     super();
@@ -70,14 +71,33 @@ class Restaurant extends Component {
   }
 
   addFavouriteButton = () => {
-    return <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+    return <input className="btn btn-success" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
   }
 
   removeFavouriteButton = () => {
-    return <input className="button is-primary is-inverted is-outlined" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+    return <input className="btn btn-success" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
   }
 
+  switchPriceTier (prices) {
+    let priceTag = '';
+    switch (prices){
+      case 1:
+       priceTag = '$';
+      break;
+      case 2:
+        priceTag = '$$';
+      break;
+      case 3:
+        priceTag = '$$$';
+      break;
+      case 3:
+        priceTag = '$$$$';
+      break;
+    }
+    return priceTag;
+  }
   render() {
+    
     return (
       <li>
         <div className="restaurant-info">
@@ -90,7 +110,7 @@ class Restaurant extends Component {
           <div className="restaurant-details">
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
             <div><h3><span className="restaurant-name"><a href={this.state.url} target="_blank">{this.state.restname}</a></span></h3></div>
-            <div><span className="restaurant-price">{this.state.pricetier}</span></div>
+            <div><span className="restaurant-price">{this.switchPriceTier(this.state.pricetier)}</span></div>
             <div className="restaurant-address">
               <span className="address">{this.state.addr1}, </span>
               <span className="city">{this.state.city}, </span>
