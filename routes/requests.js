@@ -144,15 +144,23 @@ module.exports = (dbHandler) => {
 
   // delete a member selection
   router.post('/selDel', (req, res) =>  {
-    console.log(req.session.member, " ", req.body.memberrest);
     dbHandler.delMembSel(req.session.member, req.body.memberrest)
     //dbHandler.delMembSel(req.session.member, req.body.memberrest)
     .then(status  =>  {
-      console.log("delete memb sel: ", req.session.member, req.body.memberrest, " status: ", status);
       res.json("1");
     })
   });
 
+  // get and post comments
+  router.get('/getComments', (req, res) =>{
+    dbHandler.getMembRestComments(req.session.member, req.query.memberrest)
+    .then(data => res.json(data))
+  });
+  router.post('/putComments', (req, res)  => {
+    dbHandler.putMembRestComments(req.session.member, req.body.memberrest, req.body.comments)
+    .then(status => res.json("1"))
+  });
+  
   // logout requested - clear cookie
   router.post('/logout', (req, res) =>  {
     req.session = null;

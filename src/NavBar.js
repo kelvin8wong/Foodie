@@ -126,8 +126,8 @@ class NavBar extends Component {
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
           <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
           <div className="login-signup">
-            <Button onClick={this.openLogin}>Login</Button>
-            <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
+            <Button className="btn btn-lg" onClick={this.openLogin}>Login</Button>
+            <Button className="btn btn-lg" bsStyle="warning" onClick={this.openSignup}>Signup</Button>
             <Modal show={this.state.loginOpen} onHide={this.closeLogin}>
               {alertLoginMessage}
               <RestaurantLogin onLogin={this.login} />
@@ -147,7 +147,7 @@ class NavBar extends Component {
             <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
             <div className="login-signup">
               <div className="navbar-brand">Welcome, {this.state.member}</div>
-              <Button  onClick={this.logout.bind(this)}> Logout</Button>
+              <Button className="btn btn-lg" onClick={this.logout.bind(this)}> Logout</Button>
             </div>
           </nav>
         </header>

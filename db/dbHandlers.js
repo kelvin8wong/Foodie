@@ -146,15 +146,29 @@ module.exports = function makeDBhandlers (knex) {
       },
   
       getMemberSels: (member, arrStr) => {
-        //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
         return knex.select('restaurants.*')
           .from('membsels')
           .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
           .whereIn('restaurants.restid', knex.raw(`${arrStr}`))
           .andWhere('membsels.memberid', member)
-          .then(result => {
-            return result
-          });
+          .then(result =>  result)
+      },
+      
+      //get a member's comments for a favourite restaurant
+      getMembRestComments: (memb, rest) => {
+        return knex.select('comments')
+          .from('membsels')
+          .where('memberid', memb)
+          .andWhere('memberrest', rest)
+          .then(comments => comments[0])
+      },
+      //put comments for a favourite restaurant
+      putMembRestComments: (memb, rest, putComment) => {
+        return knex('membsels')
+        .where('memberid', memb)
+        .andWhere('memberrest', rest)
+        .update({comments: putComment})
+        .then(stat =>  stat)
       }
   
     } // fin return module function export
