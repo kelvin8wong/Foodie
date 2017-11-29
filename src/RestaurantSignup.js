@@ -31,31 +31,31 @@ class RestaurantSignup extends React.Component {
     })
   }
 
-  Modmember = (event) => {
+  onMember = (event) => {
     this.setState({
       member: event.target.value
     })
   }
 
-  ModnameFirst = (event) => {
+  onFirstName = (event) => {
     this.setState({
       nameFirst: event.target.value
     })
   }
 
-  ModnameLast = (event) => {
+  onLastName = (event) => {
     this.setState({
       nameLast: event.target.value
     })
   }
 
-  Modemail = (event) => {
+  onEmail = (event) => {
     this.setState({
       email: event.target.value
     })
   }
 
-  Modpassword = (event) => {
+  onPassword = (event) => {
     this.setState({
       password: event.target.value
     })
@@ -68,19 +68,19 @@ class RestaurantSignup extends React.Component {
           <div className="signup-title"><h3>Signup Here</h3></div>
           <form id="ajax-register-form" onSubmit={this.ModSubmit} >
             <div className="form-group">
-              <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>
+              <input className ="form-control"type="text" placeholder="Username" onChange={this.onMember} value={this.state.member}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="First Name" onChange={this.ModnameFirst} value={this.state.nameFirst}/>
+              <input className="form-control" type="text" placeholder="First Name" onChange={this.onFirstName} value={this.state.nameFirst}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="text" placeholder="Last Name" onChange={this.ModnameLast} value={this.state.nameLast}/>
+              <input className="form-control" type="text" placeholder="Last Name" onChange={this.onLastName} value={this.state.nameLast}/>
             </div>
             <div className="form-group">
-              <input className="form-control" type="email" placeholder="Email" onChange={this.Modemail} value={this.state.email}/>
+              <input className="form-control" type="email" placeholder="Email" onChange={this.onEmail} value={this.state.email}/>
             </div>
             <div className="form-group">
-              <input  className="form-control" type="password" placeholder="Password" onChange={this.Modpassword} value={this.state.password}/>
+              <input  className="form-control" type="password" placeholder="Password" onChange={this.onPassword} value={this.state.password}/>
             </div>
             <div className="form-group">
               <div className="row">

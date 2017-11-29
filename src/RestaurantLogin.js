@@ -45,7 +45,7 @@ class RestaurantLogin extends React.Component {
             <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
           </div>
           <div className="form-group">
-            <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
+            <input  className="form-control" type="password" placeholder="Password" onChange={this.onPassword} value={this.state.password}/>
           </div>
           <div className="form-group">
               <div className="row">

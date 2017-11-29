@@ -4,6 +4,7 @@ import RestaurantMap from './RestaurantMap.js';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
+import Loading from './loading.js';
 
 class RestaurantContainer extends Component {
   constructor(props){
@@ -165,7 +166,7 @@ class RestaurantContainer extends Component {
   render() {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
       this.state.error ? <p>{this.state.error}</p> :
-      this.state.locating ? <p>Locating...</p> :
+      this.state.locating ? <Loading className="loading-map"/> :
       <RestaurantMap google={this.props.google} venues={this.state.venues} initialCenter={this.state.initialCenter}/>
 
     return (
