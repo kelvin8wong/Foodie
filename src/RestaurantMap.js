@@ -68,7 +68,7 @@ export default class RestaurantMap extends Component {
 
   renderCurrentPosition (){
     return <Marker position={this.props.initialCenter}
-      icon={{url: "https://cdn2.iconfinder.com/data/icons/pinterest-ui-colored/48/JD-17-48.png"}}
+      icon={{url: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"}}
     />
   }
 
