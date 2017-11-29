@@ -10,8 +10,6 @@ body {
   body .favourite-venues {
     text-align: left;
     margin-left: 30px; }
-  body .foodie-logo {
-    position: fixed; }
   body .login-signup {
     float: right; }
   body .map-column {
@@ -33,7 +31,7 @@ body {
     height: 70px; }
     body .fixed-top .foodie-logo {
       left: 0;
-      width: 100px; }
+      width: 200px; }
     body .fixed-top .login-signup {
       right: 20px;
       position: fixed; }
@@ -67,12 +65,9 @@ body {
     margin-left: 25px; }
   body .restaurant-info img {
     border-radius: 3px; }
-<<<<<<< HEAD
-=======
   body .modal-content {
     margin-top: 150px; }
     body .modal-content .close {
       right: 0px; }
->>>>>>> 88ccfe5cd154cbf6784835484f971b67e8033678
 
 /*# sourceMappingURL=index.css.map */

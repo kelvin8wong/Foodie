@@ -12,9 +12,6 @@ body {
     text-align: left;
     margin-left: 30px;
   }
-  .foodie-logo {
-    position: fixed;
-  }
   .login-signup {
     float: right;
   }
@@ -39,7 +36,7 @@ body {
     height: 70px;
     .foodie-logo {
       left:0;
-      width:100px
+      width:200px
     }
     .login-signup{
       right: 20px;
@@ -111,7 +108,7 @@ body {
     }
   }
   .modal-content {
-    margin-top: 150px;
+    margin-top: 125px;
     .close{
       right:0px
     }
