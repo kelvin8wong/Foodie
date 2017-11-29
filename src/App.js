@@ -9,12 +9,12 @@ class App extends Component {
     super(props)
 
     this.state = {
-      status: ""
+      status: false
     }
   }
-  onMemberStatus (){
+  onMemberStatus(name){
     this.setState({
-      status:true
+      status: name ? true : false
     })
   }
 

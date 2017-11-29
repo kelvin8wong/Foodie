@@ -4,6 +4,7 @@ import RestaurantMap from './RestaurantMap.js';
 import RestaurantList from './RestaurantList.js';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { getRestaurantList } from './Services/foursquareApi.js';
+
 class RestaurantContainer extends Component {
   constructor(props){
     super(props);
@@ -64,6 +65,10 @@ class RestaurantContainer extends Component {
   showAll() {
     const latitude  = this.state.position.coords.latitude;
     const longitude = this.state.position.coords.longitude;
+
+    this.setState({
+      venues: []
+    });
 
     getRestaurantList(latitude,longitude).then((response) => {
       const venues = response.response.venues;
@@ -161,7 +166,7 @@ class RestaurantContainer extends Component {
     const output = !navigator.geolocation ? <p>No Geolocation</p>:
       this.state.error ? <p>{this.state.error}</p> :
       this.state.locating ? <p>Locating...</p> :
-      <Route path="/" render={(props) =><RestaurantMap google={this.props.google} venues={this.state.venues} initialCenter={this.state.initialCenter} {...props}/> }/>
+      <RestaurantMap google={this.props.google} venues={this.state.venues} initialCenter={this.state.initialCenter}/>
 
     return (
       <div className="RestaurantContainer">
@@ -169,8 +174,9 @@ class RestaurantContainer extends Component {
           {output}
         </div>
         <div className="search-column">
-          <button style={{display:this.props.onLoggedIn ? 'block' : 'none'}} onClick={this.toggleFavourites.bind(this)}>Favourites</button>
-          <RestaurantList onLoggedIn={this.props.status} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
+
+          { this.props.onLoggedIn && <button onClick={this.toggleFavourites.bind(this)}>Favourites</button> }
+          <RestaurantList onLoggedIn={this.props.onLoggedIn} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
         </div>
       </div>
     );
