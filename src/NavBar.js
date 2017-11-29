@@ -116,9 +116,9 @@ class NavBar extends Component {
       </Alert> : <div></div>
 
     const alertSignupMessage = this.state.alertSignup ? 
-    <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}> 
-      <h4> Username has been taken</h4>
-    </Alert> : <div></div>
+      <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}> 
+        <h4> Username has been taken</h4>
+      </Alert> : <div></div>
 
     if (this.state.member == false) {
       return (
@@ -129,8 +129,8 @@ class NavBar extends Component {
             <Button onClick={this.openLogin}>Login</Button>
             <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
             <Modal show={this.state.loginOpen} onHide={this.closeLogin}>
-                {alertLoginMessage}
-                <RestaurantLogin onLogin={this.login} />
+              {alertLoginMessage}
+              <RestaurantLogin onLogin={this.login} />
             </Modal>
             <Modal show={this.state.signupOpen} onHide={this.closeSignup}>
               {alertSignupMessage}
