@@ -21,10 +21,11 @@ class RestaurantList extends Component {
   return (
     <div>
       {message}
-      <hr></hr>
+      <hr />
       <ol className="restaurant-list">
         {list}
       </ol>
+      <hr />
      </div>
     );
   }
