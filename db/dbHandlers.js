@@ -26,7 +26,7 @@ module.exports = function makeDBhandlers (knex) {
         })
     },
 
-    //get member's data
+    //get member's favourites 
     getMemberData: (member) => {
       return knex('members').where('member', member)
         .select(
@@ -37,7 +37,6 @@ module.exports = function makeDBhandlers (knex) {
 
     //add a new member to the members table
     addMember: (newMemb) => {
-      console.log('just before insert: ', newMemb);
       return knex
         .insert({
             member:       newMemb.member,
@@ -79,7 +78,6 @@ module.exports = function makeDBhandlers (knex) {
   checkRestExists: (rest) => {
       return knex('restaurants').select('restid').where('restid', rest)
         .then(restID  => {
-          console.log(restID);
           return restID[0] ? true  : false
         })
     },
@@ -107,7 +105,7 @@ module.exports = function makeDBhandlers (knex) {
         .then(result => result)
     }, //fin addRestaurant
 
-//add a new restaurant to the restaurants table
+//get retaurant data 
     getRest: (rest) => {
       return knex('restaurants').where('restid', rest)
         .select(
@@ -144,7 +142,7 @@ module.exports = function makeDBhandlers (knex) {
       return knex('membsels').del().where('memberid', member).andWhere('memberrest', rest)
         .then(stat => stat)
     },
-
+    //return an array of member's selected(favs) restaurants
     getMemberSels: (member, arrStr) => {
       //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
       return knex.select('restaurants.*')
@@ -152,6 +150,16 @@ module.exports = function makeDBhandlers (knex) {
         .join('restaurants', 'membsels.memberrest', 'restaurants.restid')
         .whereIn('restaurants.restid', knex.raw(`${arrStr}`))
         .andWhere('membsels.memberid', member)
+        .then(result => {
+          return result
+        });
+    },
+    //return an array of member's selected(favs) restaurants
+    getMemberFavs: (member, arrStr) => {
+      //return knex.raw(`select * from membsels join restaurants on membsels.memberrest = //restaurants.restid where membsels.memberid = '${member}'`);
+      return knex.select('memberrest')
+        .from('membsels')
+        .whereIn('membsels.memberrest', knex.raw(`${arrStr}`))
         .then(result => {
           return result
         });
