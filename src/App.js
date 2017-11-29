@@ -9,15 +9,15 @@ class App extends Component {
     super(props);
 
     this.state = {
-      status: ""
+      status: false
     }
     //bind method for getting venuesId array from RestaurantContainer to this
     this.setVenuesIDs = this.setVenuesIDs.bind(this);
     this.setFavsIDs = this.setFavsIDs.bind(this);
   }
-  onMemberStatus () {
+  onMemberStatus(name){
     this.setState({
-      status:true
+      status: name ? true : false
     })
   }
   //bind the venusID's array from the dRestaurant Container to this.state

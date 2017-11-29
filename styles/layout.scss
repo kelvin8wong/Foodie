@@ -3,6 +3,18 @@ body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  font-size: 14px;
+  .venue-suggestions {
+    text-align: left;
+    margin-left: 30px;
+  }
+  .favourite-venues {
+    text-align: left;
+    margin-left: 30px;
+  }
+  .login-signup {
+    float: right;
+  }
   .map-column {
     padding-top: 70px;
     width: 50%;
@@ -22,19 +34,36 @@ body {
   .fixed-top{
     background-color: #00B551;
     height: 70px;
+    .foodie-logo {
+      left:0;
+      width:200px
+    }
+    .login-signup{
+      right: 20px;
+      position: fixed
+    }
   }
+  ol {
+      list-style-type: none;
+      padding-left: 0;
+    }
   .restaurant-info {
+    width: 100%;
+    .restaurant-order {
+      font-size: 2rem;
+      margin-right: 2rem;
+      vertical-align: top;
+      font-weight: 700;
+    }
     .restaurant-pic {
-      float: left;
-      height: 100px;
-      margin: 0;
-      width: 100px;
+      display: inline-block;
       border-radius: 4px;
+      vertical-align: top;
     }
     .restaurant-details {
-      float: left;
+      display: inline-block;
       padding: 0 0 0 20px;
-      width: 486px;
+      width: 476px;
       text-align: left;
       .restaurant-name {
 
@@ -42,13 +71,9 @@ body {
       .restaurant-rating {
         background-color: #246CE0;
         border-radius: 4px;
-        text-shadow: none;
         float: right;
-        margin: 0;
-        top: inherit;
+        vertical-align: top;
         color: #fff;
-        cursor: default;
-        display: inline-block;
         font-size: 16px;
         font-weight: bold;
         text-align: center;
@@ -79,13 +104,14 @@ body {
 
       }
     }
-    ol {
-      list-style-type: decimal;
-      margin-left: 25px;
-    }
     img {
-      border-radius: 3px;
+      border-radius: 4px;
     }
   }
-
+  .modal-content {
+    margin-top: 125px;
+    .close {
+      right: 0px; 
+    }
+  }
 }

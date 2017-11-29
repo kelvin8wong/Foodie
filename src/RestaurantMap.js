@@ -25,7 +25,7 @@ export default class RestaurantMap extends Component {
     });
   }
 
-  onMouseover = (props, marker, e) => {
+  onMarkerMouseover = (props, marker, e) => {
     const venue = this.props.venues.find(x=>x.id === props.id);
     this.setState({
       selectedPlace: venue,
@@ -52,6 +52,7 @@ export default class RestaurantMap extends Component {
     }
   }
 
+
   renderMarkers() {
     console.log(this.props.venues)
     return this.props.venues.map( (venue) => {
@@ -64,6 +65,11 @@ export default class RestaurantMap extends Component {
       />
     });
   }
+  renderCurrentPosition (){
+    const  { lat, lng } = this.props.initialCenter
+    return 
+    <Marker position={{lat, lng}}/>
+  } 
 
   render() {
 
@@ -73,23 +79,24 @@ export default class RestaurantMap extends Component {
     const { formattedPhone } = contact;
 
     return (
-          <Map
-            zoom={this.state.zoom}
-            initialCenter={this.props.initialCenter}
-            google={this.props.google} onClick={this.onMapClicked}>
-            { this.renderMarkers() }
+      <Map
 
-            <InfoWindow
-              marker={this.state.activeMarker}
-              visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
-                <div>
-                  <h5>{name}</h5>
-                  <div>Address: {address}</div>
-                  <div>Phone: {formattedPhone || 'N/A'}</div>
-                  <a href={url} target="_blank">{url}</a>
-                </div>
-            </InfoWindow>
-          </Map>
+        zoom={this.state.zoom}
+        initialCenter={this.props.initialCenter}
+        google={this.props.google} onClick={this.onMapClicked}>
+        { this.renderMarkers() }
+
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
+            <div>
+              <h5>{name}</h5>
+              <div>Address: {address}</div>
+              <div>Phone: {formattedPhone || 'N/A'}</div>
+              <a href={url} target="_blank">{url}</a>
+            </div>
+        </InfoWindow>
+      </Map>
     );
   }
 }

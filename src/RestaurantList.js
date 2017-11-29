@@ -5,23 +5,26 @@ import Restaurant from './Restaurant.js';
 class RestaurantList extends Component {
 
   render() {
-  	const list = this.props.venues.map((venue) => {
+  	const list = this.props.venues.map((venue, index) => {
 			return (
 				<Restaurant key={venue.id}
+        index={index}
         restid={venue.id}
-        onLoggedIn={this.props.status} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
+        onLoggedIn={this.props.onLoggedIn} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
 			)
 		})
-    // we need to change the title depends on the state of the list
+
+  const message = this.props.showFavourites ?
+  <span><h2 className="favourite-venues"> My Favourite Vegetarian Restaurants in Town</h2></span> :
+  <span><h2 className="venue-suggestions"> Suggestions for nearby vegetarian restaurants</h2></span>
+
   return (
     <div>
-      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}}><h2> Favourites Vegetarian Restaurants in Town</h2></span>
-      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'block'}}><h2> Suggestions for nearby vegetarian restaurants</h2></span>
-
-      <hr></hr>
+      {message}
       <ol className="restaurant-list">
         {list}
       </ol>
+      <hr />
      </div>
     );
   }

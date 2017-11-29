@@ -69,32 +69,37 @@ class Restaurant extends Component {
     this.props.onDelFavourite(favouriteInfo)
   }
 
+  addFavouriteButton = () => {
+    return <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+  }
+
+  removeFavouriteButton = () => {
+    return <input className="button is-primary is-inverted is-outlined" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+  }
 
   render() {
-
     return (
       <li>
         <div className="restaurant-info">
-        <hr></hr>
+        <hr />
+        <span className="restaurant-order">{ this.props.index + 1}</span>
+
           <div className="restaurant-pic">
             <div><img src={this.state.imageUrl}/></div>
           </div>
           <div className="restaurant-details">
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
-            <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
+            <div><h3><span className="restaurant-name"><a href={this.state.url} target="_blank">{this.state.restname}</a></span></h3></div>
             <div><span className="restaurant-price">{this.state.pricetier}</span></div>
             <div className="restaurant-address">
               <span className="address">{this.state.addr1}, </span>
               <span className="city">{this.state.city}, </span>
               <span className="zipCode">{this.state.zipCode}, </span>
               <span className="country">{this.state.country}</span>
-
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
-              <div><span className="site">{this.state.url}</span></div>
           </div>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites || this.props.onLoggedIn ? 'none' : 'block'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}} onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+          { this.props.onLoggedIn && (this.props.showFavourites ? this.removeFavouriteButton() : this.addFavouriteButton()) }
         </div>
       </li>
     );
