@@ -66,7 +66,7 @@ class RestaurantSignup extends React.Component {
     return (
       <div className="px-4 py-3">
         <div className="col-lg-12">
-          <div className="signup-title">Signup Here</div>
+          <div className="signup-title"><h3>Signup Here</h3></div>
           <form id="ajax-register-form" onSubmit={this.ModSubmit} >
             <div className="form-group">
               <input className ="form-control"type="text" placeholder="Username" onChange={this.Modmember} value={this.state.member}/>

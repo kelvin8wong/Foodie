@@ -37,8 +37,9 @@ class RestaurantLogin extends React.Component {
   render() {
 
     return (
-      <div>
-        <div className="login-title">Login Here</div>
+      <div className="px-4 py-3">
+        <div className="col-lg-12">
+        <div className="signup-title"><h3>Login Here</h3></div>
         <form onSubmit={this.handleSubmit} className="px-4 py-3">
           <div className="form-group">
           <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
@@ -47,8 +48,8 @@ class RestaurantLogin extends React.Component {
           <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
           </div>
           <button type="submit" className="btn btn-primary">Login</button>
-          <div><a className href="/signup">New around here? Sign up</a></div>
         </form>
+      </div>
       </div>
     )
   }
