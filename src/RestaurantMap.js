@@ -65,6 +65,11 @@ export default class RestaurantMap extends Component {
       />
     });
   }
+  renderCurrentPosition (){
+    const  { lat, lng } = this.props.initialCenter
+    return 
+    <Marker position={{lat, lng}}/>
+  } 
 
   render() {
 

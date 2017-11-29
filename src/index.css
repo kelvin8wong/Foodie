@@ -27,8 +27,8 @@ body {
     background-color: #00B551;
     height: 70px; }
     body .fixed-top .foodie-logo {
-      position: fixed;
-      left: 0; }
+      left: 0;
+      width: 100px; }
     body .fixed-top .login-signup {
       right: 20px;
       position: fixed; }
@@ -64,5 +64,7 @@ body {
     border-radius: 3px; }
   body .modal-content {
     margin-top: 150px; }
+    body .modal-content .close {
+      right: 0px; }
 
 /*# sourceMappingURL=index.css.map */

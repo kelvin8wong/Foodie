@@ -42,12 +42,18 @@ class RestaurantLogin extends React.Component {
         <div className="signup-title"><h3>Login Here</h3></div>
         <form onSubmit={this.handleSubmit} className="px-4 py-3">
           <div className="form-group">
-          <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
+            <input className="form-control" type="text" placeholder="Username" onChange={this.onUsername} value={this.state.member}/>
           </div>
           <div className="form-group">
-          <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
+            <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
           </div>
-          <button type="submit" className="btn btn-primary">Login</button>
+          <div className="form-group">
+              <div className="row">
+                <div className="col-xs-6 col-xs-offset-3">
+                  <input type="submit" name="login-submit" id="login-submit" className="form-control btn btn-info" value="Login"/>
+                </div>
+              </div>
+            </div>
         </form>
       </div>
       </div>
