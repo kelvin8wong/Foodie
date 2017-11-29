@@ -33,42 +33,26 @@ module.exports = (dbHandler) => {
 
   // request retrieval of member data
   router.get('/mbrRtv', (req, res)  =>  {
-    dbHandler.getMemberData(req.session.member)
-    .then(data  =>  res.json(data))
+    console.log("query member: ", req.query.member)
+    dbHandler.getMemberData(req.query.member)
+    .then(data  =>  {
+      console.log("retrieved member data: ", data);
+    })
   });
 
-  // request retrieval of member selected restaurants
-  router.post('/getMbrSels', (req, res)  =>  {
-    // stringify the restaurants array representation
-    restArr = req.body.restArr;
-    arrStr  = "";
-    restArr.forEach( (elem) => {
-      if (arrStr.length == 0) {
-        //arrStr = JSON.stringify(elem);
-        arrStr = "'" + elem + "'";
-      } else {
-        //arrStr = arrStr + ", " + JSON.stringify(elem);
-        arrStr = arrStr + ", " + "'" + elem + "'";
-      }
-    });
-    //dbHandler.getMemberFavs(req.session.member, arrStr)
-    dbHandler.getMemberFavs("isaiah", arrStr)
-      .then(data  =>  {
-        //re-package array of objects to one object with rest id as keys
-        console.log("raw data from sel: ", data);
-        let favs = {};
-        data.forEach( (favObj) => {
-          console.log("key: ", favs[favObj.memberrest]);
-          favs[favObj.memberrest] = '1';
-        });
-        console.log("Favs obj: ", favs);
-        res.json(favs);
-      })
-  });
+// request retrieval of member selected restaurants
+//  router.get('/getMbrSels', (req, res)  =>  {
+//    dbHandler.getMemberSels(req.query.member)
+//    .then(data  =>  {
+//      console.log("retrieved member selections: ", data);
+//      res.json(data);
+//    })
+//  });
 
   // request from the favorites **
   router.post('/getMyFavourites', (req, res)  =>  {
-    
+
+    console.log("restaurants array: ", req.body.restArr);
     // stringify the restaurants array representation
     restArr = req.body.restArr;
     arrStr  = "";
@@ -81,6 +65,9 @@ module.exports = (dbHandler) => {
         arrStr = arrStr + ", " + "'" + elem + "'";
       }
     });
+
+    console.log(arrStr);
+    console.log(`this is the string ${arrStr}`);
 
     dbHandler.getMemberSels(req.session.member, arrStr)
       .then(data  =>  {
