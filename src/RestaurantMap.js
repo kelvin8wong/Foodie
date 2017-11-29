@@ -52,13 +52,6 @@ export default class RestaurantMap extends Component {
     }
   }
 
-  renderCurrentPosition (){
-    console.log(this.props.initialCenter)
-    const  { lat, lng } = this.props.initialCenter
-    return <Marker position={{lat, lng}}
-      icon={{url: "https://cdn2.iconfinder.com/data/icons/restaurant-1/100/vegan_food_meal_dinner_lunch_restaurant_vegetables-32.png"}}
-    />
-  }
 
   renderMarkers() {
     console.log(this.props.venues)
