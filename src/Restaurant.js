@@ -87,7 +87,7 @@ class Restaurant extends Component {
           </div>
           <div className="restaurant-details">
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
-            <div><h5><span className="restaurant-name">{this.state.restname}</span></h5></div>
+            <div><h3><span className="restaurant-name"><a href={this.state.url} target="_blank">{this.state.restname}</a></span></h3></div>
             <div><span className="restaurant-price">{this.state.pricetier}</span></div>
             <div className="restaurant-address">
               <span className="address">{this.state.addr1}, </span>
@@ -96,7 +96,6 @@ class Restaurant extends Component {
               <span className="country">{this.state.country}</span>
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
-              <div><span className="site">{this.state.url}</span></div>
           </div>
           { this.props.onLoggedIn && (this.props.showFavourites ? this.removeFavouriteButton() : this.addFavouriteButton()) }
         </div>
