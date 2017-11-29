@@ -66,10 +66,11 @@ export default class RestaurantMap extends Component {
     });
   }
   renderCurrentPosition (){
+    console.log ("inside the function:",this.props.initialCenter);
     const  { lat, lng } = this.props.initialCenter
-    return 
+    return
     <Marker position={{lat, lng}}/>
-  } 
+  }
 
   render() {
 
@@ -90,10 +91,9 @@ export default class RestaurantMap extends Component {
           marker={this.state.activeMarker}
           visible={this.state.showingInfoWindow} onClose={this.onInfoWindowClose}>
             <div>
-              <h5>{name}</h5>
-              <div>Address: {address}</div>
-              <div>Phone: {formattedPhone || 'N/A'}</div>
-              <a href={url} target="_blank">{url}</a>
+              <h5><a href={url} target="_blank">{name}</a></h5>
+              <div>{address}</div>
+              <div>{formattedPhone || 'N/A'}</div>
             </div>
         </InfoWindow>
       </Map>

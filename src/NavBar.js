@@ -110,13 +110,13 @@ class NavBar extends Component {
   }
 
   render() {
-    const alertLoginMessage = this.state.alertLogin ? 
-      <Alert bsStyle="danger" onDismiss={this.closeAlertLogin.bind(this)}> 
+    const alertLoginMessage = this.state.alertLogin ?
+      <Alert bsStyle="danger" onDismiss={this.closeAlertLogin.bind(this)}>
         <h4>Invalid Username / Password</h4>
       </Alert> : <div></div>
 
-    const alertSignupMessage = this.state.alertSignup ? 
-      <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}> 
+    const alertSignupMessage = this.state.alertSignup ?
+      <Alert bsStyle="danger" onDismiss={this.closeAlertSignup.bind(this)}>
         <h4> Username has been taken</h4>
       </Alert> : <div></div>
 
