@@ -5,9 +5,10 @@ import Restaurant from './Restaurant.js';
 class RestaurantList extends Component {
 
   render() {
-  	const list = this.props.venues.map((venue) => {
+  	const list = this.props.venues.map((venue, index) => {
 			return (
 				<Restaurant key={venue.id}
+        index={index}
         restid={venue.id}
         onLoggedIn={this.props.onLoggedIn} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
 			)

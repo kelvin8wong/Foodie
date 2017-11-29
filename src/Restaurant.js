@@ -81,7 +81,9 @@ class Restaurant extends Component {
     return (
       <li>
         <div className="restaurant-info">
-        <hr></hr>
+        <hr />
+        <span className="restaurant-order">{ this.props.index + 1}</span>
+
           <div className="restaurant-pic">
             <div><img src={this.state.imageUrl}/></div>
           </div>

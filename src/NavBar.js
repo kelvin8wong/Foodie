@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import RestaurantLogin from './RestaurantLogin';
 import RestaurantSignup from './RestaurantSignup';
-import { Modal, Button, Alert } from 'react-bootstrap';
+import { Modal, Button , Alert } from 'react-bootstrap';
 class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
       member: "",
       loginOpen: false,
-      signupOpen: false,
-      alertLogin: false,
-      alertSignup: false
+      signupOpen: false
+
     }
   }
 
@@ -33,13 +32,12 @@ class NavBar extends Component {
     .then((res) => res.json())
     .then((res) => {
       if (res == "1") {
-        self.setState({member: loginParams.member});
-        self.props.onMemberLogin(this.state.member);
-        console.log('Logged in successful:',res , loginParams.member);
-        self.setState({loginOpen : false})
+           self.setState({member: loginParams.member});
+           self.props.onMemberLogin(this.state.member);
+           console.log('Logged in successful:',res , loginParams.member);
+           self.setState({loginOpen : false})
       } else {
-        console.log('Failed logging in', res);
-        this.setState({alertLogin: true})
+          console.log('Failed logging in', res);
       }
     })
     .catch((err) => {
@@ -59,7 +57,6 @@ class NavBar extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res == "1") {
-        this.props.onMemberLogin();
         this.setState({member: ""});
       }
       console.log("logout status: ", res);
@@ -83,9 +80,7 @@ class NavBar extends Component {
       if (res == "1") {
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
-        this.setState({
-          alertSignup: true
-        })
+        console.log("This username has already been registered. Please choose another.");
       }
     })
   }
@@ -101,12 +96,6 @@ class NavBar extends Component {
   }
   closeSignup = () =>{
     this.setState({signupOpen: false})
-  }
-  closeAlertLogin() {
-    this.setState({ alertLogin: false });
-  }
-  closeAlertSignup() {
-    this.setState({ alertSignup: false });
   }
 
   render() {
@@ -124,7 +113,7 @@ class NavBar extends Component {
       return (
       <header>
         <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-          <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
+          <a href="/"><img className="foodie-logo" src="https://image.ibb.co/iOQzYR/3db4d841_a8bf_454f_a12b_73ff1527ebac.png" alt="logo"/></a>
           <div className="login-signup">
             <Button onClick={this.openLogin}>Login</Button>
             <Button bsStyle="warning" onClick={this.openSignup}>Signup</Button>
@@ -146,7 +135,7 @@ class NavBar extends Component {
       return(
         <header>
           <nav className="navbar fixed-top navbar-expand-lg navbar-dark">
-            <a href="/"><img className="foodie-logo" src="https://image.ibb.co/cqYsnm/f6d69fa1_b1e3_4100_8067_4128339bacaa.png" alt="logo"/></a>
+            <a href="/"><img className="foodie-logo" src="https://image.ibb.co/iOQzYR/3db4d841_a8bf_454f_a12b_73ff1527ebac.png" alt="logo"/></a>
             <div className="login-signup">
               <div className="navbar-brand">Welcome, {this.state.member}</div>
               <Button  onClick={this.logout.bind(this)}> Logout</Button>
