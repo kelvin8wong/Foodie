@@ -6,24 +6,34 @@ import NavBar from './NavBar.js'
 
 class App extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       status: ""
     }
+    //bind method for getting venuesId array from RestaurantContainer to this
+    this.setVenuesIDs = this.setVenuesIDs.bind(this);
+    this.setFavsIDs = this.setFavsIDs.bind(this);
   }
-  onMemberStatus (){
+  onMemberStatus () {
     this.setState({
       status:true
     })
+  }
+  //bind the venusID's array from the dRestaurant Container to this.state
+  setVenuesIDs(venueIDs) {
+    this.setState({venueIDs: venueIDs});
+  }
+  setFavsIDs(favs)  {
+    this.setState({favIDs: favs});
   }
 
   render() {
     return (
       <Router>
       <div className="App">
-        <NavBar onMemberLogin={this.onMemberStatus.bind(this)}/>
-        <RestaurantContainer onLoggedIn={this.state.status}/>
+        <NavBar onMemberLogin={this.onMemberStatus.bind(this) onLogInOK={this.setFavsIDs}/>
+        <RestaurantContainer onLoggedIn={this.state.status} onRestLoad={this.setVenuesIDs}/>
       </div>
       </Router>
     );
