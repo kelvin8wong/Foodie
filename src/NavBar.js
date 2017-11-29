@@ -37,7 +37,7 @@ class NavBar extends Component {
            console.log('Logged in successful:',res , loginParams.member);
            self.setState({loginOpen : false})
       } else {
-          console.log('Failed logging in', res);
+          alert("Sorry, your username or password are wrong. Try again !!");
       }
     })
     .catch((err) => {
@@ -57,6 +57,7 @@ class NavBar extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res == "1") {
+        this.props.onMemberLogin();
         this.setState({member: ""});
       }
       console.log("logout status: ", res);
@@ -80,7 +81,7 @@ class NavBar extends Component {
       if (res == "1") {
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
-        console.log("This username has already been registered. Please choose another.");
+        alert("Sorry, this username has already been registered. Please choose another.");
       }
     })
   }

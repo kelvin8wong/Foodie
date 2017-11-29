@@ -69,9 +69,15 @@ class Restaurant extends Component {
     this.props.onDelFavourite(favouriteInfo)
   }
 
+  addFavouriteButton = () => {
+    return <input className="button is-primary is-inverted is-outlined" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+  }
+
+  removeFavouriteButton = () => {
+    return <input className="button is-primary is-inverted is-outlined" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+  }
 
   render() {
-
     return (
       <li>
         <div className="restaurant-info">
@@ -88,13 +94,11 @@ class Restaurant extends Component {
               <span className="city">{this.state.city}, </span>
               <span className="zipCode">{this.state.zipCode}, </span>
               <span className="country">{this.state.country}</span>
-
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
               <div><span className="site">{this.state.url}</span></div>
           </div>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites || this.props.onLoggedIn ? 'none' : 'block'}} onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
-          <input className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}} onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+          { this.props.onLoggedIn && (this.props.showFavourites ? this.removeFavouriteButton() : this.addFavouriteButton()) }
         </div>
       </li>
     );

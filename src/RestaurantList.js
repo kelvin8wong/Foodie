@@ -9,15 +9,17 @@ class RestaurantList extends Component {
 			return (
 				<Restaurant key={venue.id}
         restid={venue.id}
-        onLoggedIn={this.props.status} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
+        onLoggedIn={this.props.onLoggedIn} showFavourites={this.props.showFavourites} onDelFavourite={this.props.onDelFavourite} onAddFavourite={this.props.onAddFavourite}/>
 			)
 		})
-    // we need to change the title depends on the state of the list
+
+  const message = this.props.showFavourites ?
+  <span className="button is-primary is-inverted is-outlined"><h2 className="favourite-venues"> Favourites Vegetarian Restaurants in Town</h2></span> :
+  <span className="button is-primary is-inverted is-outlined"><h2 className="venue-suggestions"> Suggestions for nearby vegetarian restaurants</h2></span>
+
   return (
     <div>
-      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'none' : 'block'}}><h2 className="venue-suggestions"> Suggestions for nearby vegetarian restaurants</h2></span>
-      <span className="button is-primary is-inverted is-outlined" style={{display:this.props.showFavourites ? 'block' : 'none'}}><h2 className="favourite-venues"> Favourites Vegetarian Restaurants in Town</h2></span>
-
+      {message}
       <hr></hr>
       <ol className="restaurant-list">
         {list}

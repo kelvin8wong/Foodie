@@ -8,7 +8,8 @@ body {
     margin-left: 30px;
   }
   .favourite-venues {
-    float: right;
+    text-align: left;
+    margin-left: 30px;
   }
   .foodie-logo {
     position: fixed;
@@ -35,6 +36,14 @@ body {
   .fixed-top{
     background-color: #00B551;
     height: 70px;
+    .foodie-logo {
+      position: fixed;
+      left:0
+    }
+    .login-signup{
+      right: 20px;
+      position: fixed
+    }
   }
   .restaurant-info {
     .restaurant-pic {
