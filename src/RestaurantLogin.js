@@ -50,7 +50,6 @@ class RestaurantLogin extends React.Component {
             <input  className="form-control" type="password" placeholder="password" onChange={this.onPassword} value={this.state.password}/>
             </div>
             <button type="submit" className="btn btn-primary">Login</button>
-            <div><a className href="/signup">New around here? Sign up</a></div>
           </form>
         </div>
       )
