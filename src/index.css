@@ -31,47 +31,45 @@ body {
     background-color: #00B551;
     height: 70px; }
     body .fixed-top .foodie-logo {
-      left: 0;
-      width: 100px; }
+      position: fixed;
+      left: 0; }
     body .fixed-top .login-signup {
       right: 20px;
       position: fixed; }
-  body .restaurant-info .restaurant-pic {
-    float: left;
-    height: 100px;
-    margin: 0;
-    width: 100px;
-    border-radius: 4px; }
-  body .restaurant-info .restaurant-details {
-    float: left;
-    padding: 0 0 0 20px;
-    width: 486px;
-    text-align: left; }
-    body .restaurant-info .restaurant-details .restaurant-rating {
-      background-color: #246CE0;
-      border-radius: 4px;
-      text-shadow: none;
-      float: right;
-      margin: 0;
-      top: inherit;
-      color: #fff;
-      cursor: default;
+  body ol {
+    list-style-type: none;
+    padding-left: 0; }
+  body .restaurant-info {
+    width: 100%; }
+    body .restaurant-info .restaurant-order {
+      font-size: 2rem;
+      margin-right: 2rem;
+      vertical-align: top;
+      font-weight: 700; }
+    body .restaurant-info .restaurant-pic {
       display: inline-block;
-      font-size: 16px;
-      font-weight: bold;
-      text-align: center;
-      width: 25px; }
-  body .restaurant-info ol {
-    list-style-type: decimal;
-    margin-left: 25px; }
-  body .restaurant-info img {
-    border-radius: 3px; }
-<<<<<<< HEAD
-=======
-  body .modal-content {
-    margin-top: 150px; }
-    body .modal-content .close {
-      right: 0px; }
->>>>>>> 88ccfe5cd154cbf6784835484f971b67e8033678
+      border-radius: 4px;
+      vertical-align: top; }
+    body .restaurant-info .restaurant-details {
+      display: inline-block;
+      padding: 0 0 0 20px;
+      width: 476px;
+      text-align: left; }
+      body .restaurant-info .restaurant-details .restaurant-rating {
+        background-color: #246CE0;
+        border-radius: 4px;
+        text-shadow: none;
+        float: right;
+        margin: 0;
+        top: inherit;
+        color: #fff;
+        cursor: default;
+        display: inline-block;
+        font-size: 16px;
+        font-weight: bold;
+        text-align: center;
+        width: 25px; }
+    body .restaurant-info img {
+      border-radius: 4px; }
 
 /*# sourceMappingURL=index.css.map */

@@ -37,26 +37,35 @@ body {
     background-color: #00B551;
     height: 70px;
     .foodie-logo {
-      left:0;
-      width:100px
+      position: fixed;
+      left:0
     }
     .login-signup{
       right: 20px;
       position: fixed
     }
   }
+  ol {
+      list-style-type: none;
+      padding-left: 0;
+    }
   .restaurant-info {
+    width: 100%;
+    .restaurant-order {
+      font-size: 2rem;
+      margin-right: 2rem;
+      vertical-align: top;
+      font-weight: 700;
+    }
     .restaurant-pic {
-      float: left;
-      height: 100px;
-      margin: 0;
-      width: 100px;
+      display: inline-block;
       border-radius: 4px;
+      vertical-align: top;
     }
     .restaurant-details {
-      float: left;
+      display: inline-block;
       padding: 0 0 0 20px;
-      width: 486px;
+      width: 476px;
       text-align: left;
       .restaurant-name {
 
@@ -101,18 +110,8 @@ body {
 
       }
     }
-    ol {
-      list-style-type: decimal;
-      margin-left: 25px;
-    }
     img {
-      border-radius: 3px;
-    }
-  }
-  .modal-content {
-    margin-top: 150px;
-    .close{
-      right:0px
+      border-radius: 4px;
     }
   }
 }
