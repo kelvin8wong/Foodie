@@ -2,14 +2,16 @@ import React, { Component } from 'react';
 import RestaurantLogin from './RestaurantLogin';
 import RestaurantSignup from './RestaurantSignup';
 import { Modal, Button , Alert } from 'react-bootstrap';
+
 class NavBar extends Component {
   constructor(props) {
     super(props)
     this.state = {
       member: "",
       loginOpen: false,
-      signupOpen: false
-
+      signupOpen: false,
+      alertLogin: false,
+      alertSignup: false
     }
   }
 
@@ -32,12 +34,13 @@ class NavBar extends Component {
     .then((res) => res.json())
     .then((res) => {
       if (res == "1") {
-           self.setState({member: loginParams.member});
-           self.props.onMemberLogin(this.state.member);
-           console.log('Logged in successful:',res , loginParams.member);
-           self.setState({loginOpen : false})
+        self.setState({member: loginParams.member});
+        self.props.onMemberLogin(this.state.member);
+        console.log('Logged in successful:',res , loginParams.member);
+        self.setState({loginOpen : false})
       } else {
-          console.log('Failed logging in', res);
+        console.log('Failed logging in', res);
+        this.setState({alertLogin: true})
       }
     })
     .catch((err) => {
@@ -57,6 +60,7 @@ class NavBar extends Component {
     .then(res => res.json())
     .then((res) => {
       if (res == "1") {
+        this.props.onMemberLogin();
         this.setState({member: ""});
       }
       console.log("logout status: ", res);
@@ -80,7 +84,9 @@ class NavBar extends Component {
       if (res == "1") {
         this.login({member: signupParams.member, password: signupParams.password });
       } else {
-        console.log("This username has already been registered. Please choose another.");
+        this.setState({
+          alertSignup: true
+        })
       }
     })
   }
@@ -96,6 +102,12 @@ class NavBar extends Component {
   }
   closeSignup = () =>{
     this.setState({signupOpen: false})
+  }
+  closeAlertLogin() {
+    this.setState({ alertLogin: false });
+  }
+  closeAlertSignup() {
+    this.setState({ alertSignup: false });
   }
 
   render() {
@@ -148,4 +160,3 @@ class NavBar extends Component {
 }
 
 export default NavBar
-
