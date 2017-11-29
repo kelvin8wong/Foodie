@@ -12,15 +12,20 @@ class RestaurantContainer extends Component {
       venues: [],
       venuesId: [],
       position: null,
-      showFavourites: false
+      showFavourites: false,
+      buttonName: 'Show Favourites'
     }
   }
 
   toggleFavourites() {
     if(this.state.showFavourites) {
       this.showAll();
+      this.setState({
+       buttonName: "Show Favourites"});
     } else {
       this.showMyFavourites(this.state.venuesId);
+      this.setState({
+       buttonName: "Show All"});
     }
 
     this.setState({
@@ -175,7 +180,7 @@ class RestaurantContainer extends Component {
         </div>
         <div className="search-column">
 
-          { this.props.onLoggedIn && <button className="btn btn-success" onClick={this.toggleFavourites.bind(this)}>Favourites</button> }
+          { this.props.onLoggedIn && <button className="btn btn-success" onClick={this.toggleFavourites.bind(this)}>{this.state.buttonName}</button> }
           <RestaurantList onLoggedIn={this.props.onLoggedIn} showFavourites={this.state.showFavourites} venues={this.state.venues} onDelFavourite={this.unSaveFavourite.bind(this)} onAddFavourite={this.saveFavourite.bind(this)}/>
         </div>
       </div>
