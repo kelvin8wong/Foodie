@@ -94,7 +94,7 @@ class Restaurant extends Component {
       case 3:
         priceTag = '$$$';
       break;
-      case 3:
+      case 4:
         priceTag = '$$$$';
       break;
     }
