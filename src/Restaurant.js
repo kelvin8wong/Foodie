@@ -77,7 +77,7 @@ class Restaurant extends Component {
   }
 
   removeFavouriteButton = () => {
-    return <button className="btn btn-success" onClick={this.delFavourite} type="submit" value="Remove from Favourite">
+    return <button className="btn btn-danger" onClick={this.delFavourite} type="submit" value="Remove from Favourite">
     <i className="glyphicon glyphicon-trash"></i>
     </button>
   }
