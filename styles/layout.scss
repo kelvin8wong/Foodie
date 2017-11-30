@@ -10,7 +10,10 @@ body {
     vertical-align: top;
     margin-left: 5px;
     margin-right: 5px;
-
+  }
+  .add-comment {
+    margin-left: 10px;
+    font-size: 0.8em;
   }
   .venue-suggestions {
     text-align: left;
@@ -122,9 +125,5 @@ body {
     .close {
       right: 0px;
     }
-  .add-comment {
-    margin-left: 10px;
-    font-size: 0.8em;
-  }
   }
 }
