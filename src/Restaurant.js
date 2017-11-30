@@ -112,6 +112,7 @@ class Restaurant extends Component {
             <div><img src={this.state.imageUrl}/></div>
           </div>
           <div className="restaurant-details">
+            { this.props.onLoggedIn && (this.props.showFavourites ? this.removeFavouriteButton() : this.addFavouriteButton()) }
             <div><span className="restaurant-rating">{this.state.rating}</span></div>
             <div><h3><span className="restaurant-name"><a href={this.state.url} target="_blank">{this.state.restname}</a></span></h3></div>
             <div><span className="restaurant-price">{this.switchPriceTier(this.state.pricetier)}</span></div>
@@ -123,7 +124,6 @@ class Restaurant extends Component {
             </div>
               <div><span className="phone">{this.state.phone}</span></div>
           </div>
-          { this.props.onLoggedIn && (this.props.showFavourites ? this.removeFavouriteButton() : this.addFavouriteButton()) }
         </div>
       </li>
     );
