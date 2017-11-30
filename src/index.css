@@ -5,7 +5,9 @@ body {
   font-family: sans-serif;
   font-size: 14px; }
   body button {
-    float: right; }
+    border-radius: 4px;
+    float: right;
+    vertical-align: top; }
   body .venue-suggestions {
     text-align: left;
     margin-left: 30px; }
@@ -34,7 +36,10 @@ body {
       width: 200px; }
     body .fixed-top .login-signup {
       right: 20px;
-      position: fixed; }
+      position: fixed;
+      vertical-align: middle; }
+      body .fixed-top .login-signup .navbar-brand {
+        font-size: 16px; }
   body ol {
     list-style-type: none;
     padding-left: 0; }

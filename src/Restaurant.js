@@ -71,11 +71,15 @@ class Restaurant extends Component {
   }
 
   addFavouriteButton = () => {
-    return <input className="btn btn-success" onClick={this.addFavourite} type="submit" value="Add to Favourites"/>
+    return <button className="btn btn-success" onClick={this.addFavourite} type="submit" value="Add to Favourites">
+    <i className="glyphicon glyphicon-heart-empty"></i>
+    </button>
   }
 
   removeFavouriteButton = () => {
-    return <input className="btn btn-success" onClick={this.delFavourite} type="submit" value="Remove from Favourite"/>
+    return <button className="btn btn-success" onClick={this.delFavourite} type="submit" value="Remove from Favourite">
+    <i className="glyphicon glyphicon-heart"></i>
+    </button>
   }
 
   switchPriceTier (prices) {

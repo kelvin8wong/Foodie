@@ -15,7 +15,7 @@ class RestaurantList extends Component {
 		})
 
   const message = this.props.showFavourites ?
-  <span><h2 className="favourite-venues">My Favourite Vegetarian Restaurants in Town</h2></span> :
+  <span><h2 className="favourite-venues">Your Favourite Vegetarian Restaurants</h2></span> :
   <span><h2 className="venue-suggestions">Vegetarian Restaurants In Your Area</h2></span>
 
   return (

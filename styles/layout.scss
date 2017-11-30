@@ -5,7 +5,9 @@ body {
   font-family: sans-serif;
   font-size: 14px;
   button {
+    border-radius: 4px;
     float: right;
+    vertical-align: top;
   }
   .venue-suggestions {
     text-align: left;
@@ -40,7 +42,11 @@ body {
     }
     .login-signup{
       right: 20px;
-      position: fixed
+      position: fixed;
+      vertical-align: middle;
+      .navbar-brand {
+        font-size: 16px;
+      }
     }
   }
   ol {
